@@ -16,7 +16,7 @@ rename_report_data =
             used: +d.Used,
             day10: +d.Day10Used,
             // LocalMax,GlobalMax,RoomCapacity,BuildingAndRoom,
-            days: d.MeetingDays.replace("TH", "R").split(""),
+            days: typeof(d.MeetingDays) == "string" ? d.MeetingDays.replace("TH", "R").split("") : "",
             // MeetingTime,
             start_date: d.SectionStartDate,
             end_date: d.SectionEndDate,
