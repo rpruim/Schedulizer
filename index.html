@@ -31,33 +31,45 @@
             .domain([time_to_date("08:00"), time_to_date("22:00")])
             .range([height, 0]);
 
+        var color_scale = d3.scaleOrdinal()
+            .domain(["M", "T", "W", "R", "F"])
+            .range(["red", "orange", "green", "blue", "purple"]);
+
         var day_scale = d3.scaleBand()
-            .domain(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"])
+            .domain(["M", "T", "W", "R", "F"])
             .range([0, width])
-            .paddingInner(width / 50)
-            .paddingOuter(100);
+            .padding(0.1);
 
 
-        var flat = d3.csv("/Data/CSE10.csv", rename_report_data);
+        var flat = d3.csv("/Data/CourseSectionEnrollment.csv", rename_report_data);
+        var flat = d3.csv("/Data/CSE1000.csv", rename_report_data);
 
         flat.then(function(d) { console.log(d) });
 
         flat.then(function(d) { console.log(flat_to_structured(d)) });
 
-        // console.log(flat_to_structured(flat2));
+        var svg = d3.select("body")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
 
-        // var svg = d3.select("body")
-        //     .append("svg")
-        //     .attr("width", width)
-        //     .attr("height", height);
-
-        // svg.selectAll("rect")
-        //     .data(flat)
-        //     .enter()
-        //         .append('rect')
-        //         .attr('x', day_scale)
-        //         .attr('width')
-            
+        flat.then(function (data) {
+            data = flat_to_structured(data);
+            data = data
+                    .filter( item => item.method == "LEC");
+            svg.selectAll("rect")
+                .data(data)
+                .enter()
+                .append('rect')
+                .attr('x', 300)
+                .attr('x', d => day_scale(d.day))
+                .attr('y', d => time_scale(time_to_date(d.start_time)) )
+                .attr('width', day_scale.bandwidth())
+                .attr('height', 
+                        d => time_scale(time_to_date(d.start_time)) - time_scale(time_to_date(d.end_time)) )
+                .attr('fill', d => color_scale(d.day))
+                .attr('opacity', 0.04);
+            })
     </script>
 
 </body>
