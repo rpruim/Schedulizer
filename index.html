@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Schedulizer</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="d3.v5.js"></script>
+    <script type="text/javascript" src="schedule.js"></script>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <h1>Schedulizer</h1>
+
+    <script>
+        var width = 800;
+        var height = 400;
+
+        var time_scale = d3.scaleTime()
+            .domain([time_to_date("08:00"), time_to_date("22:00")])
+            .range([height, 0]);
+
+        var day_scale = d3.scaleBand()
+            .domain(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"])
+            .range([0, width])
+            .paddingInner(width / 50)
+            .paddingOuter(100);
+
+
+        var flat = d3.csv("/Data/CSE10.csv", rename_report_data);
+
+        flat.then(function(d) { console.log(d) });
+
+        flat.then(function(d) { console.log(flat_to_structured(d)) });
+
+        // console.log(flat_to_structured(flat2));
+
+        // var svg = d3.select("body")
+        //     .append("svg")
+        //     .attr("width", width)
+        //     .attr("height", height);
+
+        // svg.selectAll("rect")
+        //     .data(flat)
+        //     .enter()
+        //         .append('rect')
+        //         .attr('x', day_scale)
+        //         .attr('width')
+            
+    </script>
+
+</body>
+
+</html>
