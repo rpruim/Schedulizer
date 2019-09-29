@@ -37,12 +37,12 @@
 
         var day_scale = d3.scaleBand()
             .domain(["M", "T", "W", "R", "F"])
-            .range([0, width])
-            .padding(0.1);
+            .range([0, width/20])
+            .padding(0.05);
 
 
-        var flat = d3.csv("/Data/CourseSectionEnrollment.csv", rename_report_data);
-        var flat = d3.csv("/Data/CSE1000.csv", rename_report_data);
+//         var flat = d3.csv("/Data/CourseSectionEnrollment.csv", rename_report_data);
+       var flat = d3.csv("/Data/CSE1000.csv", rename_report_data);
 
         flat.then(function(d) { console.log(d) });
 
@@ -56,20 +56,43 @@
         flat.then(function (data) {
             data = flat_to_structured(data);
             data = data
-                    .filter( item => item.method == "LEC");
+                    .filter( item => item.method === "LEC")
+                    // .filter( item => item.prefix === "MATH")
+                    .filter( item => item.term === "18/FA");
+            console.log(data)
+
+            var rooms = 
+                data.map(function(x) { return x.location; })
+                .sort();
+
+
+            console.log(rooms);
+
+            var room_scale = d3.scaleBand()
+              .domain(rooms)
+              .range([0, width])
+              .padding(0.05);
+
             svg.selectAll("rect")
                 .data(data)
                 .enter()
                 .append('rect')
                 .attr('x', 300)
-                .attr('x', d => day_scale(d.day))
+                .attr('x', d => day_scale(d.day) + room_scale(d.location))
                 .attr('y', d => time_scale(time_to_date(d.start_time)) )
                 .attr('width', day_scale.bandwidth())
                 .attr('height', 
                         d => time_scale(time_to_date(d.start_time)) - time_scale(time_to_date(d.end_time)) )
                 .attr('fill', d => color_scale(d.day))
-                .attr('opacity', 0.04);
+                .attr('opacity', 0.2);
+
+            svg.append('g')
+                // .attr('transform', `translate(0, height)`)
+                .call(d3.axisBottom(room_scale));
+
             })
+
+
     </script>
 
 </body>
