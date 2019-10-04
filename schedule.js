@@ -1,50 +1,51 @@
 
 
-rename_report_data =
-    function (d) {
-        return {
-            term: d.Term,
-            dept: d.Department,
-            academic_year: +d.AcademicYear,
-            section: d.SectionName,
-            prefix: d.SubjectCode,
-            number: d.CourseNum,
-            section: d.SectionCode,
-            level: d.CourseLevelCode,
-            credits: d.MinimumCredits,
-            load: +d.FacultyLoad,
-            used: +d.Used,
-            day10: +d.Day10Used,
-            // LocalMax,GlobalMax,RoomCapacity,
-            days: typeof(d.MeetingDays) == "string" ? d.MeetingDays.replace("TH", "R").split("") : [],
-            // MeetingTime,
-            start_date: d.SectionStartDate,
-            end_date: d.SectionEndDate,
-            building: d.Building,
-            room_number: d.RoomNumber,
-            location: d.BuildingAndRoom,
-            // MeetingStart, MeetingEnd,
-            start_time: d.MeetingStartInternal,
-            end_time: d.MeetingEndInternal,
-            monday: d.Monday === "M",
-            tuesday: d.Tuesday === "T",
-            wednesday: d.Wednesday === "W",
-            thursday: d.Thursday === "TH",
-            friday: d.Friday === "F",
-            title: d.ShortTitle,
-            instructor: d.Faculty,
-            status: d.SectionStatus,
-            method: d.InstructionalMethod
-        };
-    }
+var rename_report_data = function (d) {
+    return {
+        term: d.Term,
+        dept: d.Department,
+        academic_year: +d.AcademicYear,
+        section: d.SectionName,
+        prefix: d.SubjectCode,
+        number: d.CourseNum,
+        section: d.SectionCode,
+        level: d.CourseLevelCode,
+        credits: d.MinimumCredits,
+        load: +d.FacultyLoad,
+        used: +d.Used,
+        day10: +d.Day10Used,
+        // LocalMax,GlobalMax,RoomCapacity,
+        days: typeof (d.MeetingDays) == "string" ?
+            d.MeetingDays.replace("TH", "R").split("") : [],
+        // MeetingTime,
+        start_date: d.SectionStartDate,
+        end_date: d.SectionEndDate,
+        building: d.Building,
+        room_number: d.RoomNumber,
+        location: d.BuildingAndRoom,
+        // MeetingStart, 
+        // MeetingEnd,
+        start_time: time_to_date(d.MeetingStartInternal),
+        end_time: time_to_date(d.MeetingEndInternal),
+        // monday: d.Monday === "M",
+        // tuesday: d.Tuesday === "T",
+        // wednesday: d.Wednesday === "W",
+        // thursday: d.Thursday === "TH",
+        // friday: d.Friday === "F",
+        title: d.ShortTitle,
+        instructor: d.Faculty,
+        status: d.SectionStatus,
+        method: d.InstructionalMethod
+    };
+}
 
-time_to_date = function(s, base_date = "2000-01-01") {
+var time_to_date = function(s, base_date = "2000-01-01") {
     return new Date(base_date + "T" + s);
 }
 
-flat_to_structured = function (flat) {
+var sections_to_sessions = function (data) {
     var sessions = [];
-    flat.forEach(function(d) {
+    data.forEach(function(d) {
         d.days.forEach(function(day) {
             sessions = sessions.concat(
                 {
@@ -76,4 +77,15 @@ flat_to_structured = function (flat) {
         });
     });
     return sessions;
+}
+
+var session_summary = function (d, i) {
+    return ""
+        + d.prefix + " " + d.number
+        + " @ " + d.start_time.getHours() + ":" + d.start_time.getMinutes()
+        + " - " + d.end_time.getHours() + ":" + d.end_time.getMinutes()
+        + " in " + d.location
+        + " with " + d.instructor
+        + " [" + i + "]"
+        ;
 }

@@ -23,75 +23,298 @@
 
     <h1>Schedulizer</h1>
 
+    <div id="main-controls">
+        Color by: 
+        <select id = "color-by">
+            <option value="level" selected>level</option>
+            <option value="instructor">instructor</option>
+            <option value="location">room</option>
+            <option value="prefix">prefix</option>
+        </select>
+        Group by: 
+        <select id = "group-by">
+            <option value="instructor">instructor</option>
+            <option value="location" selected>room</option>
+        </select>
+        Prefixes:
+        <select id = "prefixes">
+        </select>
+    </div>
+
+    <svg id = "schedule"></svg>
+
+    <div id = "messaging-center">
+        <text id = "popup"></text>
+    </div>
+
     <script>
         var width = 800;
         var height = 400;
+        var margin = {left: 50, right: 0, top: 50, bottom: 0};
 
-        var time_scale = d3.scaleTime()
-            .domain([time_to_date("08:00"), time_to_date("22:00")])
-            .range([height, 0]);
+        var schedule_svg = d3.select("#schedule")
+                .attr("width",  width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        var color_scale = d3.scaleOrdinal()
-            .domain(["M", "T", "W", "R", "F"])
-            .range(["red", "orange", "green", "blue", "purple"]);
+        schedule_svg
+            .append("g").attr("id", "backdrop");
 
-        var day_scale = d3.scaleBand()
-            .domain(["M", "T", "W", "R", "F"])
-            .range([0, width/20])
-            .padding(0.05);
+        schedule_svg
+            .append("g").attr("id", "sessions");
 
+        d3.selectAll("#popup")
+            .transition(700)
+            .text("Loading data...");
 
-//         var flat = d3.csv("/Data/CourseSectionEnrollment.csv", rename_report_data);
-       var flat = d3.csv("/Data/CSE1000.csv", rename_report_data);
+        var session_data, section_data;
+        var level_color_scale, instructor_color_scale, prefix_color_scale, room_color_scale;
+        var instructor_band_scale, room_band_scale;
+        var time_scale;
+        var color_scale;
+        var color_by = "level";
+        var group_scale;
+        var group_by = "location";
+        var day_band_scale;
+        var groups, prefixes, instructors, rooms;
 
-        flat.then(function(d) { console.log(d) });
+        var update_groups = function (group_by) {
+            switch (group_by) {
+                case "location":
+                    groups = rooms;
+                    group_scale = room_band_scale;
+                    break;
+                case "instructor":
+                    groups = instructors;
+                    group_scale = instructor_band_scale;
+                    break;
+            }
+            day_band_scale = d3.scaleBand()
+                .domain(["M", "T", "W", "R", "F"])
+                .range([0, width / groups.length])
+                .paddingInner(0.1)
+                .paddingOuter(0.2);
 
-        flat.then(function(d) { console.log(flat_to_structured(d)) });
+            schedule_svg.selectAll("rect.session")
+                .transition()
+                .duration(700)
+                .attr("width", day_band_scale.bandwidth())
+                .duration(700)
+                .attr("x", function (d) { return day_band_scale(d.day) + group_scale(d[group_by]); });
 
-        var svg = d3.select("body")
-            .append("svg")
-            .attr("width", width)
-            .attr("height", height);
+            var border_rects = schedule_svg.select("#backdrop").selectAll("rect.border")
+                .data(groups);
 
-        flat.then(function (data) {
-            data = flat_to_structured(data);
-            data = data
-                    .filter( item => item.method === "LEC")
-                    // .filter( item => item.prefix === "MATH")
-                    .filter( item => item.term === "18/FA");
-            console.log(data)
+            border_rects
+                .enter()
+                .append("rect")
+                .attr("class", "border")
+                .attr("rx", 4)
+                .attr("ry", 4)
+                .attr("x", function (d) { return day_band_scale("M") + group_scale(d); })
+                .attr("width", day_band_scale("F") - day_band_scale("M") + day_band_scale.bandwidth())
+                .attr("y", time_scale(time_to_date("22:00")))
+                .attr("height", time_scale(time_to_date("08:00")) - time_scale(time_to_date("22:00")))
+                .attr("fill", "purple")
+                .attr("stroke", "black")
+                .attr("opacity", 0.04);
 
-            var rooms = 
-                data.map(function(x) { return x.location; })
-                .sort();
+            border_rects
+                .transition(700)
+                .attr("x", function (d) { return day_band_scale("M") + group_scale(d); })
+                .transition(700)
+                .attr("width", day_band_scale("F") - day_band_scale("M") + day_band_scale.bandwidth());
+            border_rects.exit().remove();
 
+        }
 
+        var update_color = function(color_by) {
+            switch (color_by) {
+                case "instructor": color_scale = instructor_color_scale; break;
+                case "level":      color_scale = level_color_scale;      break;
+                case "location":   color_scale = room_color_scale;       break;
+                case "prefix":     color_scale = prefix_color_scale;     break;
+            }
+            schedule_svg.selectAll("rect.session")
+                .transition()
+                .duration(700)
+                .attr("fill", function (d) { return color_scale(d[color_by]); })
+        }
+
+        var create_session_viz = function (data) {
+            time_scale = d3.scaleTime()
+                .domain([time_to_date("08:00"), time_to_date("22:00")])
+                .range([height, 100]);
+
+            day_color_scale = d3.scaleOrdinal()
+                .domain(["M", "T", "W", "R", "F"])
+                .range(d3.schemeSet1);
+
+            level_color_scale = d3.scaleOrdinal()
+                .domain(["100", "200", "300"])
+                .range(d3.schemeSet1);
+
+            prefix_color_scale = d3.scaleOrdinal()
+                .domain([prefixes])
+                .range(d3.schemeSet1);
+
+            section_data = data;   // array of sections
+            session_data = sections_to_sessions(data)
+                .filter(item => item.method === "LEC")
+                .filter(item => ["MATH", "STAT", "DATA"].includes(item.prefix))
+                .filter(item => item.term === "20/SP");
+            console.log(session_data);
+            rooms =
+                [... new Set(session_data.map(function (x) { return x.location; }))].sort();
+
+            prefixes =
+                [... new Set(session_data.map(function (x) { return x.prefix; }))].sort();
+
+            instructors =
+                [... new Set(session_data.map(function (x) { return x.instructor; }))].sort();
+
+            console.log(prefixes);
             console.log(rooms);
+            console.log(instructors);
 
-            var room_scale = d3.scaleBand()
-              .domain(rooms)
-              .range([0, width])
-              .padding(0.05);
+            room_band_scale = d3.scaleBand()
+                .domain(rooms)
+                .range([0, width])
+                .padding(0.1);
 
-            svg.selectAll("rect")
-                .data(data)
+            room_color_scale = d3.scaleOrdinal()
+                .domain(rooms)
+                .range(d3.schemeSet1);
+
+            instructor_band_scale = d3.scaleBand()
+                .domain(instructors)
+                .range([0, width])
+                .padding(0.1);
+
+            instructor_color_scale = d3.scaleOrdinal()
+                .domain(instructors)
+                .range(d3.schemeSet1);
+
+            update_groups("location");
+            update_color("level");
+
+            day_band_scale = d3.scaleBand()
+                .domain(["M", "T", "W", "R", "F"])
+                .range([0, width / groups.length])
+                .paddingInner(0.1)
+                .paddingOuter(0.2);
+
+            d3.select("#prefixes")
+                .on("change", function (d) {
+                    // recover the option that has been chosen
+                    var selectedOption = d3.select(this).property("value");
+                })
+                .selectAll("prefix-options")
+                .data(prefixes)
+                .enter()
+                .append('option')
+                .text(function (d) { return d; }) // text shown in the menu
+                .attr("value", function (d) { return d; });
+
+
+            d3.select("#group-by")
+                .on("change", function (d) {
+                    // recover the option that has been chosen
+                    group_by = d3.select(this).property("value");
+                    update_groups(group_by);
+                });
+
+            d3.select("#color-by")
+                .on("change", function (d) {
+                    // recover the option that has been chosen
+                    color_by = d3.select(this).property("value");
+                    update_color(color_by);
+                });
+
+            schedule_svg.select("#backdrop").selectAll("rect.header")
+                .data(groups)
+                .enter()
+                .append("rect")
+                .attr("class", "header")
+                .attr("rx", 4)
+                .attr("ry", 4)
+                .attr("x", function (d) { return day_band_scale("M") + group_scale(d); })
+                .attr("y", time_scale(time_to_date("23:30")))
+                .attr("width", day_band_scale("F") + day_band_scale.bandwidth() - day_band_scale("M"))
+                .attr("height", time_scale(time_to_date("23:00")) - time_scale(time_to_date("24:00")))
+                .attr("fill", "transparent")
+                .attr("stroke", "black")
+                // .attr("opacity", 0.0)
+                .append("text")
+                .attr("class", "header")
+                .attr("x", "50%")
+                .attr("y", "50%")
+                .attr("stroke", "black")
+                .attr("opacity", 0.60)
+                .text(d => d);
+
+            schedule_svg.select("#backdrop").selectAll("rect.border")
+                .data(groups)
+                .enter()
+                .append("rect")
+                .attr("class", "border")
+                .attr("rx", 4)
+                .attr("ry", 4)
+                .attr("x", function (d) { return day_band_scale("M") + group_scale(d); })
+                .attr("y", time_scale(time_to_date("16:30")))
+                .attr("width", day_band_scale("F") + day_band_scale.bandwidth() - day_band_scale("M"))
+                .attr("height", time_scale(time_to_date("08:00")) - time_scale(time_to_date("22:00")))
+                .attr("fill", "purple")
+                .attr("stroke", "black")
+                .attr("opacity", 0.04);
+
+            schedule_svg.select("#sessions").selectAll("rect.session")
+                .data(session_data)
                 .enter()
                 .append('rect')
-                .attr('x', 300)
-                .attr('x', d => day_scale(d.day) + room_scale(d.location))
-                .attr('y', d => time_scale(time_to_date(d.start_time)) )
-                .attr('width', day_scale.bandwidth())
-                .attr('height', 
-                        d => time_scale(time_to_date(d.start_time)) - time_scale(time_to_date(d.end_time)) )
-                .attr('fill', d => color_scale(d.day))
-                .attr('opacity', 0.2);
+                .classed("session", true)
+                .call(function() { console.log(group_by); })
+                .attr("rx", 4)
+                .attr("ry", 4)
+                .attr('x', d => day_band_scale(d.day) + group_scale(d[group_by]))
+                .attr('y', d => time_scale(d.start_time))
+                .attr('width', day_band_scale.bandwidth())
+                .attr('height', d => time_scale(d.start_time) - time_scale(d.end_time))
+                .attr('fill',   d => color_scale(d[color_by]))
+                .attr('opacity', 0.2)
+                .on("mouseover", function (d, i) { create_popup(d, i, this); })
+                .on("mouseout", function (d, i) { close_popup(d, i, this); });
 
-            svg.append('g')
-                // .attr('transform', `translate(0, height)`)
-                .call(d3.axisBottom(room_scale));
+        };  // end create_session_viz()
 
-            })
+        d3.csv("/Data/CourseSectionEnrollment.csv", rename_report_data)
+                .then(create_session_viz)
+                .then(function () { d3.selectAll("#popup").transition(700).text(""); })
+                .catch(console.log.bind(console));
 
+        // Create Event Handlers for mouse
+        function create_popup(d, i, selection) {
+
+            // Use D3 to select element, change color 
+            d3.select(selection).attr("opacity", 0.6);
+
+            d3.select("#popup")
+                // .attr("x", function (d, i) { return 10; })
+                // .attr("y", function (d, i) { return 50; })
+                .transition(700)
+                .text(session_summary(d, i));
+        }
+
+        function close_popup(d, i, selection) {
+            // Use D3 to select element, change color back to normal
+            // d3.select(selection).attr("fill", "yellow"); // function (d) { color_scale(d.day); });
+            d3.select(selection).attr("opacity", 0.2);
+
+            // Select text by id and then remove
+            d3.selectAll("#popup").transition(700).text("");  // Clear text 
+        }
+        
 
     </script>
 
