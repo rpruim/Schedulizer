@@ -21,22 +21,26 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
+    <style>
+        p, text, h1, h2, h3, h4  {font-family: sans-serif}
+    </style>
+
     <h1>Schedulizer</h1>
 
     <div id="main-controls">
-        Color by: 
+        <text>Color by: </text> 
         <select id = "color-by">
             <option value="level" selected>level</option>
             <option value="instructor">instructor</option>
             <option value="location">room</option>
             <option value="prefix">prefix</option>
         </select>
-        Group by: 
+        <text>Group by: </text>
         <select id = "group-by">
             <option value="instructor">instructor</option>
             <option value="location" selected>room</option>
         </select>
-        Prefixes:
+        <text>Prefixes: </text>
         <select id = "prefixes">
         </select>
     </div>
