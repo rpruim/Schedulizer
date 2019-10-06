@@ -1,0 +1,46 @@
+---
+title: "Design"
+author: "R Pruim"
+date: "9/28/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Schedule
+
+Course 
+    * prefix
+    * number
+    * name
+    * department/unit
+    * level (infer from number)
+    * cat. desc
+    * cat. year
+    * faculty load [variable? missing?]
+    * student load [variable? missing?]
+
+Instructor
+    * first
+    * last
+    
+Section      
+    * course
+    * letter
+    * instructor(s)
+    * faculty load [overrides course-level value]
+    * student load [overrides course-level value]
+    * term
+        * academic year
+        * semester [Fall, Interim, Spring, May, Summer1, Summer2, etc.]
+        * part-semester [full, first, second]
+    * session(s)
+        * time
+            * day
+            * start time
+            * end time
+        * location
+  
+  
