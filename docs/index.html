@@ -343,7 +343,7 @@
 
         };  // end create_session_viz()
 
-        d3.csv("/Data/CourseSectionEnrollment.csv", rename_report_data)
+        d3.csv("Data/CourseSectionEnrollment.csv", rename_report_data)
                 .then(create_session_viz)
                 .then(function () { d3.selectAll("#popup").transition(transition_duration).text(""); })
                 .catch(console.log.bind(console));
