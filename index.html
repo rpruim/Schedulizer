@@ -48,6 +48,7 @@
     </div>
 
     <script>
+        var transition_duration = 1000;
         var width = 800;
         var height = 400;
         var margin = {left: 50, right: 0, top: 50, bottom: 0};
@@ -65,7 +66,7 @@
             .append("g").attr("id", "sessions");
 
         d3.selectAll("#popup")
-            .transition(700)
+            .transition(transition_duration)
             .text("Loading data...");
 
         var session_data, section_data;
@@ -98,9 +99,9 @@
 
             schedule_svg.selectAll("rect.session")
                 .transition()
-                .duration(700)
+                .duration(transition_duration)
                 .attr("width", day_band_scale.bandwidth())
-                .duration(700)
+                .duration(transition_duration)
                 .attr("x", function (d) { return day_band_scale(d.day) + group_scale(d[group_by]); });
 
             var border_rects = schedule_svg.select("#backdrop").selectAll("rect.border")
@@ -121,11 +122,45 @@
                 .attr("opacity", 0.04);
 
             border_rects
-                .transition(700)
+                .transition(transition_duration)
                 .attr("x", function (d) { return day_band_scale("M") + group_scale(d); })
-                .transition(700)
+                // .transition(transition_duration)
                 .attr("width", day_band_scale("F") - day_band_scale("M") + day_band_scale.bandwidth());
             border_rects.exit().remove();
+
+            schedule_svg.select("#backdrop").selectAll("svg.header").remove();
+
+            var header_groups = schedule_svg.select("#backdrop").selectAll("svg.header")
+                .data(groups)
+                .enter()
+                .append("svg")
+                .classed("header", true)
+                .attr("id", d => "header-" + d)
+                .attr("x", function (d) { return day_band_scale("M") + group_scale(d); })
+                .attr("y", time_scale(time_to_date("23:30")))
+                .attr("width", day_band_scale("F") + day_band_scale.bandwidth() - day_band_scale("M"))
+                .attr("height", time_scale(time_to_date("23:00")) - time_scale(time_to_date("24:00")))
+
+            header_groups
+                .append("rect")
+                .transition()
+                .attr("width", "95%")
+                .attr("height", "95%")
+                .attr("rx", 4)
+                .attr("ry", 4)
+                .attr("fill", "transparent")
+                .attr("stroke", "black");
+
+            header_groups
+                .append("text")
+                .transition(transition_duration)
+                .attr("x", "50%")
+                .attr("y", "50%")
+                .attr("text-anchor", "middle")
+                .attr("font-size", 9)
+                .attr("stroke", "black")
+                .attr("opacity", 0.60)
+                .text(d => d);
 
         }
 
@@ -138,7 +173,7 @@
             }
             schedule_svg.selectAll("rect.session")
                 .transition()
-                .duration(700)
+                .duration(transition_duration)
                 .attr("fill", function (d) { return color_scale(d[color_by]); })
         }
 
@@ -160,11 +195,22 @@
                 .range(d3.schemeSet1);
 
             section_data = data;   // array of sections
+            
             session_data = sections_to_sessions(data)
                 .filter(item => item.method === "LEC")
-                .filter(item => ["MATH", "STAT", "DATA"].includes(item.prefix))
-                .filter(item => item.term === "20/SP");
+                .filter(item => item.term === "17/FA")
+                .filter(item => ["GEO", "GEOG", "GEOL"].includes(item.prefix));
+
+            instructors =
+                [... new Set(session_data.map(function (x) { return x.instructor; }))].sort();
+
+            // now recreate session_data using the instructor list.
+            session_data = sections_to_sessions(data)
+                .filter(item => item.method === "LEC")
+                .filter(item => item.term === "17/FA")
+                .filter(item => instructors.includes(item.instructor));
             console.log(session_data);
+
             rooms =
                 [... new Set(session_data.map(function (x) { return x.location; }))].sort();
 
@@ -232,42 +278,51 @@
                     update_color(color_by);
                 });
 
-            schedule_svg.select("#backdrop").selectAll("rect.header")
-                .data(groups)
-                .enter()
-                .append("rect")
-                .attr("class", "header")
-                .attr("rx", 4)
-                .attr("ry", 4)
-                .attr("x", function (d) { return day_band_scale("M") + group_scale(d); })
-                .attr("y", time_scale(time_to_date("23:30")))
-                .attr("width", day_band_scale("F") + day_band_scale.bandwidth() - day_band_scale("M"))
-                .attr("height", time_scale(time_to_date("23:00")) - time_scale(time_to_date("24:00")))
-                .attr("fill", "transparent")
-                .attr("stroke", "black")
-                // .attr("opacity", 0.0)
-                .append("text")
-                .attr("class", "header")
-                .attr("x", "50%")
-                .attr("y", "50%")
-                .attr("stroke", "black")
-                .attr("opacity", 0.60)
-                .text(d => d);
+            // var header_groups = schedule_svg.select("#backdrop").selectAll("svg.header")
+            //     .data(groups)
+            //     .enter()
+            //     .append("svg")
+            //     .classed("header", true)
+            //     .attr("id", d => "header-" + d)
+            //     .attr("x", function (d) { return day_band_scale("M") + group_scale(d); })
+            //     .attr("y", time_scale(time_to_date("23:30")))
+            //     .attr("width", day_band_scale("F") + day_band_scale.bandwidth() - day_band_scale("M"))
+            //     .attr("height", time_scale(time_to_date("23:00")) - time_scale(time_to_date("24:00")))
 
-            schedule_svg.select("#backdrop").selectAll("rect.border")
-                .data(groups)
-                .enter()
-                .append("rect")
-                .attr("class", "border")
-                .attr("rx", 4)
-                .attr("ry", 4)
-                .attr("x", function (d) { return day_band_scale("M") + group_scale(d); })
-                .attr("y", time_scale(time_to_date("16:30")))
-                .attr("width", day_band_scale("F") + day_band_scale.bandwidth() - day_band_scale("M"))
-                .attr("height", time_scale(time_to_date("08:00")) - time_scale(time_to_date("22:00")))
-                .attr("fill", "purple")
-                .attr("stroke", "black")
-                .attr("opacity", 0.04);
+            // header_groups
+            //     .append("rect")
+            //     .attr("width", "95%")
+            //     .attr("height", "95%")
+            //     .attr("rx", 4)
+            //     .attr("ry", 4)
+            //     .attr("fill", "transparent")
+            //     .attr("stroke", "black");
+
+            // header_groups
+            //     .append("text")
+            //     // .attr("class", "header")
+            //     .attr("x", "50%")
+            //     .attr("y", "50%")
+            //     .attr("text-anchor", "middle")
+            //     .attr("font-size", 8)
+            //     .attr("stroke", "black")
+            //     .attr("opacity", 0.60)
+            //     .text(d => d);
+
+            // schedule_svg.select("#backdrop").selectAll("rect.border")
+            //     .data(groups)
+            //     .enter()
+            //     .append("rect")
+            //     .attr("class", "border")
+            //     .attr("rx", 4)
+            //     .attr("ry", 4)
+            //     .attr("x", function (d) { return day_band_scale("M") + group_scale(d); })
+            //     .attr("y", time_scale(time_to_date("16:30")))
+            //     .attr("width", day_band_scale("F") + day_band_scale.bandwidth() - day_band_scale("M"))
+            //     .attr("height", time_scale(time_to_date("08:00")) - time_scale(time_to_date("22:00")))
+            //     .attr("fill", "purple")
+            //     .attr("stroke", "black")
+            //     .attr("opacity", 0.04);
 
             schedule_svg.select("#sessions").selectAll("rect.session")
                 .data(session_data)
@@ -290,7 +345,7 @@
 
         d3.csv("/Data/CourseSectionEnrollment.csv", rename_report_data)
                 .then(create_session_viz)
-                .then(function () { d3.selectAll("#popup").transition(700).text(""); })
+                .then(function () { d3.selectAll("#popup").transition(transition_duration).text(""); })
                 .catch(console.log.bind(console));
 
         // Create Event Handlers for mouse
@@ -302,7 +357,7 @@
             d3.select("#popup")
                 // .attr("x", function (d, i) { return 10; })
                 // .attr("y", function (d, i) { return 50; })
-                .transition(700)
+                .transition(transition_duration)
                 .text(session_summary(d, i));
         }
 
@@ -312,7 +367,7 @@
             d3.select(selection).attr("opacity", 0.2);
 
             // Select text by id and then remove
-            d3.selectAll("#popup").transition(700).text("");  // Clear text 
+            d3.selectAll("#popup").transition(transition_duration).text("");  // Clear text 
         }
         
 
