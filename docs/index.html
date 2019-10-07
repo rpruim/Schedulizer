@@ -22,46 +22,58 @@
         <![endif]-->
 
     <style>
-        p, text, h1, h2, h3, h4  {font-family: sans-serif}
+        p,
+        text,
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: sans-serif
+        }
     </style>
 
     <h1>Schedulizer</h1>
 
     <div id="main-controls">
-        <text>Color by: </text> 
-        <select id = "color-by">
+        <text>Color by: </text>
+        <select id="color-by">
             <option value="level" selected>level</option>
             <option value="instructor">instructor</option>
             <option value="location">room</option>
             <option value="prefix">prefix</option>
         </select>
         <text>Group by: </text>
-        <select id = "group-by">
+        <select id="group-by">
             <option value="instructor">instructor</option>
             <option value="location" selected>room</option>
         </select>
         <text>Prefixes: </text>
-        <select id = "prefixes">
+        <select id="prefixes">
         </select>
     </div>
 
-    <svg id = "schedule"></svg>
+    <svg id="schedule"></svg>
 
-    <div id = "messaging-center">
-        <text id = "popup"></text>
+    <div id="messaging-center">
+        <text id="popup"></text>
     </div>
 
     <script>
         var transition_duration = 1000;
         var width = 800;
         var height = 400;
-        var margin = {left: 50, right: 50, top: 50, bottom: 50};
+        var margin = {
+            left: 50,
+            right: 50,
+            top: 50,
+            bottom: 50
+        };
 
         var schedule_svg = d3.select("#schedule")
-                .attr("width",  width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
-                .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         schedule_svg
             .append("g").attr("id", "backdrop");
@@ -84,7 +96,7 @@
         var day_band_scale;
         var groups, prefixes, instructors, rooms;
 
-        var update_groups = function (group_by) {
+        var update_groups = function(group_by) {
             switch (group_by) {
                 case "location":
                     groups = rooms;
@@ -106,7 +118,9 @@
                 .duration(transition_duration)
                 .attr("width", day_band_scale.bandwidth())
                 .duration(transition_duration)
-                .attr("x", function (d) { return day_band_scale(d.day) + group_scale(d[group_by]); });
+                .attr("x", function(d) {
+                    return day_band_scale(d.day) + group_scale(d[group_by]);
+                });
 
             // reference lines for time
             // var border_rects = schedule_svg.select("#backdrop").selectAll("line.reference")
@@ -130,17 +144,21 @@
                 .attr("class", "border")
                 .attr("rx", 4)
                 .attr("ry", 4)
-                .attr("x", function (d) { return day_band_scale("M") + group_scale(d); })
+                .attr("x", function(d) {
+                    return day_band_scale("M") + group_scale(d);
+                })
                 .attr("width", day_band_scale("F") - day_band_scale("M") + day_band_scale.bandwidth())
                 .attr("y", time_scale(time_to_date("22:00")))
-                .attr("height", time_scale(time_to_date("07:00")) - time_scale(time_to_date("22:00")))
+                .attr("height", time_scale(time_to_date("08:00")) - time_scale(time_to_date("22:00")))
                 .attr("fill", "purple")
                 .attr("stroke", "black")
                 .attr("opacity", 0.04);
 
             border_rects
                 .transition(transition_duration)
-                .attr("x", function (d) { return day_band_scale("M") + group_scale(d); })
+                .attr("x", function(d) {
+                    return day_band_scale("M") + group_scale(d);
+                })
                 // .transition(transition_duration)
                 .attr("width", day_band_scale("F") - day_band_scale("M") + day_band_scale.bandwidth());
             border_rects.exit().remove();
@@ -153,7 +171,9 @@
                 .append("svg")
                 .classed("header", true)
                 .attr("id", d => "header-" + d)
-                .attr("x", function (d) { return day_band_scale("M") + group_scale(d); })
+                .attr("x", function(d) {
+                    return day_band_scale("M") + group_scale(d);
+                })
                 .attr("y", time_scale(time_to_date("23:30")))
                 .attr("width", day_band_scale("F") + day_band_scale.bandwidth() - day_band_scale("M"))
                 .attr("height", time_scale(time_to_date("23:00")) - time_scale(time_to_date("24:00")))
@@ -184,21 +204,31 @@
 
         var update_color = function(color_by) {
             switch (color_by) {
-                case "instructor": color_scale = instructor_color_scale; break;
-                case "level":      color_scale = level_color_scale;      break;
-                case "location":   color_scale = room_color_scale;       break;
-                case "prefix":     color_scale = prefix_color_scale;     break;
+                case "instructor":
+                    color_scale = instructor_color_scale;
+                    break;
+                case "level":
+                    color_scale = level_color_scale;
+                    break;
+                case "location":
+                    color_scale = room_color_scale;
+                    break;
+                case "prefix":
+                    color_scale = prefix_color_scale;
+                    break;
             }
             schedule_svg.selectAll("rect.session")
                 .transition()
                 .duration(transition_duration)
-                .attr("fill", function (d) { return color_scale(d[color_by]); })
+                .attr("fill", function(d) {
+                    return color_scale(d[color_by]);
+                })
         }
 
-        var create_session_viz = function (data) {
+        var create_session_viz = function(data) {
             time_scale = d3.scaleTime()
                 .domain([time_to_date("08:00"), time_to_date("22:00")])
-                .range([height-50, 50]);
+                .range([height - 50, 50]);
 
             var time_axis = d3.axisLeft(time_scale);
 
@@ -214,15 +244,16 @@
                 .domain([prefixes])
                 .range(d3.schemeSet1);
 
-            section_data = data;   // array of sections
-            
+            section_data = data; // array of sections
+
             session_data = sections_to_sessions(data)
                 .filter(item => item.method === "LEC")
                 .filter(item => item.term === "17/FA")
                 .filter(item => ["GEO", "GEOG", "GEOL"].includes(item.prefix));
 
-            instructors =
-                [... new Set(session_data.map(function (x) { return x.instructor; }))].sort();
+            instructors = [...new Set(session_data.map(function(x) {
+                return x.instructor;
+            }))].sort();
 
             // now recreate session_data using the instructor list.
             session_data = sections_to_sessions(data)
@@ -231,14 +262,17 @@
                 .filter(item => instructors.includes(item.instructor));
             console.log(session_data);
 
-            rooms =
-                [... new Set(session_data.map(function (x) { return x.location; }))].sort();
+            rooms = [...new Set(session_data.map(function(x) {
+                return x.location;
+            }))].sort();
 
-            prefixes =
-                [... new Set(session_data.map(function (x) { return x.prefix; }))].sort();
+            prefixes = [...new Set(session_data.map(function(x) {
+                return x.prefix;
+            }))].sort();
 
-            instructors =
-                [... new Set(session_data.map(function (x) { return x.instructor; }))].sort();
+            instructors = [...new Set(session_data.map(function(x) {
+                return x.instructor;
+            }))].sort();
 
             console.log(prefixes);
             console.log(rooms);
@@ -272,7 +306,7 @@
                 .paddingOuter(0.2);
 
             d3.select("#prefixes")
-                .on("change", function (d) {
+                .on("change", function(d) {
                     // recover the option that has been chosen
                     var selectedOption = d3.select(this).property("value");
                 })
@@ -280,19 +314,23 @@
                 .data(prefixes)
                 .enter()
                 .append('option')
-                .text(function (d) { return d; }) // text shown in the menu
-                .attr("value", function (d) { return d; });
+                .text(function(d) {
+                    return d;
+                }) // text shown in the menu
+                .attr("value", function(d) {
+                    return d;
+                });
 
 
             d3.select("#group-by")
-                .on("change", function (d) {
+                .on("change", function(d) {
                     // recover the option that has been chosen
                     group_by = d3.select(this).property("value");
                     update_groups(group_by);
                 });
 
             d3.select("#color-by")
-                .on("change", function (d) {
+                .on("change", function(d) {
                     // recover the option that has been chosen
                     color_by = d3.select(this).property("value");
                     update_color(color_by);
@@ -300,34 +338,40 @@
 
             schedule_svg
                 .call(time_axis);
-                // .tickSize(width - margin.left - margin.right));
+            // .tickSize(width - margin.left - margin.right));
 
             schedule_svg.select("#sessions").selectAll("rect.session")
                 .data(session_data)
                 .enter()
                 .append('rect')
                 .classed("session", true)
-                .call(function() { console.log(group_by); })
+                .call(function() {
+                    console.log(group_by);
+                })
                 .attr("rx", 4)
                 .attr("ry", 4)
                 .attr('x', d => day_band_scale(d.day) + group_scale(d[group_by]))
-                .attr('y', d => time_scale(d.start_time))
+                .attr('y', d => time_scale(d.end_time))
                 .attr('width', day_band_scale.bandwidth())
                 .attr('height', d => time_scale(d.start_time) - time_scale(d.end_time))
-                .attr('fill',   d => color_scale(d[color_by]))
+                .attr('fill', d => color_scale(d[color_by]))
                 .attr('opacity', 0.2)
                 .attr('stroke', "black")
-                .on("mouseover", function (d, i) { create_popup(d, i, this); })
-                .on("mouseout", function (d, i) { close_popup(d, i, this); });
+                .on("mouseover", function(d, i) {
+                    create_popup(d, i, this);
+                })
+                .on("mouseout", function(d, i) {
+                    close_popup(d, i, this);
+                });
 
-        };  // end create_session_viz()
+        }; // end create_session_viz()
 
         d3.csv("Data/CourseSectionEnrollment.csv", rename_report_data)
-                .then(create_session_viz)
-                .then(function () { 
-                    d3.selectAll("#popup").transition(transition_duration).text(""); 
-                })
-                .catch(console.log.bind(console));
+            .then(create_session_viz)
+            .then(function() {
+                d3.selectAll("#popup").transition(transition_duration).text("");
+            })
+            .catch(console.log.bind(console));
 
         // Create Event Handlers for mouse
         function create_popup(d, i, selection) {
@@ -345,10 +389,8 @@
             d3.select(selection).attr("opacity", 0.2);
 
             // Select text by id and then remove
-            d3.selectAll("#popup").transition(transition_duration).text("");  // Clear text 
+            d3.selectAll("#popup").transition(transition_duration).text(""); // Clear text 
         }
-        
-
     </script>
 
 </body>
