@@ -55,7 +55,7 @@
         var transition_duration = 1000;
         var width = 800;
         var height = 400;
-        var margin = {left: 50, right: 0, top: 50, bottom: 0};
+        var margin = {left: 50, right: 50, top: 50, bottom: 50};
 
         var schedule_svg = d3.select("#schedule")
                 .attr("width",  width + margin.left + margin.right)
@@ -108,6 +108,19 @@
                 .duration(transition_duration)
                 .attr("x", function (d) { return day_band_scale(d.day) + group_scale(d[group_by]); });
 
+            // reference lines for time
+            // var border_rects = schedule_svg.select("#backdrop").selectAll("line.reference")
+            //     // .data(["08:00", "10:00", "12:00", "14:00", "16:00", "18:00", "20:00"])
+            //     .data(["08:00"])
+            //     .enter()
+            //     .append("line")
+            //     .attr("stroke", "black")
+            //     .attr("opacity", 0.4)
+            //     .attr("x1", 0)
+            //     .attr("x2", width)
+            //     .attr("y1", d => time_scale(time_to_date(d)))
+            //     .attr("y2", d => time_scale(time_to_date(d)));
+
             var border_rects = schedule_svg.select("#backdrop").selectAll("rect.border")
                 .data(groups);
 
@@ -120,7 +133,7 @@
                 .attr("x", function (d) { return day_band_scale("M") + group_scale(d); })
                 .attr("width", day_band_scale("F") - day_band_scale("M") + day_band_scale.bandwidth())
                 .attr("y", time_scale(time_to_date("22:00")))
-                .attr("height", time_scale(time_to_date("08:00")) - time_scale(time_to_date("22:00")))
+                .attr("height", time_scale(time_to_date("07:00")) - time_scale(time_to_date("22:00")))
                 .attr("fill", "purple")
                 .attr("stroke", "black")
                 .attr("opacity", 0.04);
@@ -185,7 +198,9 @@
         var create_session_viz = function (data) {
             time_scale = d3.scaleTime()
                 .domain([time_to_date("08:00"), time_to_date("22:00")])
-                .range([height, 100]);
+                .range([height-50, 50]);
+
+            var time_axis = d3.axisLeft(time_scale);
 
             day_color_scale = d3.scaleOrdinal()
                 .domain(["M", "T", "W", "R", "F"])
@@ -283,7 +298,9 @@
                     update_color(color_by);
                 });
 
-
+            schedule_svg
+                .call(time_axis);
+                // .tickSize(width - margin.left - margin.right));
 
             schedule_svg.select("#sessions").selectAll("rect.session")
                 .data(session_data)
@@ -307,7 +324,9 @@
 
         d3.csv("Data/CourseSectionEnrollment.csv", rename_report_data)
                 .then(create_session_viz)
-                .then(function () { d3.selectAll("#popup").transition(transition_duration).text(""); })
+                .then(function () { 
+                    d3.selectAll("#popup").transition(transition_duration).text(""); 
+                })
                 .catch(console.log.bind(console));
 
         // Create Event Handlers for mouse
@@ -317,15 +336,12 @@
             d3.select(selection).attr("opacity", 0.6);
 
             d3.select("#popup")
-                // .attr("x", function (d, i) { return 10; })
-                // .attr("y", function (d, i) { return 50; })
                 .transition(transition_duration)
                 .text(session_summary(d, i));
         }
 
         function close_popup(d, i, selection) {
             // Use D3 to select element, change color back to normal
-            // d3.select(selection).attr("fill", "yellow"); // function (d) { color_scale(d.day); });
             d3.select(selection).attr("opacity", 0.2);
 
             // Select text by id and then remove
