@@ -98,3 +98,49 @@ var session_summary = function (d, i) {
         + " [" + i + "]"
         ;
 }
+
+var append_item = function (x, item) {
+    if (x == undefined) { x = []; }
+    return (x.concat(item));
+}
+var sessions_to_sections = function (data) {
+    result = {};
+    for (i in data) {
+        d = data[i];
+        let key = d.prefix + "-" + d.number + "-" + d.section;
+        let old = result[key];
+        if (old == undefined) { old = {}; }
+        result[key] = d;
+        result[key].days = append_item(old.days, d.day);
+        result[key].starts = append_item(old.starts, date_to_time(d.start_time));
+        result[key].ends = append_item(old.ends, date_to_time(d.end_time));
+    }
+    for (i in result) {
+        d = result[i];
+        d.days = d.days.join("");
+        d.starts = d.starts.join(";");
+        d.ends = d.ends.join(";");
+        delete result[i].start_time;
+        delete result[i].end_time;
+    }
+    // convert to array
+    result = Object.keys(result).map(k => result[k]);
+
+    return result;
+}
+    
+    
+
+var export_schedule = function (filename = "exported_schedule.csv") {
+    var sessions_data = d3.selectAll("rect.session").data();
+    var sections_data = sessions_to_sections(sessions_data);
+    console.log(sections_data);
+    // console.log(d3.csvFormat(sections_data));
+
+    var csv = 'data:text/csv;charset=utf-8,' + d3.csvFormat(sessions_data);
+    data = encodeURI(csv);
+    link = document.createElement('a');
+    link.setAttribute('href', data);
+    link.setAttribute('download', filename);
+    link.click();
+}

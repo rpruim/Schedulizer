@@ -23,7 +23,8 @@
         <![endif]-->
 
     <style>
-        select
+        #main-controls,
+        select,
         p,
         text,
         h1,
@@ -37,6 +38,11 @@
     <h1>Schedulizer</h1>
 
     <div id="main-controls">
+        <input class="export-button" type="button" value="Export current draft" onclick="export_schedule()">
+        &nbsp;
+        Upload draft schedule: 
+        <input type="file" onchange="load_file()" />
+        <br> <br>
         <text>Color by: </text>
         <select id="color-by">
             <option value="level" selected>level</option>
