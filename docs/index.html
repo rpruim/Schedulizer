@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="d3.v5.js"></script>
     <script type="text/javascript" src="schedule.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:300&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -22,13 +23,14 @@
         <![endif]-->
 
     <style>
+        select
         p,
         text,
         h1,
         h2,
         h3,
         h4 {
-            font-family: sans-serif
+            font-family: 'Yanone Kaffeesatz', sans-serif;
         }
     </style>
 
@@ -77,6 +79,12 @@
 
         schedule_svg
             .append("g").attr("id", "backdrop");
+
+        schedule_svg
+            .append("g")
+            .attr("id", "grid")
+            .attr("stroke", "white")
+            .attr("opacity", 0.4);
 
         schedule_svg
             .append("g").attr("id", "sessions");
@@ -150,9 +158,10 @@
                 .attr("width", day_band_scale("F") - day_band_scale("M") + day_band_scale.bandwidth())
                 .attr("y", time_scale(time_to_date("22:00")))
                 .attr("height", time_scale(time_to_date("08:00")) - time_scale(time_to_date("22:00")))
-                .attr("fill", "purple")
-                .attr("stroke", "black")
-                .attr("opacity", 0.04);
+                .attr("fill", "navy")
+                .attr("stroke", "navy")
+                .attr("stroke-opacity", 0.40)
+                .attr("fill-opacity", 0.05);
 
             border_rects
                 .transition(transition_duration)
@@ -194,10 +203,11 @@
                 .attr("x", "50%")
                 .attr("y", "50%")
                 .attr("text-anchor", "middle")
-                .attr("font-family", "sans-serif")
-                .attr("font-size", 9)
-                .attr("stroke", "black")
-                .attr("opacity", 0.60)
+                .attr("dominant-baseline", "middle")
+                .attr("font-family", "font-family: 'Yanone Kaffeesatz', sans-serif")
+                .attr("font-size", 11)
+                .attr("stroke", "navy")
+                .attr("stroke-opacity", 0.60)
                 .text(d => d);
 
         }
@@ -231,6 +241,9 @@
                 .range([height - 50, 50]);
 
             var time_axis = d3.axisLeft(time_scale);
+            var time_grid = d3.axisLeft(time_scale)
+                .tickFormat("")
+                .tickSize(-width);
 
             day_color_scale = d3.scaleOrdinal()
                 .domain(["M", "T", "W", "R", "F"])
@@ -336,8 +349,11 @@
                     update_color(color_by);
                 });
 
-            schedule_svg
-                .call(time_axis);
+            schedule_svg.select("#backdrop")
+                .call(time_axis)
+
+            schedule_svg.select("#grid")
+                .call(time_grid);
             // .tickSize(width - margin.left - margin.right));
 
             schedule_svg.select("#sessions").selectAll("rect.session")
@@ -355,8 +371,9 @@
                 .attr('width', day_band_scale.bandwidth())
                 .attr('height', d => time_scale(d.start_time) - time_scale(d.end_time))
                 .attr('fill', d => color_scale(d[color_by]))
-                .attr('opacity', 0.2)
+                .attr('fill-opacity', 0.2)
                 .attr('stroke', "black")
+                .attr('stroke-opacity', 0.6)
                 .on("mouseover", function(d, i) {
                     create_popup(d, i, this);
                 })
@@ -377,7 +394,7 @@
         function create_popup(d, i, selection) {
 
             // Use D3 to select element, change color 
-            d3.select(selection).attr("opacity", 0.6);
+            d3.select(selection).attr("fill-opacity", 0.6);
 
             d3.select("#popup")
                 .transition(transition_duration)
@@ -386,7 +403,7 @@
 
         function close_popup(d, i, selection) {
             // Use D3 to select element, change color back to normal
-            d3.select(selection).attr("opacity", 0.2);
+            d3.select(selection).attr("fill-opacity", 0.2);
 
             // Select text by id and then remove
             d3.selectAll("#popup").transition(transition_duration).text(""); // Clear text 

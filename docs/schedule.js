@@ -43,6 +43,15 @@ var time_to_date = function(s, base_date = "2000-01-01") {
     return new Date(base_date + "T" + s);
 }
 
+const time_options = {
+    // year: '2-digit', month: '2-digit', 
+    // day: '2-digit',
+    hour: '2-digit', minute: '2-digit'
+    // timeZoneName: 'short' 
+};
+
+const date_to_time = new Intl.DateTimeFormat('en-us', time_options).format;
+
 var sections_to_sessions = function (data) {
     var sessions = [];
     data.forEach(function(d) {
@@ -82,8 +91,8 @@ var sections_to_sessions = function (data) {
 var session_summary = function (d, i) {
     return ""
         + d.prefix + " " + d.number
-        + " @ " + d.start_time.getHours() + ":" + d.start_time.getMinutes()
-        + " - " + d.end_time.getHours() + ":" + d.end_time.getMinutes()
+        + " @ " + date_to_time(d.start_time)
+        + " - " + date_to_time(d.end_time)
         + " in " + d.location
         + " with " + d.instructor
         + " [" + i + "]"
