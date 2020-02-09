@@ -40,6 +40,14 @@
       h4 {
         font-family: 'Yanone Kaffeesatz', sans-serif;
       }
+
+      div.room {
+        display: inline;
+        }
+      div.instructor {
+        display: inline;
+      }
+
     </style>
 
     <h1>Schedulizer</h1>
@@ -73,9 +81,12 @@
       <select multiple id="term"> </select>
     </div>
 
+    <div class = "room">
     <svg id="schedule-by-room"></svg>
-
+    </div>
+    <div class = "instructor">
     <svg id="schedule-by-instructor"></svg>
+    </div>
 
     <div id="messaging-center">
       <text id="popup"></text>
@@ -111,8 +122,8 @@
          <td><input class="section start time" type="time" value = "08:00"></input></td>
       </tr>
         <tr>
-         <td>End time:</td>
-         <td><input class="section end time" type="time" value = "08:50"></input></td>
+         <td>Duration:</td>
+         <td><input class="section duration" type="number" value = "50"></input></td>
       </tr>
         <tr>
          <td>Room: </td>

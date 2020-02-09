@@ -9,8 +9,11 @@ let termHeight = height * 0.3
 let roomScale, instructorScale, timeScale, colorScale
 
 // setup
-resizeSvg()
+d3.select('div.instructor').remove()
+resize()
 updateScales(schedule)
+
+// add functionality to clicking "Add Section"
 
 d3.select('button.section.add').on('click', () => {
   let days = checkBoxes('input.days-checkbox')
@@ -23,9 +26,10 @@ d3.select('button.section.add').on('click', () => {
     startTime: time_to_date(
       d3.select('input.section.start.time').property('value')
     ),
-    endTimeStr: d3.select('input.section.end.time').property('value'),
-    endTime: time_to_date(
-      d3.select('input.section.end.time').property('value')
+    duration: d3.select('input.section.duration').property('value'),
+    endTime: addMinutes(
+      time_to_date(d3.select('input.section.start.time').property('value')),
+      d3.select('input.section.duration').property('value')
     ),
     room: d3.select('input.section.room').property('value'),
     term: d3.select('input[name="term"]:checked').property('value'),
@@ -34,15 +38,16 @@ d3.select('button.section.add').on('click', () => {
   console.log(desc)
   addSessions(desc)
 })
+
 /**
  *
  * @param {String} selection d3 slection string
  *
  * side:effect: set height/width of selected elements relative to browser size
  */
-function resizeSvg(selection = 'svg') {
-  width = Math.round(window.innerWidth * 0.9)
-  height = Math.round(window.innerHeight * 0.3)
+function resize(selection = 'svg') {
+  width = Math.round(window.innerWidth * 0.5)
+  height = Math.round(window.innerHeight * 0.6)
   d3.selectAll(selection)
     .attr('width', width)
     .attr('height', height)
@@ -83,6 +88,8 @@ function updateScales(schedule) {
     .scaleTime()
     .domain([time_to_date('07:00'), time_to_date('21:00')])
     .range([termHeight, 0])
+
+  colorScale = d => 'navy'
 }
 
 // add array of sessions
@@ -103,19 +110,20 @@ function addSessions(desc) {
           .append('rect')
           .attr('class', 'session')
           .attr('x', d => roomScale(d.room) + dayInRoomScale(d.day))
-          .attr('y', d => timeScale(d.endTime))
+          .attr('y', d => timeScale(d.endTime) + termScale(d.term))
           .attr('width', d => dayInRoomScale.bandwidth())
           .attr('height', d => timeScale(d.startTime) - timeScale(d.endTime))
+          .style('fill', d => colorScale(d))
       },
       update => {
         update
           .transition()
           .duration(morphTime)
           .attr('x', d => roomScale(d.room) + dayInRoomScale(d.day))
-          .attr('y', d => timeScale(d.endTime))
+          .attr('y', d => timeScale(d.endTime) + termScale(d.term))
           .attr('width', d => dayInRoomScale.bandwidth())
           .attr('height', d => timeScale(d.startTime) - timeScale(d.endTime))
-          .style('fill', 'red')
+          .style('fill', d => colorScale(d))
       },
       exit => {
         exit
@@ -148,6 +156,10 @@ function checkBoxes(selector) {
  * @param {String} base_date a date string as yyyy-mm-dd
  * @returns {Date}
  */
-var time_to_date = function(s, base_date = '2000-01-01') {
+function time_to_date(s, base_date = '2000-01-01') {
   return new Date(base_date + 'T' + s)
+}
+
+function addMinutes(date, minutes) {
+  return new Date(date.getTime() + minutes * 60000)
 }
