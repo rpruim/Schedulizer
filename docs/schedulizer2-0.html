@@ -47,6 +47,10 @@
       div.instructor {
         display: inline;
       }
+      div.section-modify {
+        display: inline;
+      }
+
 
     </style>
 
@@ -81,26 +85,15 @@
       <select multiple id="term"> </select>
     </div>
 
-    <div class = "room">
-    <svg id="schedule-by-room"></svg>
-    </div>
-    <div class = "instructor">
-    <svg id="schedule-by-instructor"></svg>
-    </div>
-
-    <div id="messaging-center">
-      <text id="popup"></text>
-    </div>
-
     <div id="section-modify">
       <table>
         <tr>
           <td></td>
-          <td>
-  <input type='radio' name="term" value = "F" checked>Fall</input>
-  <input type='radio' name="term" value = "W">Interim</input>
-	<input type='radio' name="term" value="S">Spring</input>
-</td>
+          <td>   
+            <input type='radio' name="term" value = "F" checked>Fall</input>  
+            <input type='radio' name="term" value = "I">Interim</input> 	
+            <input type='radio' name="term" value="S">Spring</input> 
+          </td>
         </tr>
         <tr>
          <td>Prefix:</td>
@@ -139,8 +132,19 @@
   <input class = "days-checkbox" type='checkbox' name="days" value = "F" checked>F</input>
 </td>
       </table>
-      <button class = "section add">Add Section</button>
+      <button class = "section add">Add/Update Section</button>
     </div>
+    <div class = "room">
+    <svg id="schedule-by-room"></svg>
+    </div>
+    <div class = "instructor">
+    <svg id="schedule-by-instructor"></svg>
+    </div>
+
+    <div id="messaging-center">
+      <text id="popup"></text>
+    </div>
+
 
     <script type="text/javascript" src="schedule-bottom.js"></script>
   </body>

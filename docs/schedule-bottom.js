@@ -34,7 +34,9 @@ d3.select('button.section.add').on('click', () => {
     room: d3.select('input.section.room').property('value'),
     term: d3.select('input[name="term"]:checked').property('value'),
     day: d,
+    sectionID: 'foo',
   }))
+  desc.forEach(d => (d.sectionID = makeKey(d)))
   console.log(desc)
   addSessions(desc)
 })
@@ -98,6 +100,14 @@ function updateScales(schedule) {
  * @param {array of Objects} desc array of session descriptions
  */
 function addSessions(desc) {
+  if (!desc.every(d => d.prefix.length && d.number.length && d.term.length)) {
+    console.log('term, prefix, and number are required')
+    return
+  }
+  let ids = desc.map(d => d.sectionID)
+  console.log(ids)
+  console.log(schedule.filter(d => ids.includes(d.sectionID)))
+  schedule = schedule.filter(d => !ids.includes(d.sectionID))
   schedule.push(...desc)
   updateScales(schedule)
   let svg = d3.select('#schedule-by-room')
@@ -132,6 +142,7 @@ function addSessions(desc) {
           .remove()
       }
     )
+  d3.selectAll('rect.session').on('mouseover', d => updateControls(d))
 }
 
 /**
@@ -150,6 +161,16 @@ function checkBoxes(selector) {
   return choices
 }
 
+function updateControls(d) {
+  d3.select(`input[name="term"][value="${d.term}"]`).property('checked', true)
+  d3.select('input.section.prefix').property('value', d.prefix)
+  d3.select('input.section.number').property('value', d.number)
+  d3.select('input.section.letter').property('value', d.letter)
+  d3.select('input.section.instructor').property('value', d.instructor)
+  d3.select('input.section.room').property('value', d.room)
+  d3.select('input.section.duration').property('value', d.duration)
+  d3.select('input.section.start.time').property('value', d.startTimeStr)
+}
 /**
  *
  * @param {String} s time as hh:mm
@@ -162,4 +183,8 @@ function time_to_date(s, base_date = '2000-01-01') {
 
 function addMinutes(date, minutes) {
   return new Date(date.getTime() + minutes * 60000)
+}
+
+function makeKey(d) {
+  return `${d.prefix}-${d.number}-${d.section}-${d.term}`
 }
