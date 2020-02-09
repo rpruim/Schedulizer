@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+  <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Schedulizer</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript" src="d3.v5.js"></script>
+    <script type="text/javascript" src="moment.js"></script>
+    <script type="text/javascript" src="schedule.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+
+    <style>
+      #main-controls,
+      body,
+      select,
+      p,
+      text,
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: 'Yanone Kaffeesatz', sans-serif;
+      }
+    </style>
+
+    <h1>Schedulizer</h1>
+
+    <div id="main-controls">
+      <input
+        class="export-button"
+        type="button"
+        value="Export current draft"
+        onclick="export_schedule()"
+      />
+      &nbsp; Upload draft schedule:
+      <input type="file" onchange="load_file()" />
+      <br />
+      <br />
+      <text>Color by: </text>
+      <select id="color-by">
+        <option value="level" selected>level</option>
+        <option value="instructor">instructor</option>
+        <option value="location">room</option>
+        <option value="prefix">prefix</option>
+      </select>
+      <text>&nbsp;Group by: </text>
+      <select id="group-by">
+        <option value="instructor">instructor</option>
+        <option value="location" selected>room</option>
+      </select>
+      <text>&nbsp;Prefix(es): </text>
+      <select multiple id="prefix"> </select>
+      <text>&nbsp;Term(s): </text>
+      <select multiple id="term"> </select>
+    </div>
+
+    <svg id="schedule-by-room"></svg>
+
+    <svg id="schedule-by-instructor"></svg>
+
+    <div id="messaging-center">
+      <text id="popup"></text>
+    </div>
+
+    <div id="section-modify">
+      <table>
+        <tr>
+          <td></td>
+          <td>
+  <input type='radio' name="term" value = "F" checked>Fall</input>
+  <input type='radio' name="term" value = "W">Interim</input>
+	<input type='radio' name="term" value="S">Spring</input>
+</td>
+        </tr>
+        <tr>
+         <td>Prefix:</td>
+         <td><input class="section prefix" type="text"></input></td>
+        <tr>
+         <td>Number: </td>
+         <td><input class="section number" type="text"></input> </td>
+      </tr>
+        <tr>
+         <td>Section: </td>
+         <td><input class="section letter" type="text"></input> </td>
+      </tr>
+        <tr>
+         <td>Instructor: </td>
+         <td><input class="section instructor" type="text"></input></td>
+      </tr>
+        <tr>
+         <td>Start time: </td>
+         <td><input class="section start time" type="time" value = "08:00"></input></td>
+      </tr>
+        <tr>
+         <td>End time:</td>
+         <td><input class="section end time" type="time" value = "08:50"></input></td>
+      </tr>
+        <tr>
+         <td>Room: </td>
+         <td><input class="section room" type="text"></input> </td>
+      </tr>
+        <tr>
+          <td>Days:</td>
+          <td>
+  <input class = "days-checkbox" type='checkbox' name="days" value = "M" checked>M</input>
+  <input class = "days-checkbox" type='checkbox' name="days" value = "T" checked>T</input>
+  <input class = "days-checkbox" type='checkbox' name="days" value = "W" checked>W</input>
+  <input class = "days-checkbox" type='checkbox' name="days" value = "R" checked>R</input>
+  <input class = "days-checkbox" type='checkbox' name="days" value = "F" checked>F</input>
+</td>
+      </table>
+      <button class = "section add">Add Section</button>
+    </div>
+
+    <script type="text/javascript" src="schedule-bottom.js"></script>
+  </body>
+</html>
