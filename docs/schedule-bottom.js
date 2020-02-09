@@ -33,6 +33,7 @@ d3.select('button.section.add').on('click', () => {
     ),
     room: d3.select('input.section.room').property('value'),
     term: d3.select('input[name="term"]:checked').property('value'),
+    days: days,
     day: d,
     sectionID: 'foo',
   }))
@@ -113,7 +114,7 @@ function addSessions(desc) {
   let svg = d3.select('#schedule-by-room')
   svg
     .selectAll('rect.session')
-    .data(schedule)
+    .data(schedule, d => d.key + '-' + d.day)
     .join(
       enter => {
         enter
@@ -170,6 +171,10 @@ function updateControls(d) {
   d3.select('input.section.room').property('value', d.room)
   d3.select('input.section.duration').property('value', d.duration)
   d3.select('input.section.start.time').property('value', d.startTimeStr)
+  d3.selectAll('input.days-checkbox').property('checked', false)
+  d.days.forEach(d =>
+    d3.select(`input.days-checkbox[value=${d}`).property('checked', true)
+  )
 }
 /**
  *
