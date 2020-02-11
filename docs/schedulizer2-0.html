@@ -51,6 +51,24 @@
         display: inline;
       }
 
+      rect.session {
+        opacity: 0.3;
+        rx: 4;
+        ry: 2;
+      }
+
+      div.room, 
+      div#section-modify {
+        display: inline;
+      }
+      button.add {
+        background-color: steelblue ;
+        color: white;
+      }
+      button.delete {
+        background-color: orange;
+        color:black;
+      }
 
     </style>
 
@@ -74,15 +92,18 @@
         <option value="location">room</option>
         <option value="prefix">prefix</option>
       </select>
+      <!--
       <text>&nbsp;Group by: </text>
       <select id="group-by">
         <option value="instructor">instructor</option>
         <option value="location" selected>room</option>
       </select>
+
       <text>&nbsp;Prefix(es): </text>
       <select multiple id="prefix"> </select>
       <text>&nbsp;Term(s): </text>
       <select multiple id="term"> </select>
+      -->
     </div>
 
     <div id="section-modify">
@@ -107,6 +128,10 @@
          <td><input class="section letter" type="text" value="A"></input> </td>
       </tr>
         <tr>
+         <td>Load: </td>
+         <td><input class="section load" type="text"></input> </td>
+      </tr>
+        <tr>
          <td>Instructor: </td>
          <td><input class="section instructor" type="text"></input></td>
       </tr>
@@ -126,13 +151,21 @@
           <td>Days:</td>
           <td>
   <input class = "days-checkbox" type='checkbox' name="days" value = "M" checked>M</input>
-  <input class = "days-checkbox" type='checkbox' name="days" value = "T" checked>T</input>
+  <input class = "days-checkbox" type='checkbox' name="days" value = "T" >T</input>
   <input class = "days-checkbox" type='checkbox' name="days" value = "W" checked>W</input>
-  <input class = "days-checkbox" type='checkbox' name="days" value = "R" checked>R</input>
+  <input class = "days-checkbox" type='checkbox' name="days" value = "R" >R</input>
   <input class = "days-checkbox" type='checkbox' name="days" value = "F" checked>F</input>
 </td>
+</tr>
+<tr>
+  <td></td>
+  <td align = "center">
+      <br><button class = "section add">Add/Update Section</button>
+      <br>
+      <br><button class = "section delete">Delete Section</button>
+  </td>
+</tr>
       </table>
-      <button class = "section add">Add/Update Section</button>
     </div>
     <div class = "room">
     <svg id="schedule-by-room"></svg>
