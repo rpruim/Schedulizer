@@ -1,25 +1,32 @@
 // javascrtipt to run after HTML has been processed.
 
+console.log('loading js')
+
 // declarations and initialization
 let schedule = []
 let morphTime = 1000
 let width = window.innerWidth * 0.9
-let height = window.innerHeight * 0.3
-let termHeight = height * 0.3
-let roomScale, instructorScale, timeScale, colorScale
+let height = window.innerHeight * 0.6
+let termHeight = height * 0.5
+let roomScale, instructorScale, timeScale
+let colorScale = d3.scaleOrdinal().range(d3.schemeSet1)
 
 // setup
-d3.select('div.instructor').remove()
+// d3.select('div.instructor').remove()
 resize()
 updateScales(schedule)
+d3.select('#color-by').on('change', function() {
+  updateColor()
+})
 
 // add functionality to clicking "Add Section"
 
 d3.select('button.section.add').on('click', () => {
   let days = checkBoxes('input.days-checkbox')
-  let desc = days.map(d => ({
+  let newSessions = days.map(d => ({
     prefix: d3.select('input.section.prefix').property('value'),
     number: d3.select('input.section.number').property('value'),
+    load: d3.select('input.section.load').property('value'),
     section: d3.select('input.section.letter').property('value'),
     instructor: d3.select('input.section.instructor').property('value'),
     startTimeStr: d3.select('input.section.start.time').property('value'),
@@ -35,11 +42,24 @@ d3.select('button.section.add').on('click', () => {
     term: d3.select('input[name="term"]:checked').property('value'),
     days: days,
     day: d,
-    sectionID: 'foo',
+    sectionID: '',
+    sessionID: '',
+    random: Math.random(),
   }))
-  desc.forEach(d => (d.sectionID = makeKey(d)))
-  console.log(desc)
-  addSessions(desc)
+  newSessions.forEach(d => (d.sectionID = makeKey(d)))
+  newSessions.forEach(d => (d.sessionID = d.sectionID + '-' + d.day))
+  newSessions.forEach(d => (d.level = d.number[0] + '00'))
+  // desc.forEach(
+  //   d => (d.load = d.load ? d.load : (d.days.length * d.duration) / 50)
+  // )
+  schedule = removeSessions(
+    schedule,
+    newSessions.map(d => d.sectionID)
+  )
+  renderSchedule(schedule, 'svg#schedule-by-room')
+  schedule = addSessions(schedule, newSessions)
+  d3.selectAll('rect.session').remove()
+  renderSchedule(schedule, 'svg#schedule-by-room')
 })
 
 /**
@@ -83,16 +103,30 @@ function updateScales(schedule) {
 
   termScale = d3
     .scaleBand()
-    .domain(schedule.map(d => d.term))
-    .range([height, 0])
+    .domain(
+      schedule
+        .map(d => d.term)
+        .sort()
+        .reverse()
+    )
+    .range([0, height])
     .padding(0.1)
 
   timeScale = d3
     .scaleTime()
     .domain([time_to_date('07:00'), time_to_date('21:00')])
-    .range([termHeight, 0])
+    .range([0, termHeight])
 
-  colorScale = d => 'navy'
+  updateColor()
+}
+
+function updateColor(color_by = '') {
+  color_by = color_by ? color_by : d3.select('#color-by').property('value')
+  colorScale.domain(schedule.map(d => d[color_by]))
+  d3.selectAll('rect.session')
+    .transition()
+    .duration(morphTime)
+    .style('fill', d => colorScale(d[color_by]))
 }
 
 // add array of sessions
@@ -100,21 +134,38 @@ function updateScales(schedule) {
  *
  * @param {array of Objects} desc array of session descriptions
  */
-function addSessions(desc) {
-  if (!desc.every(d => d.prefix.length && d.number.length && d.term.length)) {
-    console.log('term, prefix, and number are required')
-    return
-  }
-  let ids = desc.map(d => d.sectionID)
-  console.log(ids)
-  console.log(schedule.filter(d => ids.includes(d.sectionID)))
+function removeSessions(sechedule, ids) {
+  let toBeRemoved = schedule.filter(d => ids.includes(d.sectionID))
+  let n_removed = toBeRemoved.length
   schedule = schedule.filter(d => !ids.includes(d.sectionID))
-  schedule.push(...desc)
-  updateScales(schedule)
-  let svg = d3.select('#schedule-by-room')
-  svg
+  if (toBeRemoved.length > 0) {
+    console.log(`removing ${toBeRemoved.map(d => d.sessionID).join(', ')}`)
+  }
+  console.log(`total sessions: ${schedule.length} [${n_removed} removed]`)
+
+  return schedule
+}
+
+function addSessions(sechedule, sessions) {
+  if (
+    !sessions.every(d => d.prefix.length && d.number.length && d.term.length)
+  ) {
+    console.log('term, prefix, number are required')
+    return schedule
+  }
+  let n_added = sessions.length
+  schedule.push(...sessions)
+  console.log(`adding ${sessions.map(d => d.sessionID).join(', ')}`)
+  console.log(sessions)
+  console.log(`total sessions: ${schedule.length} [${n_added} added]`)
+  return schedule
+}
+
+function renderSchedule(sched, selection) {
+  updateScales(sched)
+  d3.select(selection)
     .selectAll('rect.session')
-    .data(schedule, d => d.key + '-' + d.day)
+    .data(sched) // , d => d.sessionID)
     .join(
       enter => {
         enter
@@ -123,7 +174,7 @@ function addSessions(desc) {
           .attr('x', d => roomScale(d.room) + dayInRoomScale(d.day))
           .attr('y', d => timeScale(d.endTime) + termScale(d.term))
           .attr('width', d => dayInRoomScale.bandwidth())
-          .attr('height', d => timeScale(d.startTime) - timeScale(d.endTime))
+          .attr('height', d => timeScale(d.endTime) - timeScale(d.startTime))
           .style('fill', d => colorScale(d))
       },
       update => {
@@ -133,7 +184,7 @@ function addSessions(desc) {
           .attr('x', d => roomScale(d.room) + dayInRoomScale(d.day))
           .attr('y', d => timeScale(d.endTime) + termScale(d.term))
           .attr('width', d => dayInRoomScale.bandwidth())
-          .attr('height', d => timeScale(d.startTime) - timeScale(d.endTime))
+          .attr('height', d => timeScale(d.endTime) - timeScale(d.startTime))
           .style('fill', d => colorScale(d))
       },
       exit => {
@@ -143,7 +194,8 @@ function addSessions(desc) {
           .remove()
       }
     )
-  d3.selectAll('rect.session').on('mouseover', d => updateControls(d))
+  d3.selectAll('rect.session').on('click', d => updateControls(d))
+  updateColor()
 }
 
 /**
@@ -166,7 +218,8 @@ function updateControls(d) {
   d3.select(`input[name="term"][value="${d.term}"]`).property('checked', true)
   d3.select('input.section.prefix').property('value', d.prefix)
   d3.select('input.section.number').property('value', d.number)
-  d3.select('input.section.letter').property('value', d.letter)
+  d3.select('input.section.load').property('value', d.load)
+  d3.select('input.section.letter').property('value', d.section)
   d3.select('input.section.instructor').property('value', d.instructor)
   d3.select('input.section.room').property('value', d.room)
   d3.select('input.section.duration').property('value', d.duration)
