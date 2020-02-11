@@ -42,7 +42,7 @@
         font-family: 'Yanone Kaffeesatz', sans-serif;
       }
 
-      div.room {
+      div.location {
         display: inline;
         }
       div.instructor {
@@ -58,7 +58,7 @@
         ry: 2;
       }
 
-      div.room, 
+      div.location, 
       div#section-modify {
         display: inline;
       }
@@ -90,14 +90,14 @@
       <select id="color-by">
         <option value="level" selected>level</option>
         <option value="instructor">instructor</option>
-        <option value="room">room</option>
+        <option value="location">location</option>
         <option value="prefix">prefix</option>
       </select>
       <!--
       <text>&nbsp;Group by: </text>
       <select id="group-by">
         <option value="instructor">instructor</option>
-        <option value="location" selected>room</option>
+        <option value="location" selected>location</option>
       </select>
 
       <text>&nbsp;Prefix(es): </text>
@@ -145,8 +145,8 @@
          <td><input class="section duration" type="number" value = "50"></input></td>
       </tr>
         <tr>
-         <td>Room: </td>
-         <td><input class="section room" type="text"></input> </td>
+         <td>Location: </td>
+         <td><input class="section location" type="text"></input> </td>
       </tr>
         <tr>
           <td>Days:</td>
@@ -168,8 +168,8 @@
 </tr>
       </table>
     </div>
-    <div class = "room">
-    <svg id="schedule-by-room"></svg>
+    <div class = "location">
+    <svg id="schedule-by-location"></svg>
     </div>
     <div class = "instructor">
     <svg id="schedule-by-instructor"></svg>

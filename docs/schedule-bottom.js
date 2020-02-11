@@ -8,7 +8,7 @@ let morphTime = 1000
 let width = window.innerWidth * 0.9
 let height = window.innerHeight * 0.6
 let termHeight = height * 0.5
-let roomScale, instructorScale, timeScale
+let locationScale, instructorScale, timeScale
 let colorScale = d3.scaleOrdinal().range(d3.schemeSet1)
 
 // setup
@@ -29,7 +29,7 @@ d3.select('button.section.add').on('click', () => {
   )
   schedule = addSessions(schedule, newSessions)
   d3.selectAll('rect.session').remove()
-  renderSchedule(schedule, 'svg#schedule-by-room')
+  renderSchedule(schedule, 'svg#schedule-by-location')
 })
 
 // add functionality to clicking "Delete Section"
@@ -42,7 +42,7 @@ d3.select('button.section.delete').on('click', () => {
     controlSessions.map(d => d.sectionID)
   )
   d3.selectAll('rect.session').remove()
-  renderSchedule(schedule, 'svg#schedule-by-room')
+  renderSchedule(schedule, 'svg#schedule-by-location')
 })
 
 function sessionsFromControls() {
@@ -62,7 +62,7 @@ function sessionsFromControls() {
       time_to_date(d3.select('input.section.start.time').property('value')),
       d3.select('input.section.duration').property('value')
     ),
-    room: d3.select('input.section.room').property('value'),
+    location: d3.select('input.section.location').property('value'),
     term: d3.select('input[name="term"]:checked').property('value'),
     days: days,
     day: d,
@@ -94,16 +94,16 @@ function resize(selection = 'svg') {
 }
 
 function updateScales(schedule) {
-  roomScale = d3
+  locationScale = d3
     .scaleBand()
-    .domain(schedule.map(d => d.room))
+    .domain(schedule.map(d => d.location))
     .range([0, width])
     .padding(0.1)
 
-  dayInRoomScale = d3
+  dayInLocatoinScale = d3
     .scaleBand()
     .domain(['M', 'T', 'W', 'R', 'F'])
-    .range([0, roomScale.bandwidth()])
+    .range([0, locationScale.bandwidth()])
     .padding(0.05)
 
   instructorScale = d3
@@ -188,18 +188,18 @@ function renderSchedule(sched, selection) {
         enter
           .append('rect')
           .attr('class', 'session')
-          .attr('x', d => roomScale(d.room) + dayInRoomScale(d.day))
+          .attr('x', d => locationScale(d.location) + dayInLocatoinScale(d.day))
           .attr('y', d => timeScale(d.endTime) + termScale(d.term))
-          .attr('width', d => dayInRoomScale.bandwidth())
+          .attr('width', d => dayInLocatoinScale.bandwidth())
           .attr('height', d => timeScale(d.endTime) - timeScale(d.startTime))
       },
       update => {
         update
           .transition()
           .duration(morphTime)
-          .attr('x', d => roomScale(d.room) + dayInRoomScale(d.day))
+          .attr('x', d => locationScale(d.location) + dayInLocatoinScale(d.day))
           .attr('y', d => timeScale(d.endTime) + termScale(d.term))
-          .attr('width', d => dayInRoomScale.bandwidth())
+          .attr('width', d => dayInLocatoinScale.bandwidth())
           .attr('height', d => timeScale(d.endTime) - timeScale(d.startTime))
       },
       exit => {
@@ -234,7 +234,7 @@ function updateControls(d) {
   d3.select('input.section.load').property('value', d.load)
   d3.select('input.section.letter').property('value', d.section)
   d3.select('input.section.instructor').property('value', d.instructor)
-  d3.select('input.section.room').property('value', d.room)
+  d3.select('input.section.location').property('value', d.location)
   d3.select('input.section.duration').property('value', d.duration)
   d3.select('input.section.start.time').property('value', d.startTimeStr)
   d3.selectAll('input.days-checkbox').property('checked', false)
