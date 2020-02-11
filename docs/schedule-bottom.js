@@ -22,6 +22,30 @@ d3.select('#color-by').on('change', function() {
 // add functionality to clicking "Add Section"
 
 d3.select('button.section.add').on('click', () => {
+  let newSessions = sessionsFromControls()
+  schedule = removeSessions(
+    schedule,
+    newSessions.map(d => d.sectionID)
+  )
+  schedule = addSessions(schedule, newSessions)
+  d3.selectAll('rect.session').remove()
+  renderSchedule(schedule, 'svg#schedule-by-room')
+})
+
+// add functionality to clicking "Delete Section"
+
+d3.select('button.section.delete').on('click', () => {
+  console.log('deleting a section')
+  let controlSessions = sessionsFromControls()
+  schedule = removeSessions(
+    schedule,
+    controlSessions.map(d => d.sectionID)
+  )
+  d3.selectAll('rect.session').remove()
+  renderSchedule(schedule, 'svg#schedule-by-room')
+})
+
+function sessionsFromControls() {
   let days = checkBoxes('input.days-checkbox')
   let newSessions = days.map(d => ({
     prefix: d3.select('input.section.prefix').property('value'),
@@ -49,18 +73,11 @@ d3.select('button.section.add').on('click', () => {
   newSessions.forEach(d => (d.sectionID = makeKey(d)))
   newSessions.forEach(d => (d.sessionID = d.sectionID + '-' + d.day))
   newSessions.forEach(d => (d.level = d.number[0] + '00'))
-  // desc.forEach(
-  //   d => (d.load = d.load ? d.load : (d.days.length * d.duration) / 50)
-  // )
-  schedule = removeSessions(
-    schedule,
-    newSessions.map(d => d.sectionID)
+  newSessions.forEach(
+    d => (d.load = d.load ? d.load : (d.days.length * d.duration) / 50)
   )
-  renderSchedule(schedule, 'svg#schedule-by-room')
-  schedule = addSessions(schedule, newSessions)
-  d3.selectAll('rect.session').remove()
-  renderSchedule(schedule, 'svg#schedule-by-room')
-})
+  return newSessions
+}
 
 /**
  *
@@ -175,7 +192,6 @@ function renderSchedule(sched, selection) {
           .attr('y', d => timeScale(d.endTime) + termScale(d.term))
           .attr('width', d => dayInRoomScale.bandwidth())
           .attr('height', d => timeScale(d.endTime) - timeScale(d.startTime))
-          .style('fill', d => colorScale(d))
       },
       update => {
         update
@@ -185,15 +201,12 @@ function renderSchedule(sched, selection) {
           .attr('y', d => timeScale(d.endTime) + termScale(d.term))
           .attr('width', d => dayInRoomScale.bandwidth())
           .attr('height', d => timeScale(d.endTime) - timeScale(d.startTime))
-          .style('fill', d => colorScale(d))
       },
       exit => {
-        exit
-          .transition()
-          .duration(morphTime)
-          .remove()
+        exit.remove()
       }
     )
+
   d3.selectAll('rect.session').on('click', d => updateControls(d))
   updateColor()
 }
