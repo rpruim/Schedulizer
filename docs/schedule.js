@@ -2,6 +2,56 @@
  *
  * @param {array of objects} d
  */
+
+// 'startTimeStr',
+// 'duration',
+// 'days',
+// 'day',
+// 'sectionID',
+//   'sessionID',
+
+function loadFile(d) {
+  console.log('loading file...')
+  console.log(d)
+  if (window.File && window.FileReader && window.FileList && window.Blob) {
+    // Great success! All the File APIs are supported.
+  } else {
+    alert('The File APIs are not fully supported in this browser.')
+  }
+
+  let f = event.target.files[0] // FileList object
+  console.log(f)
+  let reader = new FileReader()
+
+  reader.onload = function(event) {
+    load_json(event.target.result)
+  }
+  // Read in the file as a data URL.
+  reader.readAsDataURL(f)
+}
+
+function load_json(fileHandler) {
+  d3.json(fileHandler, recodeJSON).then(d => {
+    d.forEach(d => (d.startTime = new Date(d.startTime)))
+    d.forEach(d => (d.endTime = new Date(d.endTime)))
+    schedule = d
+    renderSchedule(schedule)
+  })
+}
+function load_csv(fileHandler) {
+  d3.csv(fileHandler, rename_report_data).then(d => {
+    schedule = d
+    // renderSchedule(schedule)
+  })
+}
+
+function recodeJSON() {
+  console.log('recoding JSON')
+  d.duration = +d.duration // make sure it is numeric
+  d.startTime = new Date(d.startTime)
+  d.endTime = new Date(d.endTime)
+}
+
 function rename_report_data(d) {
   let res = {
     term: d.Term,
@@ -22,11 +72,11 @@ function rename_report_data(d) {
         ? d.MeetingDays.replace('TH', 'R').split('\n')
         : [],
     // MeetingTime,
-    start_date: d.SectionStartDate,
-    end_date: d.SectionEndDate,
+    startDate: d.SectionStartDate,
+    endDate: d.SectionEndDate,
     building:
       typeof d.Building == 'string' ? d.Building.split('\n') : undefined,
-    room_number:
+    roomNumber:
       typeof d.RoomNumber == 'string' ? d.RoomNumber.split('\n') : undefined,
     location:
       typeof d.BuildingAndRoom == 'string'
@@ -34,11 +84,11 @@ function rename_report_data(d) {
         : undefined,
     // MeetingStart,
     // MeetingEnd,
-    start_time:
+    startTime:
       typeof d.MeetingStartInternal == 'string'
         ? d.MeetingStartInternal.split('\n').map(d => time_to_date(d))
         : undefined,
-    end_time:
+    endTime:
       typeof d.MeetingEndInternal == 'string'
         ? d.MeetingEndInternal.split('\n').map(d => time_to_date(d))
         : undefined,
@@ -55,19 +105,25 @@ function rename_report_data(d) {
 
   res.days = res.days.map(s => (typeof s == 'string' ? s.split('') : s))
   // console.log(res.days);
-  for (let r = 0; r < res.days.length; r++) {
-    let n = res.days[r].length
-    ;['building', 'room_number', 'location', 'start_time', 'end_time'].forEach(
-      item => {
+  if (false) {
+    for (let r = 0; r < res.days.length; r++) {
+      let n = res.days[r].length
+      ;[
+        'building',
+        'room_number',
+        'location',
+        'start_time',
+        'end_time',
+      ].forEach(item => {
         // console.log({ r: r, item : item, "res[item]" : res[item] });
         res[item][r] = Array(n).fill(
           res[item] == undefined ? undefined : res[item][r]
         )
-      }
-    )
+      })
+    }
   }
 
-  ;['building', 'room', 'location', 'start_time', 'end_time'].forEach(item =>
+  ;['building', 'room', 'location', 'startTime', 'endTime'].forEach(item =>
     res[item] == undefined ? undefined : (res[item] = res[item].flat())
   )
 
@@ -199,14 +255,25 @@ function section_id(d) {
   return d.prefix + '-' + d.number + '-' + d.section
 }
 
-function export_schedule(filename = 'exported_schedule.csv') {
-  var sessions_data = d3.selectAll('rect.session').data()
-  var sections_data = sessions_to_sections(sessions_data)
-  console.log(sections_data)
+function export_schedule(filename = '') {
+  if (!filename) {
+    let timeStr = new Date()
+      .toLocaleString()
+      .substring(0, 22)
+      .replace(/[, /:]/g, '-')
+      .replace(/--/g, '-')
+      .replace('-??-AM', '-AM')
+      .replace('-??-PM', '-PM')
+    filename = `schedulizer-${timeStr}.json`
+  }
+  let sessions_data = d3.selectAll('rect.session').data()
+  // var sections_data = sessions_to_sections(sessions_data)
+  // console.log(sections_data)
   // console.log(d3.csvFormat(sections_data));
 
-  var csv = 'data:text/csv;charset=utf-8,' + d3.csvFormat(sessions_data)
-  data = encodeURI(csv)
+  let csv = 'data:text/csv;charset=utf-8,' + d3.csvFormat(sessions_data)
+  let json = 'data:text/json;charset=utf-8,' + JSON.stringify(sessions_data)
+  data = encodeURI(json)
   link = document.createElement('a')
   link.setAttribute('href', data)
   link.setAttribute('download', filename)
