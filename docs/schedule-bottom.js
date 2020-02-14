@@ -29,7 +29,7 @@ d3.select('button.section.add').on('click', () => {
   )
   schedule = addSessions(schedule, newSessions)
   d3.selectAll('rect.session').remove()
-  renderSchedule(schedule, 'svg#schedule-by-location')
+  renderSchedule(schedule) // , 'svg#schedule-by-location')
 })
 
 // add functionality to clicking "Delete Section"
@@ -42,7 +42,7 @@ d3.select('button.section.delete').on('click', () => {
     controlSessions.map(d => d.sectionID)
   )
   d3.selectAll('rect.session').remove()
-  renderSchedule(schedule, 'svg#schedule-by-location')
+  renderSchedule(schedule) // , 'svg#schedule-by-location')
 })
 
 function sessionsFromControls() {
@@ -57,7 +57,7 @@ function sessionsFromControls() {
     startTime: time_to_date(
       d3.select('input.section.start.time').property('value')
     ),
-    duration: d3.select('input.section.duration').property('value'),
+    duration: +d3.select('input.section.duration').property('value'),
     endTime: addMinutes(
       time_to_date(d3.select('input.section.start.time').property('value')),
       d3.select('input.section.duration').property('value')
@@ -94,6 +94,7 @@ function resize(selection = 'svg') {
 }
 
 function updateScales(schedule) {
+  console.log(schedule)
   locationScale = d3
     .scaleBand()
     .domain(schedule.map(d => d.location))
@@ -178,7 +179,8 @@ function addSessions(sechedule, sessions) {
   return schedule
 }
 
-function renderSchedule(sched, selection) {
+function renderSchedule(sched) {
+  selection = '#schedule-by-location'
   updateScales(sched)
   d3.select(selection)
     .selectAll('rect.session')
