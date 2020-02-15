@@ -12,6 +12,7 @@
     <title>Schedulizer</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://d3js.org/d3-array.v2.min.js"></script>
     <script type="text/javascript" src="d3.v5.js"></script>
     <script type="text/javascript" src="schedule.js"></script>
     <script type="text/javascript" src="schedule-top.js"></script>
@@ -72,10 +73,15 @@
         background-color: orange;
         color:black;
       }
+      div#control-panel {
+        width:200px;
+      }
 
     </style>
 
     <h1>Schedulizer</h1>
+    <div id="control-panel">
+
 
     <div id="main-controls">
       <input
@@ -84,7 +90,8 @@
         value="Export current draft"
         onclick="export_schedule()"
       />
-      &nbsp; Upload draft schedule:
+      <br><br> Upload draft schedule:
+      <br>
       <input type="file" onchange="loadFile(this.files)" />
       <br />
       <br />
@@ -169,6 +176,7 @@
   </td>
 </tr>
       </table>
+    </div>
     </div>
     <div class = "location">
     <svg id="schedule-by-location"></svg>
