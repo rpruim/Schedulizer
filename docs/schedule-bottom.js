@@ -7,12 +7,29 @@ let schedule = []
 let morphTime = 1000
 let width = window.innerWidth * 0.9
 let height = window.innerHeight * 0.6
-let termHeight = height * 0.5
-let locationScale, instructorScale, timeScale
+let margin = { top: 40, bottom: 40, left: 40, right: 40 }
+let termHeight = height * 0.3
+let locationScale, instructorScale
 let colorScale = d3.scaleOrdinal().range(d3.schemeSet1)
+let timeAxis, timeGrid, timeScale
 
 // setup
-// d3.select('div.instructor').remove()
+d3.selectAll('svg')
+  .attr('width', width + margin.left + margin.right)
+  .attr('height', height + margin.top + margin.bottom)
+  .append('g')
+  .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+  .attr('class', 'main-plot')
+  .append('g')
+  .attr('class', 'backdrop')
+
+d3.selectAll('svg')
+  .append('g')
+  .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+  .attr('class', 'grid')
+  .attr('stroke', 'white')
+  .attr('opacity', 0.4)
+
 resize()
 updateScales(schedule)
 d3.select('#color-by').on('change', function() {
@@ -42,7 +59,7 @@ d3.select('button.section.delete').on('click', () => {
     controlSessions.map(d => d.sectionID)
   )
   d3.selectAll('rect.session').remove()
-  renderSchedule(schedule) // , 'svg#schedule-by-location')
+  renderShedule(schedule) // , 'svg#schedule-by-location')
 })
 
 function sessionsFromControls() {
@@ -86,18 +103,21 @@ function sessionsFromControls() {
  * side:effect: set height/width of selected elements relative to browser size
  */
 function resize(selection = 'svg') {
-  width = Math.round(window.innerWidth * 0.5)
-  height = Math.round(window.innerHeight * 0.6)
+  width = Math.round(window.innerWidth * 0.4)
+  height = Math.round(window.innerHeight * 0.5)
+  termHeight = height * 0.3
+  console.log(width, height, termHeight)
+
   d3.selectAll(selection)
-    .attr('width', width)
-    .attr('height', height)
+    .attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom)
 }
 
 function updateScales(schedule) {
   console.log(schedule)
   locationScale = d3
     .scaleBand()
-    .domain(schedule.map(d => d.location))
+    .domain(schedule.map(d => d.location).sort())
     .range([0, width])
     .padding(0.1)
 
@@ -105,11 +125,11 @@ function updateScales(schedule) {
     .scaleBand()
     .domain(['M', 'T', 'W', 'R', 'F'])
     .range([0, locationScale.bandwidth()])
-    .padding(0.05)
+    .padding(0.06)
 
   instructorScale = d3
     .scaleBand()
-    .domain(schedule.map(d => d.instructor))
+    .domain(schedule.map(d => d.instructor).sort())
     .range([0, width])
     .padding(0.1)
 
@@ -117,16 +137,12 @@ function updateScales(schedule) {
     .scaleBand()
     .domain(['M', 'T', 'W', 'R', 'F'])
     .range([0, instructorScale.bandwidth()])
-    .padding(0.05)
+    .padding(0.06)
 
   termScale = d3
     .scaleBand()
-    .domain(
-      schedule
-        .map(d => d.term)
-        .sort()
-        .reverse()
-    )
+    .domain(['F', 'W', 'S'])
+    // schedule.map(d => d.term).sort())
     .range([0, height])
     .padding(0.1)
 
@@ -134,6 +150,12 @@ function updateScales(schedule) {
     .scaleTime()
     .domain([time_to_date('07:00'), time_to_date('21:00')])
     .range([0, termHeight])
+
+  timeAxis = d3.axisLeft(timeScale)
+  timeGrid = d3
+    .axisLeft(timeScale)
+    .tickFormat('')
+    .tickSize(-width)
 
   updateColor()
 }
@@ -180,8 +202,11 @@ function addSessions(sechedule, sessions) {
 }
 
 function renderSchedule(sched) {
-  selection = '#schedule-by-location'
+  selection = '#schedule-by-location .main-plot'
   updateScales(sched)
+  d3.selectAll('svg .backdrop').call(timeAxis)
+  d3.selectAll('svg .grid').call(timeGrid)
+
   d3.select(selection)
     .selectAll('rect.session')
     .data(sched) // , d => d.sessionID)
@@ -202,6 +227,40 @@ function renderSchedule(sched) {
           .attr('x', d => locationScale(d.location) + dayInLocatoinScale(d.day))
           .attr('y', d => timeScale(d.endTime) + termScale(d.term))
           .attr('width', d => dayInLocatoinScale.bandwidth())
+          .attr('height', d => timeScale(d.endTime) - timeScale(d.startTime))
+      },
+      exit => {
+        exit.remove()
+      }
+    )
+  selection = '#schedule-by-instructor .main-plot'
+  updateScales(sched)
+  d3.select(selection)
+    .selectAll('rect.session')
+    .data(sched) // , d => d.sessionID)
+    .join(
+      enter => {
+        enter
+          .append('rect')
+          .attr('class', 'session')
+          .attr(
+            'x',
+            d => instructorScale(d.instructor) + dayInInstructorScale(d.day)
+          )
+          .attr('y', d => timeScale(d.endTime) + termScale(d.term))
+          .attr('width', d => dayInInstructorScale.bandwidth())
+          .attr('height', d => timeScale(d.endTime) - timeScale(d.startTime))
+      },
+      update => {
+        update
+          .transition()
+          .duration(morphTime)
+          .attr(
+            'x',
+            d => instructorScale(d.location) + dayInInstructorScale(d.day)
+          )
+          .attr('y', d => timeScale(d.endTime) + termScale(d.term))
+          .attr('width', d => dayInInstructorScale.bandwidth())
           .attr('height', d => timeScale(d.endTime) - timeScale(d.startTime))
       },
       exit => {
