@@ -115,6 +115,7 @@ function resize(selection = 'svg') {
 
 function updateScales(schedule) {
   console.log(schedule)
+  d3.selectAll('svg .axis').remove()
   locationScale = d3
     .scaleBand()
     .domain(schedule.map(d => d.location).sort())
