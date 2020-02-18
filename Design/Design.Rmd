@@ -9,6 +9,23 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+## To do  
+
+* Allow for multiple "chunks" of a course section 
+    * allow for multiple meeting times, locations, instructors, etc.
+    * Could use A, A1, etc. and then flatten both to A upon export
+    * Could add a "part" field
+* Import from section-level CSV
+* Export to section-level CSV
+* Tally of load
+* Display of schedule (using DT?)
+* Better display of collisions (partial width rects)
+* Resizing based on browser dimensions
+* Drag and drop editing?
+* Comparison to other scheudles (past year, etc.)
+
+
 ## Schedule
 
 Course 
