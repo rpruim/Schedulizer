@@ -7,31 +7,25 @@ let schedule = []
 let morphTime = 1000
 let width = window.innerWidth * 0.9
 let height = window.innerHeight * 0.6
-let margin = { top: 40, bottom: 40, left: 40, right: 40 }
+let margin = { top: 5, bottom: 40, left: 40, right: 40 }
 let termHeight = height * 0.3
 let locationScale, instructorScale
 let colorScale = d3.scaleOrdinal().range(d3.schemeSet1)
 let timeAxis, timeGrid, timeScale
+let terms = ['F', 'W', 'S']
 
 // setup
 d3.selectAll('svg')
   .attr('width', width + margin.left + margin.right)
   .attr('height', height + margin.top + margin.bottom)
-  .append('g')
-  .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
-  .attr('class', 'main-plot')
-  .append('g')
-  .attr('class', 'backdrop')
 
 d3.selectAll('svg')
   .append('g')
-  .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
-  .attr('class', 'grid')
-  .attr('stroke', 'white')
-  .attr('opacity', 0.4)
+  .attr('class', 'main-plot')
 
 resize()
 updateScales(schedule)
+
 d3.select('#color-by').on('change', function() {
   updateColor()
 })
@@ -106,11 +100,15 @@ function resize(selection = 'svg') {
   width = Math.round(window.innerWidth * 0.4)
   height = Math.round(window.innerHeight * 0.5)
   termHeight = height * 0.3
-  console.log(width, height, termHeight)
 
   d3.selectAll(selection)
     .attr('width', width + margin.left + margin.right)
     .attr('height', height + margin.top + margin.bottom)
+
+  d3.selectAll(selection + ' g.main-plot').attr(
+    'transform',
+    `translate(${0 + margin.left} , ${0 + margin.top})`
+  )
 }
 
 function updateScales(schedule) {
@@ -141,15 +139,14 @@ function updateScales(schedule) {
 
   termScale = d3
     .scaleBand()
-    .domain(['F', 'W', 'S'])
-    // schedule.map(d => d.term).sort())
+    .domain(terms)
     .range([0, height])
     .padding(0.1)
 
   timeScale = d3
     .scaleTime()
     .domain([time_to_date('07:00'), time_to_date('21:00')])
-    .range([0, termHeight])
+    .range([termScale(terms[0]), termScale(terms[0]) + termScale.bandwidth()])
 
   timeAxis = d3.axisLeft(timeScale)
   timeGrid = d3
@@ -202,10 +199,22 @@ function addSessions(sechedule, sessions) {
 }
 
 function renderSchedule(sched) {
-  selection = '#schedule-by-location .main-plot'
+  selection = 'svg#schedule-by-location g.main-plot'
   updateScales(sched)
-  d3.selectAll('svg .backdrop').call(timeAxis)
-  d3.selectAll('svg .grid').call(timeGrid)
+
+  for (term of terms) {
+    d3.selectAll('svg .main-plot')
+      .append('g')
+      .attr('transform', 'translate(' + 0 + ', ' + termScale(term) + ')')
+      .attr('class', 'axis')
+      .call(timeAxis)
+
+    d3.selectAll('svg .main-plot')
+      .append('g')
+      .attr('transform', 'translate(' + 0 + ', ' + termScale(term) + ')')
+      .attr('class', 'axis')
+      .call(timeGrid)
+  }
 
   d3.select(selection)
     .selectAll('rect.session')
@@ -216,7 +225,7 @@ function renderSchedule(sched) {
           .append('rect')
           .attr('class', 'session')
           .attr('x', d => locationScale(d.location) + dayInLocatoinScale(d.day))
-          .attr('y', d => timeScale(d.endTime) + termScale(d.term))
+          .attr('y', d => timeScale(d.startTime) + termScale(d.term))
           .attr('width', d => dayInLocatoinScale.bandwidth())
           .attr('height', d => timeScale(d.endTime) - timeScale(d.startTime))
       },
@@ -225,7 +234,7 @@ function renderSchedule(sched) {
           .transition()
           .duration(morphTime)
           .attr('x', d => locationScale(d.location) + dayInLocatoinScale(d.day))
-          .attr('y', d => timeScale(d.endTime) + termScale(d.term))
+          .attr('y', d => timeScale(d.startTime) + termScale(d.term))
           .attr('width', d => dayInLocatoinScale.bandwidth())
           .attr('height', d => timeScale(d.endTime) - timeScale(d.startTime))
       },
@@ -233,7 +242,7 @@ function renderSchedule(sched) {
         exit.remove()
       }
     )
-  selection = '#schedule-by-instructor .main-plot'
+  selection = 'svg#chedule-by-instructor g.main-plot'
   updateScales(sched)
   d3.select(selection)
     .selectAll('rect.session')
