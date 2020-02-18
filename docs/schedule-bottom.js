@@ -246,6 +246,7 @@ function renderSchedule(sched) {
           .attr('y', d => timeScale(d.startTime) + termScale(d.term))
           .attr('width', d => dayInLocatoinScale.bandwidth())
           .attr('height', d => timeScale(d.endTime) - timeScale(d.startTime))
+          .attr('sectionID', d => d.sectionID)
       },
       update => {
         update
@@ -255,6 +256,7 @@ function renderSchedule(sched) {
           .attr('y', d => timeScale(d.startTime) + termScale(d.term))
           .attr('width', d => dayInLocatoinScale.bandwidth())
           .attr('height', d => timeScale(d.endTime) - timeScale(d.startTime))
+          .attr('sectionID', d => d.sectionID)
       },
       exit => {
         exit.remove()
@@ -283,6 +285,7 @@ function renderSchedule(sched) {
           .attr('y', d => timeScale(d.startTime) + termScale(d.term))
           .attr('width', d => dayInInstructorScale.bandwidth())
           .attr('height', d => timeScale(d.endTime) - timeScale(d.startTime))
+          .attr('sectionID', d => d.sectionID)
       },
       update => {
         update
@@ -295,13 +298,17 @@ function renderSchedule(sched) {
           .attr('y', d => timeScale(d.startTime) + termScale(d.term))
           .attr('width', d => dayInInstructorScale.bandwidth())
           .attr('height', d => timeScale(d.endTime) - timeScale(d.startTime))
+          .attr('sectionID', d => d.sectionID)
       },
       exit => {
         exit.remove()
       }
     )
 
-  d3.selectAll('rect.session').on('click', d => updateControls(d))
+  d3.selectAll('rect.session').on('click', d => {
+    hiliteSessions(d)
+    updateControls(d)
+  })
   updateColor()
 }
 
@@ -319,6 +326,18 @@ function checkBoxes(selector) {
     }
   })
   return choices
+}
+
+function hiliteSessions(d) {
+  d3.selectAll('rect.session').style('opacity', undefined)
+  d3.selectAll(`rect.session[sectionID=${d.sectionID}]`).style('opacity', 0.8)
+}
+
+function unhiliteSessions(d) {
+  d3.selectAll(`rect.session[sectionID=${d.sectionID}]`).style(
+    'opacity',
+    undefined
+  )
 }
 
 function updateControls(d) {
