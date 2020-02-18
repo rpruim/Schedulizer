@@ -34,6 +34,7 @@ function load_json(fileHandler) {
   d3.json(fileHandler, recodeJSON).then(d => {
     d.forEach(d => (d.startTime = new Date(d.startTime)))
     d.forEach(d => (d.endTime = new Date(d.endTime)))
+    d.forEach(d => (d.load = +d.load))
     schedule = d
     renderSchedule(schedule)
   })
@@ -221,28 +222,29 @@ function append_item(x, item) {
 var sessions_to_sections = function(data) {
   result = {}
   for (i in data) {
-    d = data[i]
-    let key = section_id(d)
+    let d = data[i]
+    let key = d.sectionID // section_id(d)
     let old = result[key]
     if (old == undefined) {
       old = {}
     }
+    delete d.days
     result[key] = d
     result[key].days = append_item(old.days, d.day)
-    result[key].starts = append_item(old.starts, date_to_time(d.start_time))
-    result[key].ends = append_item(old.ends, date_to_time(d.end_time))
+    delete result[key].day
+    // result[key].starts = append_item(old.starts, date_to_time(d.start_time))
+    // result[key].ends = append_item(old.ends, date_to_time(d.end_time))
   }
   for (i in result) {
-    d = result[i]
+    let d = result[i]
     d.days = d.days.join('')
-    d.starts = d.starts.join(';')
-    d.ends = d.ends.join(';')
-    delete result[i].start_time
-    delete result[i].end_time
+    // d.starts = d.starts.join(';')
+    // d.ends = d.ends.join(';')
+    // delete result[i].start_time
+    // delete result[i].end_time
   }
   // convert to array
   result = Object.keys(result).map(k => result[k])
-
   return result
 }
 
@@ -266,7 +268,10 @@ function export_schedule(filename = '') {
       .replace('-??-PM', '-PM')
     filename = `schedulizer-${timeStr}.json`
   }
-  let sessions_data = d3.selectAll('rect.session').data()
+  let sessions_data = d3
+    .selectAll('svg#schedule-by-location rect.session')
+    .data()
+  // let sessions_data = schedule
   // var sections_data = sessions_to_sections(sessions_data)
   // console.log(sections_data)
   // console.log(d3.csvFormat(sections_data));
@@ -278,4 +283,51 @@ function export_schedule(filename = '') {
   link.setAttribute('href', data)
   link.setAttribute('download', filename)
   link.click()
+}
+
+function abbrev(x) {
+  return x
+    .split(' ')
+    .map(d => d[0])
+    .join('')
+}
+
+function compute_loads(schedule) {
+  let sections = sessions_to_sections(schedule)
+  let loads = Array.from(
+    d3.rollup(
+      sections,
+      v => d3.sum(v, d => +d.load),
+      d => d.instructor
+    )
+  )
+  let res = []
+  for (d of loads) {
+    res.push({ instructor: d[0], load: d[1] })
+  }
+  return res
+}
+
+function tally_sections(schedule) {
+  let sections = sessions_to_sections(schedule)
+  let loads = Array.from(
+    d3.rollup(
+      sections,
+      v => v.length,
+      d => d.prefix,
+      d => d.number,
+      d => d.term
+    )
+  )
+  let res = []
+  for (d of loads) {
+    res.push({ prefix: d[0], number: d[1], term: d[2], count: d[3] })
+  }
+  return res
+}
+
+function sort_schedule(schedule) {
+  return sessions_to_sections(schedule)
+    .sort((a, b) => a.term > b.term)
+    .sort((a, b) => a.number - b.number)
 }
