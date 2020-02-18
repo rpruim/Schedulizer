@@ -55,7 +55,7 @@ d3.select('button.section.delete').on('click', () => {
     controlSessions.map(d => d.sectionID)
   )
   d3.selectAll('rect.session').remove()
-  renderShedule(schedule) // , 'svg#schedule-by-location')
+  renderSchedule(schedule) // , 'svg#schedule-by-location')
 })
 
 function sessionsFromControls() {
@@ -63,7 +63,7 @@ function sessionsFromControls() {
   let newSessions = days.map(d => ({
     prefix: d3.select('input.section.prefix').property('value'),
     number: d3.select('input.section.number').property('value'),
-    load: d3.select('input.section.load').property('value'),
+    load: +d3.select('input.section.load').property('value'),
     section: d3.select('input.section.letter').property('value'),
     instructor: d3.select('input.section.instructor').property('value'),
     startTimeStr: d3.select('input.section.start.time').property('value'),
@@ -81,13 +81,12 @@ function sessionsFromControls() {
     day: d,
     sectionID: '',
     sessionID: '',
-    random: Math.random(),
   }))
   newSessions.forEach(d => (d.sectionID = makeKey(d)))
   newSessions.forEach(d => (d.sessionID = d.sectionID + '-' + d.day))
   newSessions.forEach(d => (d.level = d.number[0] + '00'))
-  newSessions.forEach(
-    d => (d.load = d.load ? d.load : (d.days.length * d.duration) / 50)
+  newSessions.forEach(d =>
+    d.load == d.load ? d.load : (d.days.length * d.duration) / 50
   )
   return newSessions
 }
