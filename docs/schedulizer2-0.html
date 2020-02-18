@@ -74,7 +74,7 @@
         color:black;
       }
       div#control-panel {
-        width:200px;
+        width:500px;
       }
       g.axis .domain {
         opacity: 0.0;
@@ -101,18 +101,9 @@
         value="Export current draft"
         onclick="export_schedule()"
       />
-      <br><br> Upload draft schedule:
-      <br>
+      Upload draft schedule:
       <input type="file" onchange="loadFile(this.files)" />
-      <br />
-      <br />
-      <text>Color by: </text>
-      <select id="color-by">
-        <option value="level" selected>level</option>
-        <option value="instructor">instructor</option>
-        <option value="location">location</option>
-        <option value="prefix">prefix</option>
-      </select>
+      <br><br>
       <!--
       <text>&nbsp;Group by: </text>
       <select id="group-by">
@@ -128,15 +119,7 @@
     </div>
 
     <div id="section-modify">
-      <table>
-        <tr>
-          <td></td>
-          <td>   
-            <input type='radio' name="term" value = "F" checked>Fall</input>  
-            <input type='radio' name="term" value = "I">Interim</input> 	
-            <input type='radio' name="term" value="S">Spring</input> 
-          </td>
-        </tr>
+      <table style="display: inline-block">
         <tr>
          <td>Prefix:</td>
          <td><input class="section prefix" type="text" value = "Math"></input></td>
@@ -151,11 +134,13 @@
         <tr>
          <td>Load: </td>
          <td><input class="section load" type="text"></input> </td>
-      </tr>
         <tr>
          <td>Instructor: </td>
          <td><input class="section instructor" type="text"></input></td>
       </tr>
+      </tr>
+    </table>
+      <table style="display: inline-block">
         <tr>
          <td>Start time: </td>
          <td><input class="section start time" type="time" value = "08:00" min = "07:00" max = "22:00"></input></td>
@@ -178,17 +163,33 @@
   <input class = "days-checkbox" type='checkbox' name="days" value = "F" checked>F</input>
 </td>
 </tr>
+        <tr>
+          <td>Term:</td>
+          <td>   
+            <input type='radio' name="term" value = "F" checked>Fall</input>  
+            <input type='radio' name="term" value = "W">Interim</input> 	
+            <input type='radio' name="term" value="S">Spring</input> 
+          </td>
+        </tr>
 <tr>
   <td></td>
-  <td align = "center">
-      <br><button class = "section add">Add/Update Section</button>
-      <br>
-      <br><button class = "section delete">Delete Section</button>
-  </td>
 </tr>
       </table>
+  <p align = "center">
+      <br><button class = "section add">Add/Update Section</button>
+      &nbsp; &nbsp;
+      <button class = "section delete">Delete Section</button>
+  </p>
     </div>
+      <text>Color by: </text>
+      <select id="color-by">
+        <option value="level" selected>level</option>
+        <option value="instructor">instructor</option>
+        <option value="location">location</option>
+        <option value="prefix">prefix</option>
+      </select>
     </div>
+      
     <div class = "location">
     <svg id="schedule-by-location"></svg>
     </div>
