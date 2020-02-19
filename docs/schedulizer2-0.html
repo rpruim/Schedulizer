@@ -16,6 +16,8 @@
     <script type="text/javascript" src="d3.v5.js"></script>
     <script type="text/javascript" src="schedule.js"></script>
     <script type="text/javascript" src="schedule-top.js"></script>
+    <script language="javascript" type="text/javascript" 
+      src="node_modules/data-forge/dist/web/index.js"></script>
     <link
       href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:300&display=swap"
       rel="stylesheet"
@@ -98,9 +100,17 @@
       <input
         class="export-button"
         type="button"
-        value="Export current draft"
-        onclick="export_schedule()"
+        value="Export as JSON"
+        onclick="export_json()"
       />
+      <input
+        class="export-button"
+        type="button"
+        value="Export as CSV"
+        onclick="export_csv()"
+      />
+      <br/>
+      <br/>
       Upload draft schedule:
       <input type="file" onchange="loadFile(this.files)" />
       <br><br>
