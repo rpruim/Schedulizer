@@ -35,7 +35,7 @@ function load_json(fileHandler) {
     d.forEach(d => (d.startTime = new Date(d.startTime)))
     d.forEach(d => (d.endTime = new Date(d.endTime)))
     d.forEach(d => (d.load = +d.load))
-    schedule = d
+    schedule = d // .map(fix_days)
     renderSchedule(schedule)
   })
 }
@@ -158,32 +158,38 @@ const date_to_time = new Intl.DateTimeFormat('en-us', time_options).format
  */
 function sections_to_sessions(data) {
   var sessions = []
-  data.forEach(function(d) {
-    d.days.forEach(function(day) {
-      sessions = sessions.concat({
-        term: d.term,
-        dept: d.dept,
-        academic_year: d.academic_year,
-        section: d.section,
-        prefix: d.prefix,
-        number: d.number,
-        section: d.section,
-        level: d.level,
-        credits: d.credits,
-        load: d.load,
-        used: d.used,
+  data.forEach(function(row) {
+    row.days.forEach(function(day) {
+      sessions.push({
+        term: row.term,
+        // dept: row.dept,
+        // academic_year: row.academic_year,
+        section: row.section,
+        prefix: row.prefix,
+        number: row.number,
+        level: row.level,
+        sectionID: section_id(row),
+        sessionID: section_id(row) + '-' + day,
+        // section: row.section,
+        level: row.level,
+        // credits: row.credits,
+        load: row.load,
+        // used: row.used,
         day: day,
-        day10: d.day10,
-        days: d.days,
-        building: d.building,
-        room_number: d.room_number,
-        location: d.location,
-        start_time: d.start_time,
-        end_time: d.end_time,
-        title: d.title,
-        instructor: d.instructor,
-        status: d.status,
-        method: d.method,
+        // day10: row.day10,
+        days: row.days,
+        daysString: row.days.join(''),
+        // building: row.building,
+        // room_number: row.room_number,
+        location: row.location,
+        startTime: row.startTime,
+        startTimeStr: row.startTimeStr,
+        duration: row.duration,
+        endTime: row.endTime,
+        // title: row.title,
+        instructor: row.instructor,
+        // status: row.status,
+        // method: row.method,
       })
     })
   })
@@ -219,7 +225,8 @@ function append_item(x, item) {
   }
   return x.concat(item)
 }
-var sessions_to_sections = function(data) {
+
+function sessions_to_sections(data) {
   result = {}
   for (i in data) {
     let d = data[i]
@@ -229,15 +236,18 @@ var sessions_to_sections = function(data) {
       old = {}
     }
     delete d.days
+    delete d.sessionID
     result[key] = d
     result[key].days = append_item(old.days, d.day)
     delete result[key].day
+    console.log(key, result[key])
     // result[key].starts = append_item(old.starts, date_to_time(d.start_time))
     // result[key].ends = append_item(old.ends, date_to_time(d.end_time))
   }
   for (i in result) {
     let d = result[i]
-    d.days = d.days.join('')
+    d.daysString = d.days.join('')
+    // delete d.days
     // d.starts = d.starts.join(';')
     // d.ends = d.ends.join(';')
     // delete result[i].start_time
@@ -257,32 +267,58 @@ function section_id(d) {
   return d.prefix + '-' + d.number + '-' + d.section
 }
 
-function export_schedule(filename = '') {
+function export_json(filename = '') {
   if (!filename) {
-    let timeStr = new Date()
-      .toLocaleString()
-      .substring(0, 22)
-      .replace(/[, /:]/g, '-')
-      .replace(/--/g, '-')
-      .replace('-??-AM', '-AM')
-      .replace('-??-PM', '-PM')
-    filename = `schedulizer-${timeStr}.json`
+    filename = `schedulizer-${niceDateString()}.json`
   }
   let sessions_data = d3
     .selectAll('svg#schedule-by-location rect.session')
     .data()
+  // .map(fix_days)
   // let sessions_data = schedule
   // var sections_data = sessions_to_sections(sessions_data)
   // console.log(sections_data)
   // console.log(d3.csvFormat(sections_data));
 
-  let csv = 'data:text/csv;charset=utf-8,' + d3.csvFormat(sessions_data)
   let json = 'data:text/json;charset=utf-8,' + JSON.stringify(sessions_data)
   data = encodeURI(json)
   link = document.createElement('a')
   link.setAttribute('href', data)
   link.setAttribute('download', filename)
   link.click()
+}
+
+function export_csv(filename = '') {
+  if (!filename) {
+    filename = `schedulizer-${niceDateString()}.csv`
+  }
+  let sessions_data = d3
+    .selectAll('svg#schedule-by-location rect.session')
+    .data()
+
+  let sections_data = sessions_to_sections(sessions_data)
+  let csv = 'data:text/csv;charset=utf-8,' + d3.csvFormat(sections_data)
+  data = encodeURI(csv)
+  console.log(csv)
+  link = document.createElement('a')
+  link.setAttribute('href', data)
+  link.setAttribute('download', filename)
+  link.click()
+}
+
+function niceDateString() {
+  return new Date()
+    .toLocaleString('en-US', { hour12: false })
+    .replace(/[, /:]/g, '-')
+    .replace(/--/g, '-')
+}
+
+function fix_days(d) {
+  if (typeof d.days == 'string') {
+    d.daysString = d.days
+    d.days = d.days.split('')
+  }
+  return d
 }
 
 function abbrev(x) {
@@ -330,4 +366,30 @@ function sort_schedule(schedule) {
   return sessions_to_sections(schedule)
     .sort((a, b) => a.term > b.term)
     .sort((a, b) => a.number - b.number)
+}
+
+function tally_courses(schedule) {
+  let sectionsDF = new dataForge.DataFrame(sessions_to_sections(schedule))
+  return sectionsDF
+    .groupBy(
+      row => row.term,
+      row => row.prefix,
+      row => row.number
+    )
+    .select(group => ({
+      term: group.first().term,
+      prefix: group.first().prefix,
+      number: group.first().number,
+      // total_load: group.select(row => row.load).sum(),
+      n_sections: group.length,
+    }))
+    .inflate() // Series -> dataframe.
+    .toArray() // Convert to regular JS array.
+}
+
+function repair_day(schedule) {
+  return schedule.map(d => {
+    d.day = d.sessionID.charAt(d.sessionID.length - 1)
+    return d
+  })
 }
