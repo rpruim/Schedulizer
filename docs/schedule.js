@@ -11,8 +11,8 @@
 //   'sessionID',
 
 function loadFile(d) {
-  console.log('loading file...')
-  console.log(d)
+  // console.log('loading file...')
+  // console.log(d)
   if (window.File && window.FileReader && window.FileList && window.Blob) {
     // Great success! All the File APIs are supported.
   } else {
@@ -20,7 +20,7 @@ function loadFile(d) {
   }
 
   let f = event.target.files[0] // FileList object
-  console.log(f)
+  // console.log(f)
   let reader = new FileReader()
 
   reader.onload = function(event) {
@@ -240,7 +240,7 @@ function sessions_to_sections(data) {
     result[key] = d
     result[key].days = append_item(old.days, d.day)
     delete result[key].day
-    console.log(key, result[key])
+    // console.log(key, result[key])
     // result[key].starts = append_item(old.starts, date_to_time(d.start_time))
     // result[key].ends = append_item(old.ends, date_to_time(d.end_time))
   }
@@ -259,7 +259,7 @@ function sessions_to_sections(data) {
 }
 
 function is_session_data(data) {
-  console.log(data)
+  // console.log(data)
   return data.length == 0 || Object.keys(data[0]).includes('day')
 }
 
