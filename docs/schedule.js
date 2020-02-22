@@ -49,7 +49,7 @@ function load_csv(fileHandler) {
 }
 
 function recodeJSON() {
-  console.log('recoding JSON')
+  // console.log('recoding JSON')
   d.duration = +d.duration // make sure it is numeric
   d.startTime = new Date(d.startTime)
   d.endTime = new Date(d.endTime)
