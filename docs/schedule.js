@@ -227,6 +227,8 @@ function append_item(x, item) {
 }
 
 function sessions_to_sections(data) {
+  // make deep copy locally so we don't mess up day field in original data
+  data = JSON.parse(JSON.stringify(data))
   result = {}
   for (i in data) {
     let d = data[i]
