@@ -344,6 +344,22 @@ function compute_loads(schedule) {
   return res
 }
 
+function show_classes(schedule) {
+  let sections = sessions_to_sections(schedule)
+  let loads = Array.from(
+    d3.rollup(
+      sections,
+      v => v.map(d => d.prefix + d.number).join(', '),
+      d => d.instructor
+    )
+  )
+  let res = []
+  for (d of loads) {
+    res.push({ instructor: d[0], load: d[1] })
+  }
+  return res
+}
+
 function tally_sections(schedule) {
   let sections = sessions_to_sections(schedule)
   let loads = Array.from(
