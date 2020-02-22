@@ -35,6 +35,8 @@ function load_json(fileHandler) {
     d.forEach(d => (d.startTime = new Date(d.startTime)))
     d.forEach(d => (d.endTime = new Date(d.endTime)))
     d.forEach(d => (d.load = +d.load))
+    d.forEach(d => (d.sectionID = makeKey(d)))
+    d.forEach(d => (d.sessionID = makeKey(d) + '-' + d.day))
     schedule = d // .map(fix_days)
     renderSchedule(schedule)
   })
