@@ -1,7 +1,5 @@
 // javascrtipt to run after HTML has been processed.
 
-console.log('loading js')
-
 // declarations and initialization
 let schedule = []
 let morphTime = 1000
@@ -43,6 +41,7 @@ d3.select('button.section.add').on('click', () => {
   schedule = addSessions(schedule, newSessions)
   d3.selectAll('rect.session').remove()
   renderSchedule(schedule) // , 'svg#schedule-by-location')
+  hilite()
 })
 
 // add functionality to clicking "Delete Section"
@@ -58,9 +57,13 @@ d3.select('button.section.delete').on('click', () => {
   renderSchedule(schedule) // , 'svg#schedule-by-location')
 })
 
+// add functionality to hilite button
+
+d3.select('button.hilite').on('click', hilite)
+
 function sessionsFromControls() {
-  let days = checkBoxes('input.days-checkbox')
-  let newSessions = days.map(d => ({
+  let daysArray = checkBoxes('input.days-checkbox')
+  let newSessions = daysArray.map(d => ({
     prefix: d3.select('input.section.prefix').property('value'),
     number: d3.select('input.section.number').property('value'),
     load: +d3.select('input.section.load').property('value'),
@@ -77,10 +80,12 @@ function sessionsFromControls() {
     ),
     location: d3.select('input.section.location').property('value'),
     term: d3.select('input[name="term"]:checked').property('value'),
-    days: days,
+    days: daysArray,
+    daysString: daysArray.join(''),
     day: d,
     sectionID: '',
     sessionID: '',
+    notes: d3.select('textarea#notes').property('value'),
   }))
   newSessions.forEach(d => (d.sectionID = makeKey(d)))
   newSessions.forEach(d => (d.sessionID = d.sectionID + '-' + d.day))
@@ -98,8 +103,8 @@ function sessionsFromControls() {
  * side:effect: set height/width of selected elements relative to browser size
  */
 function resize(selection = 'svg') {
-  width = Math.round(window.innerWidth * 0.4)
-  height = Math.round(window.innerHeight * 0.5)
+  width = Math.round(window.innerWidth * 0.7)
+  height = Math.round(window.innerHeight * 0.6)
   termHeight = height * 0.3
 
   d3.selectAll(selection)
@@ -113,7 +118,6 @@ function resize(selection = 'svg') {
 }
 
 function updateScales(schedule) {
-  console.log(schedule)
   d3.selectAll('svg .axis').remove()
   locationScale = d3
     .scaleBand()
@@ -328,9 +332,11 @@ function checkBoxes(selector) {
   return choices
 }
 
-function hiliteSessions(d) {
-  d3.selectAll('rect.session').style('opacity', undefined)
-  d3.selectAll(`rect.session[sectionID=${d.sectionID}]`).style('opacity', 0.8)
+function hiliteSessions(ref) {
+  d3.selectAll('rect.session').classed(
+    'selected',
+    d => d.sectionID == ref.sectionID
+  )
 }
 
 function unhiliteSessions(d) {
@@ -350,6 +356,7 @@ function updateControls(d) {
   d3.select('input.section.location').property('value', d.location)
   d3.select('input.section.duration').property('value', d.duration)
   d3.select('input.section.start.time').property('value', d.startTimeStr)
+  d3.select('textarea#notes').property('value', d.notes ? d.notes : '')
   d3.selectAll('input.days-checkbox').property('checked', false)
   d.days.forEach(d =>
     d3.select(`input.days-checkbox[value=${d}`).property('checked', true)
@@ -371,4 +378,13 @@ function addMinutes(date, minutes) {
 
 function makeKey(d) {
   return `${d.prefix}-${d.number}-${d.section}-${d.term}`
+}
+
+function hilite() {
+  let text = d3.select('input.hilite').property('value')
+  let re = new RegExp(text)
+  d3.selectAll('rect.session').classed(
+    'hilited',
+    d => text.length > 0 && (re.test(d.sessionID) || re.test(d.instructor))
+  )
 }
