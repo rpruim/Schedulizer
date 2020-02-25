@@ -20,17 +20,23 @@ function loadFile(d) {
   }
 
   let f = event.target.files[0] // FileList object
-  // console.log(f)
+  console.log(f)
   let reader = new FileReader()
-
-  reader.onload = function(event) {
-    load_json(event.target.result)
+  if (/csv/.test(f.type)) {
+    reader.onload = function(event) {
+      load_csv(event.target.result)
+    }
+  } else {
+    reader.onload = function(event) {
+      load_json(event.target.result)
+    }
   }
   // Read in the file as a data URL.
   reader.readAsDataURL(f)
 }
 
 function load_json(fileHandler) {
+  // console.log('reading json')
   d3.json(fileHandler, recodeJSON).then(d => {
     d.forEach(d => (d.startTime = new Date(d.startTime)))
     d.forEach(d => (d.endTime = new Date(d.endTime)))
@@ -42,9 +48,11 @@ function load_json(fileHandler) {
   })
 }
 function load_csv(fileHandler) {
-  d3.csv(fileHandler, rename_report_data).then(d => {
-    schedule = d
-    // renderSchedule(schedule)
+  // console.log('reading csv')
+  d3.csv(fileHandler).then(d => {
+    console.log(d)
+    schedule = sections_to_sessions(d)
+    renderSchedule(schedule)
   })
 }
 
