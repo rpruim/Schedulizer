@@ -168,6 +168,8 @@ const date_to_time = new Intl.DateTimeFormat('en-us', time_options).format
  */
 function sections_to_sessions(data) {
   var sessions = []
+  tidy_sections(data)
+  console.log(data)
   data.forEach(function(row) {
     row.days.forEach(function(day) {
       sessions.push({
@@ -193,9 +195,10 @@ function sections_to_sessions(data) {
         // room_number: row.room_number,
         location: row.location,
         startTime: row.startTime,
-        startTimeStr: row.startTimeStr,
-        duration: row.duration,
+        startTimeStr: date_to_string(row.startTime),
         endTime: row.endTime,
+        endTimeStr: date_to_string(row.endTime),
+        duration: row.duration,
         // title: row.title,
         instructor: row.instructor,
         // status: row.status,
@@ -204,6 +207,17 @@ function sections_to_sessions(data) {
     })
   })
   return sessions
+}
+
+function tidy_sections(data) {
+  data.forEach(function(row) {
+    if (row.days && typeof row.days == 'string') {
+      row.days = row.days.split(',')
+    }
+    row.startTime = new Date(row.startTime)
+    row.endTime = new Date(row.endTime)
+  })
+  return data
 }
 
 function session_summary(d, i) {
