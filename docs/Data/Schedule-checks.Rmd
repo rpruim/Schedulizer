@@ -1,0 +1,63 @@
+---
+title: "Untitled"
+author: "Data 303 -- Spring 2020"
+date: "2/20/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(ggformula)
+library(dplyr)
+```
+
+```{r}
+S20 <- read_csv('~/Downloads/schedulizer-2-20-2020-18-35-15.csv')
+S20 <- read_csv('~/Downloads/schedulizer-2-25-2020-10-15-15.csv')
+MS <- read_csv("MathStat19-20.csv")
+MStally <-
+  MS %>% 
+  group_by(term = Term, number = CourseNum) %>% 
+  tally() %>% 
+  ungroup() %>% 
+  mutate(term = substring(term, 4, 4))
+
+S20tally <-
+  S20 %>% 
+  group_by(term, number) %>% 
+  tally() %>% 
+  ungroup()  
+```
+
+```{r}
+MStally %>% anti_join(S20tally)
+S20tally %>% anti_join(MStally)
+```
+
+
+```{r}
+MStally %>% full_join(S20tally, by = c("number", "term")) %>%
+  mutate(diff = n.x - n.y) 
+```
+
+```{r}
+MSsum <- 
+  MS %>% 
+  group_by(term = Term, prefix = SubjectCode, number = CourseNum) %>% 
+  summarise(n = n(), load = sum(FacultyLoad))
+S20sum <- S20 %>% group_by(term, prefix, number) %>% summarise(n = n(), load = sum(load))
+MSsum %>% full_join(S20sum, by = c("term", "number")) %>% mutate(n.y = ifelse(is.na(n.y), 0, n.y),n.x = ifelse(is.na(n.x), 0, n.x), diff = n.y - n.x) %>% View()
+```
+
+```{r}
+# target for Fall + Spring = 228 per email from AH on 12/13
+MSsum %>% group_by(term) %>% summarise(sum(load))
+```
+
+```{r}
+MS %>% 
+  group_by(CourseNum) %>% filter(Day10Used > 2) %>%
+  summarise(n = n(), avg_size = sum(Day10Used)/n) %>%
+  arrange(-avg_size) %>% View()
+```
