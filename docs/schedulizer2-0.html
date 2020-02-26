@@ -96,6 +96,21 @@
         opacity: 0.6;
       }
 
+      div.tooltip{ 
+        position: absolute;			
+        text-align: center;			
+        font-size: 8pt;
+        opacity: 0.7;
+        width: 160px;					
+        height: 30px;					
+        padding: 2px;				
+        background: rgba(249, 232, 156, 0.934);
+        fill-opacity: 0.3;
+        border: 0px;		
+        border-radius: 8px;			
+        pointer-events: none;			
+      }
+
 
     </style>
 
@@ -139,10 +154,10 @@
       <table style="display: inline-block">
         <tr>
          <td>Prefix:</td>
-         <td><input class="section prefix" type="text" value = "Math"></input></td>
+         <td><input class="section prefix" type="text"></input></td>
         <tr>
          <td>Number: </td>
-         <td><input class="section number" type="text" value = "101"></input> </td>
+         <td><input class="section number" type="text"></input> </td>
       </tr>
         <tr>
          <td>Section: </td>
@@ -228,6 +243,8 @@
     <div id="messaging-center">
       <text id="popup"></text>
     </div>
+
+    <div class="tooltip"></div>
 
 
     <script type="text/javascript" src="schedule-bottom.js"></script>

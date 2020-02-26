@@ -309,13 +309,34 @@ function renderSchedule(sched) {
       }
     )
 
-  d3.selectAll('rect.session').on('click', d => {
-    hiliteSessions(d)
-    updateControls(d)
-  })
+  d3.selectAll('rect.session')
+    .on('click', d => {
+      hiliteSessions(d)
+      updateControls(d)
+    })
+    .on('mouseover', show_session_details)
+    .on('mouseout', hide_session_details)
   updateColor()
 }
-
+function show_session_details(d) {
+  console.log(d3.event)
+  let div = d3.select('div.tooltip')
+  div
+    .transition()
+    .duration(200)
+    .style('visibility', 'visible')
+  div
+    .html(session_summary(d))
+    .style('left', d3.event.pageX + 5 + 'px')
+    .style('top', d3.event.pageY - 35 + 'px')
+}
+function hide_session_details(d) {
+  let div = d3.select('div.tooltip')
+  div
+    .transition()
+    .duration(500)
+    .style('visibility', 'hidden')
+}
 /**
  *
  * @param {String} selector d3 selector string

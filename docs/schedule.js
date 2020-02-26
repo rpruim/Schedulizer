@@ -167,6 +167,7 @@ const date_to_time = new Intl.DateTimeFormat('en-us', time_options).format
  * @returns {array of objects} session-level schedule data
  */
 function sections_to_sessions(data) {
+  data = JSON.parse(JSON.stringify(data))
   var sessions = []
   tidy_sections(data)
   console.log(data)
@@ -225,21 +226,19 @@ function session_summary(d, i) {
     '' +
     section_id(d) + // d.prefix + " " + d.number
     ' @ ' +
-    date_to_time(d.start_time) +
+    date_to_time(d.startTime) +
     ' - ' +
-    date_to_time(d.end_time) +
+    date_to_time(d.endTime) +
     ' on ' +
     d.day +
+    '<br>' +
     ' in ' +
     d.location +
     ' with ' +
     d.instructor +
     ' [' +
     d.term +
-    ']' +
-    ' (' +
-    i +
-    ')'
+    ']'
   )
 }
 
@@ -273,6 +272,7 @@ function sessions_to_sections(data) {
   for (i in result) {
     let d = result[i]
     d.daysString = d.days.join('')
+
     // delete d.days
     // d.starts = d.starts.join(';')
     // d.ends = d.ends.join(';')
@@ -281,6 +281,10 @@ function sessions_to_sections(data) {
   }
   // convert to array
   result = Object.keys(result).map(k => result[k])
+  // add end time as a string
+  result.forEach(function(d) {
+    d.endTimeStr = date_to_time(new Date(d.endTime))
+  })
   return result
 }
 
