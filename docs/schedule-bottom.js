@@ -30,6 +30,14 @@ d3.select('#color-by').on('change', function() {
   updateColor()
 })
 
+d3.selectAll('button.tabs').on('click', select_tab)
+
+function select_tab() {
+  d3.selectAll('div.tab').style('display', 'none')
+  let clicked = d3.select(this).property('value')
+  d3.selectAll('div.' + clicked).style('display', 'block')
+}
+
 // add functionality to clicking "Add Section"
 
 d3.select('button.section.add').on('click', () => {
@@ -317,7 +325,31 @@ function renderSchedule(sched) {
     .on('mouseover', show_session_details)
     .on('mouseout', hide_session_details)
   updateColor()
+
+  let loads = compute_loads(sched).sort((a, b) => a.load - b.load)
+  d3.select('table.loads')
+    .selectAll('tr')
+    .data(loads)
+    .join(
+      enter => {
+        enter.append('tr')
+      },
+      update => {},
+      exit => {
+        exit.remove()
+      }
+    )
+
+  d3.selectAll('table.loads tr')
+    .selectAll('td')
+    .data(row => ['instructor', 'load'].map(c => row[c]))
+    .join(
+      enter => enter.append('td').text(d => d),
+      update => update.text(d => d),
+      exit => exit.remove()
+    )
 }
+
 function show_session_details(d) {
   console.log(d3.event)
   let div = d3.select('div.tooltip')

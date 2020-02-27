@@ -46,13 +46,16 @@
       }
 
       div.location {
-        display: inline;
+        display: block;
         }
       div.instructor {
-        display: inline;
+        display: none;
       }
       div.section-modify {
-        display: inline;
+        display: inline-block;
+      }
+      div.loads {
+        display: none;
       }
 
       rect.session {
@@ -83,7 +86,7 @@
         color:black;
       }
       div#control-panel {
-        width:800px;
+        width:1000px;
       }
       g.axis .domain {
         opacity: 0.0;
@@ -215,6 +218,8 @@
         </td></tr>
       </table>
 
+    </div>
+
   <p align = "center">
       <br><button class = "section add">Add/Update Section</button>
       &nbsp; &nbsp;
@@ -225,19 +230,43 @@
       <input type = "text" class = "hilite"></input>
   </p>
     </div>
-      <text>Color by: </text>
+    </div>
+    </div>
+    
+    <br>
+    <button class='tabs' value = 'location'>Schedule by location</button>
+    <button class='tabs' value = 'instructor'>Schedule by instructor</button>
+    <button class='tabs' value = 'loads'>Teaching Loads</button>
+    <br>
+
+    <div class="instructor location tab">
+      <br>
+      <br>
+      <text>Color by: &nbsp; </text>
       <select id="color-by">
         <option value="level" selected>level</option>
         <option value="instructor">instructor</option>
         <option value="location">location</option>
         <option value="prefix">prefix</option>
       </select>
+      <br>
+      <br>
     </div>
-      
-    <div class = "location">
+
+      <div class='loads tab'>
+        <h4>Loads</h4>
+          <table class = "loads">
+            <tr>
+            <th>Instructor</th>
+            <th>Teaching Load</th>
+            </tr>
+          </table>
+      </div>
+
+    <div class = "location tab">
     <svg id="schedule-by-location"></svg>
     </div>
-    <div class = "instructor">
+    <div class = "instructor tab">
     <svg id="schedule-by-instructor"></svg>
     </div>
 

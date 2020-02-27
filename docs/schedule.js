@@ -44,6 +44,7 @@ function load_json(fileHandler) {
     d.forEach(d => (d.sectionID = makeKey(d)))
     d.forEach(d => (d.sessionID = makeKey(d) + '-' + d.day))
     schedule = d // .map(fix_days)
+    renderSchedule([])
     renderSchedule(schedule)
   })
 }
@@ -51,6 +52,7 @@ function load_csv(fileHandler) {
   // console.log('reading csv')
   d3.csv(fileHandler).then(d => {
     console.log(d)
+    renderSchedule([])
     schedule = sections_to_sessions(d)
     renderSchedule(schedule)
   })
