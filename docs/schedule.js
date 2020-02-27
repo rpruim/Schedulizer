@@ -156,6 +156,7 @@ const time_options = {
   // day: '2-digit',
   hour: '2-digit',
   minute: '2-digit',
+  hour12: false,
   // timeZoneName: 'short'
 }
 
@@ -196,9 +197,9 @@ function sections_to_sessions(data) {
         // room_number: row.room_number,
         location: row.location,
         startTime: row.startTime,
-        startTimeStr: date_to_string(row.startTime),
+        startTimeStr: date_to_time(row.startTime),
         endTime: row.endTime,
-        endTimeStr: date_to_string(row.endTime),
+        endTimeStr: date_to_time(row.endTime),
         duration: row.duration,
         // title: row.title,
         instructor: row.instructor,
