@@ -185,6 +185,7 @@ function sections_to_sessions(data) {
         prefix: row.prefix,
         number: row.number,
         level: row.level,
+        section: row.section,
         sectionID: section_id(row),
         sessionID: section_id(row) + '-' + day,
         // section: row.section,
@@ -229,7 +230,7 @@ function canonical_sections(sessions_data) {
       }
       row.prefix = row.SubjectCode
       row.number = row.CourseNum
-      row.letter = row.SectionCode
+      row.section = row.SectionCode
       row.level = row.CourseLevelCode
       row.load = row.FacultyLoad
       row.location = first(row.BuildingAndRoom)
