@@ -438,9 +438,11 @@ function makeKey(d) {
 
 function hilite() {
   let text = d3.select('input.hilite').property('value')
-  let re = new RegExp(text)
+  let re = new RegExp(text, 'i')
   d3.selectAll('rect.session').classed(
     'hilited',
-    d => text.length > 0 && (re.test(d.sessionID) || re.test(d.instructor))
+    d =>
+      text.length > 0 &&
+      (re.test(d.sessionID) || re.test(d.instructor) || re.test(d.notes))
   )
 }
