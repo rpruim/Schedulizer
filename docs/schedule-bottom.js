@@ -438,7 +438,6 @@ function makeKey(d) {
 
 function hilite() {
   let text = d3.select('input.search').property('value')
-  console.log(text)
   let re = new RegExp(text, 'i')
   d3.selectAll('rect.session').classed(
     'hilited',
