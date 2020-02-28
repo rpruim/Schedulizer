@@ -171,6 +171,7 @@ const date_to_time = new Intl.DateTimeFormat('en-us', time_options).format
  */
 function sections_to_sessions(data) {
   data = JSON.parse(JSON.stringify(data))
+  data = canonical_sections(data)
   var sessions = []
   tidy_sections(data)
   console.log(data)
@@ -205,12 +206,52 @@ function sections_to_sessions(data) {
         duration: row.duration,
         // title: row.title,
         instructor: row.instructor,
+        notes: row.notes ? row.notes : '',
         // status: row.status,
         // method: row.method,
       })
     })
   })
   return sessions
+}
+
+function canonical_sections(sessions_data) {
+  data = JSON.parse(JSON.stringify(sessions_data))
+  fields = Object.keys(data[0])
+  let is_calvin_report = fields.includes('TermStart')
+  let first = x => x.split('\n')[0]
+  if (is_calvin_report) {
+    data.forEach(row => {
+      console.log(row)
+      row.term = row.Term.split('/')[1].substr(0, 1)
+      if (row.term == 'I') {
+        row.term = 'W'
+      }
+      row.prefix = row.SubjectCode
+      row.number = row.CourseNum
+      row.letter = row.SectionCode
+      row.level = row.CourseLevelCode
+      row.load = row.FacultyLoad
+      row.location = first(row.BuildingAndRoom)
+      row.daysStr = first(row.MeetingDays).replace('TH', 'R')
+      row.days = row.daysStr.split('')
+      row.startTimeStr = first(row.MeetingStartInternal)
+      row.endTimeStr = first(row.MeetingEndInternal)
+      row.startTime = time_to_date(row.startTimeStr)
+      row.endTime = time_to_date(row.endTimeStr)
+      row.duration = diffMinutes(row.endTime, row.startTime)
+      row.instructor = first(row.Faculty)
+      row.notes = []
+      if (row.location != row.BuildingAndRoom) {
+        row.notes.push('Possible missing session data.')
+      }
+      if (row.instructor != row.Faculty) {
+        row.notes.push('Possible missing instructor data.')
+      }
+      row.notes = row.notes.join('\n')
+    })
+  }
+  return data
 }
 
 function tidy_sections(data) {

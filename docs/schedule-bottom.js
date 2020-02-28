@@ -351,7 +351,6 @@ function renderSchedule(sched) {
 }
 
 function show_session_details(d) {
-  console.log(d3.event)
   let div = d3.select('div.tooltip')
   div
     .transition()
@@ -427,6 +426,10 @@ function time_to_date(s, base_date = '2000-01-01') {
 
 function addMinutes(date, minutes) {
   return new Date(date.getTime() + minutes * 60000)
+}
+
+function diffMinutes(date1, date2) {
+  return (date1.getTime() - date2.getTime()) / 60000
 }
 
 function makeKey(d) {
