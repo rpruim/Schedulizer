@@ -67,7 +67,7 @@ d3.select('button.section.delete').on('click', () => {
 
 // add functionality to hilite button
 
-d3.select('button.hilite').on('click', hilite)
+d3.select('button.search').on('click', hilite)
 
 function sessionsFromControls() {
   let daysArray = checkBoxes('input.days-checkbox')
@@ -437,7 +437,8 @@ function makeKey(d) {
 }
 
 function hilite() {
-  let text = d3.select('input.hilite').property('value')
+  let text = d3.select('input.search').property('value')
+  console.log(text)
   let re = new RegExp(text, 'i')
   d3.selectAll('rect.session').classed(
     'hilited',
