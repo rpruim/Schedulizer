@@ -77,6 +77,20 @@
       div#section-modify {
         display: inline;
       }
+
+      button {
+        background-color: rgba(157, 189, 216, 1);
+        color: "black";
+        border: none;
+        # padding: 10px 20px;
+        width: 150px;
+        height: 22px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px; 
+      }
+
       button.add {
         background-color: steelblue ;
         color: white;
@@ -85,6 +99,17 @@
         background-color: orange;
         color:black;
       }
+      button.search {
+        background-color:rgba(249, 232, 156, 0.934);
+      }
+
+      button.tabs {
+        background-color: rgba(70, 130, 180, 0.3);
+      }
+      button.tabs.selected {
+        background-color: rgba(70, 130, 180, 0.8);
+      }
+
       div#control-panel {
         width:800px;
       }
@@ -234,7 +259,7 @@
     </div>
     
     <br>
-    <button class='tabs' value = 'location'>Schedule by location</button>
+    <button class='tabs selected' value = 'location'>Schedule by location</button>
     <button class='tabs' value = 'instructor'>Schedule by instructor</button>
     <button class='tabs' value = 'loads'>Teaching Loads</button>
     <br>

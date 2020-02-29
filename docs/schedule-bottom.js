@@ -34,6 +34,8 @@ d3.selectAll('button.tabs').on('click', select_tab)
 
 function select_tab() {
   d3.selectAll('div.tab').style('display', 'none')
+  d3.selectAll('button.tabs').classed('selected', false)
+  d3.select(this).classed('selected', true)
   let clicked = d3.select(this).property('value')
   d3.selectAll('div.' + clicked).style('display', 'block')
 }
