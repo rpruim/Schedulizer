@@ -15,6 +15,7 @@ let termScale, termAxis
 let terms = ['F', 'W', 'S']
 
 // setup
+
 d3.selectAll('svg')
   .attr('width', width + margin.left + margin.right)
   .attr('height', height + margin.top + margin.bottom)
@@ -25,6 +26,14 @@ d3.selectAll('svg')
 
 resize()
 updateScales(schedule)
+
+let urlParams = new URLSearchParams(window.location.search)
+if (urlParams.has('csv')) {
+  load_csv(urlParams.get('csv'))
+}
+if (urlParams.has('json')) {
+  load_json(urlParams.get('json'))
+}
 
 d3.select('#color-by').on('change', function() {
   updateColor()
