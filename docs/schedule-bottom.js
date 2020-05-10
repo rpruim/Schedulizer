@@ -145,7 +145,7 @@ function updateScales(schedule) {
     .paddingInner(0.1)
     .paddingOuter(0.04)
 
-  dayInLocatoinScale = d3
+  dayInLocationScale = d3
     .scaleBand()
     .domain(['M', 'T', 'W', 'R', 'F'])
     .range([0, locationScale.bandwidth()])
@@ -265,9 +265,9 @@ function renderSchedule(sched) {
         enter
           .append('rect')
           .attr('class', 'session')
-          .attr('x', d => locationScale(d.location) + dayInLocatoinScale(d.day))
+          .attr('x', d => locationScale(d.location) + dayInLocationScale(d.day))
           .attr('y', d => timeScale(d.startTime) + termScale(d.term))
-          .attr('width', d => dayInLocatoinScale.bandwidth())
+          .attr('width', d => dayInLocationScale.bandwidth())
           .attr('height', d => timeScale(d.endTime) - timeScale(d.startTime))
           .attr('sectionID', d => d.sectionID)
       },
@@ -275,9 +275,9 @@ function renderSchedule(sched) {
         update
           .transition()
           .duration(morphTime)
-          .attr('x', d => locationScale(d.location) + dayInLocatoinScale(d.day))
+          .attr('x', d => locationScale(d.location) + dayInLocationScale(d.day))
           .attr('y', d => timeScale(d.startTime) + termScale(d.term))
-          .attr('width', d => dayInLocatoinScale.bandwidth())
+          .attr('width', d => dayInLocationScale.bandwidth())
           .attr('height', d => timeScale(d.endTime) - timeScale(d.startTime))
           .attr('sectionID', d => d.sectionID)
       },
