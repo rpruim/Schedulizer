@@ -1,0 +1,236 @@
+﻿Department,Term,TermStart,AcademicYear,SectionName,SubjectCode,CourseNum,SectionCode,CourseLevelCode,MinimumCredits,FacultyLoad,Used,Day10Used,LocalMax,GlobalMax,RoomCapacity,BuildingAndRoom,MeetingDays,MeetingTime,SectionStartDate,SectionEndDate,Building,RoomNumber,MeetingStart,MeetingStartInternal,MeetingEnd,MeetingEndInternal,Monday,Tuesday,Wednesday,Thursday,Friday,ShortTitle,Faculty,SectionStatus,InstructionalMethod
+Computer Science,21/FA,8/30/2021,2021,CS-100-A,CS,100,A,100,3.00,3.00,15,,28,30,33,SB 372,TTH,12:00PM - 1:15PM,8/30/2021,12/15/2021,SB,372,12:00PM,12:00:00,1:15PM,13:15:00,,T,,TH,,Creating Interactive Web Media,David Meyer,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,CS-104-A,CS,104,A,100,2.00,1.00,3,,25,30,35,NH 253,T,9:00AM - 9:50AM,8/30/2021,12/15/2021,NH,253,9:00AM,09:00:00,9:50AM,09:50:00,,T,,,,Applied Computing,Derek C Schuurman,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,CS-104-B,CS,104,B,100,2.00,1.00,2,,25,30,35,NH 253,T,10:30AM - 11:20AM,8/30/2021,12/15/2021,NH,253,10:30AM,10:30:00,11:20AM,11:20:00,,T,,,,Applied Computing,Derek C Schuurman,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,CS-104-C,CS,104,C,100,2.00,1.00,1,,25,30,35,NH 253,T,11:30AM - 12:20PM,8/30/2021,12/15/2021,NH,253,11:30AM,11:30:00,12:20PM,12:20:00,,T,,,,Applied Computing,Derek C Schuurman,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,CS-104L-A,CS,104L,A,100,0.00,1.00,2,,20,24,24,SB 337,TH,8:00AM - 9:50AM,8/30/2021,12/15/2021,SB,337,8:00AM,08:00:00,9:50AM,09:50:00,,,,TH,,Applied Computing Lab,Derek C Schuurman,Active,LAB
+Computer Science,21/FA,8/30/2021,2021,CS-104L-B,CS,104L,B,100,0.00,1.00,4,,20,24,24,SB 337,TH,10:30AM - 12:20PM,8/30/2021,12/15/2021,SB,337,10:30AM,10:30:00,12:20PM,12:20:00,,,,TH,,Applied Computing Lab,Derek C Schuurman,Active,LAB
+Computer Science,21/FA,8/30/2021,2021,CS-104L-C,CS,104L,C,100,0.00,1.00,0,,20,24,24,SB 337,TH,12:30PM - 2:20PM,8/30/2021,12/15/2021,SB,337,12:30PM,12:30:00,2:20PM,14:20:00,,,,TH,,Applied Computing Lab,Derek C Schuurman,Active,LAB
+Computer Science,21/FA,8/30/2021,2021,CS-104L-D,CS,104L,D,100,0.00,1.00,0,,20,24,24,SB 337,TH,2:30PM - 4:20PM,8/30/2021,12/15/2021,SB,337,2:30PM,14:30:00,4:20PM,16:20:00,,,,TH,,Applied Computing Lab,Derek C Schuurman,Active,LAB
+Computer Science,21/FA,8/30/2021,2021,CS-106-A,CS,106,A,100,4.00,3.00,8,,30,33,30,SB 382,MWF,9:00AM - 9:50AM,8/30/2021,12/15/2021,SB,382,9:00AM,09:00:00,9:50AM,09:50:00,M,,W,,F,Intro to Sci Comp & Modeling,Kenneth C Arnold,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,CS-106L-A,CS,106L,A,100,0.00,1.00,9,,30,33,34,SB 354,TH,8:00AM - 9:50AM,8/30/2021,12/15/2021,SB,354,8:00AM,08:00:00,9:50AM,09:50:00,,,,TH,,Intro to Sci Comp & Model Lab,Kenneth C Arnold,Active,LAB
+Computer Science,21/FA,8/30/2021,2021,CS-108-A,CS,108,A,100,4.00,3.00,3,,24,33,35,NH 253,MWF,12:30PM - 1:20PM,8/30/2021,12/15/2021,NH,253,12:30PM,12:30:00,1:20PM,13:20:00,M,,W,,F,Intro to Computing,Keith Vander Linden,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,CS-108-A,CS,108,A,100,4.00,3.00,0,,30,33,35,NH 253,MWF,12:30PM - 1:20PM,1/10/2022,4/28/2022,NH,253,12:30PM,12:30:00,1:20PM,13:20:00,M,,W,,F,Intro to Computing,Derek C Schuurman,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,CS-108-B,CS,108,B,100,4.00,3.00,2,,24,33,35,NH 253,MWF,1:30PM - 2:20PM,8/30/2021,12/15/2021,NH,253,1:30PM,13:30:00,2:20PM,14:20:00,M,,W,,F,Intro to Computing,Keith Vander Linden,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,CS-108-B,CS,108,B,100,4.00,3.00,0,,30,33,35,NH 253,MWF,1:30PM - 2:20PM,1/10/2022,4/28/2022,NH,253,1:30PM,13:30:00,2:20PM,14:20:00,M,,W,,F,Intro to Computing,Derek C Schuurman,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,CS-108L-A,CS,108L,A,100,0.00,1.00,0,,30,33,34,SB 354,TH,8:00AM - 9:50AM,1/10/2022,4/28/2022,SB,354,8:00AM,08:00:00,9:50AM,09:50:00,,,,TH,,Intro to Computing Lab,Christopher Wieringa,Active,LAB
+Computer Science,21/FA,8/30/2021,2021,CS-108L-A,CS,108L,A,100,0.00,1.00,2,,24,33,34,SB 354,TH,10:30AM - 12:20PM,8/30/2021,12/15/2021,SB,354,10:30AM,10:30:00,12:20PM,12:20:00,,,,TH,,Intro to Computing Lab,Christopher Wieringa,Active,LAB
+Computer Science,21/FA,8/30/2021,2021,CS-108L-B,CS,108L,B,100,0.00,1.00,3,,24,33,34,SB 354,TH,12:30PM - 2:20PM,8/30/2021,12/15/2021,SB,354,12:30PM,12:30:00,2:20PM,14:20:00,,,,TH,,Intro to Computing Lab,Christopher Wieringa,Active,LAB
+Computer Science,22/SP,1/10/2022,2021,CS-108L-B,CS,108L,B,100,0.00,1.00,0,,30,33,34,SB 354,TH,10:30AM - 12:20PM,1/10/2022,4/28/2022,SB,354,10:30AM,10:30:00,12:20PM,12:20:00,,,,TH,,Intro to Computing Lab,Christopher Wieringa,Active,LAB
+Computer Science,22/SP,1/10/2022,2021,CS-112-A,CS,112,A,100,4.00,3.00,0,,30,33,35,NH 253,MWF,10:30AM - 11:20AM,1/10/2022,4/28/2022,NH,253,10:30AM,10:30:00,11:20AM,11:20:00,M,,W,,F,Intro to Data Structures,Victor T. Norman,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,CS-112-A,CS,112,A,100,4.00,3.00,4,,30,33,35,NH 253,MWF,10:30AM - 11:20AM,8/30/2021,12/15/2021,NH,253,10:30AM,10:30:00,11:20AM,11:20:00,M,,W,,F,Intro to Data Structures,Victor T. Norman,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,CS-112-B,CS,112,B,100,4.00,3.00,4,,30,33,35,NH 253,MWF,11:30AM - 12:20PM,8/30/2021,12/15/2021,NH,253,11:30AM,11:30:00,12:20PM,12:20:00,M,,W,,F,Intro to Data Structures,Victor T. Norman,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,CS-112-B,CS,112,B,100,4.00,3.00,0,,30,33,35,NH 253,MWF,11:30AM - 12:20PM,1/10/2022,4/28/2022,NH,253,11:30AM,11:30:00,12:20PM,12:20:00,M,,W,,F,Intro to Data Structures,Victor T. Norman,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,CS-112L-A,CS,112L,A,100,0.00,1.00,0,,30,33,34,SB 354,T,10:30AM - 12:20PM,1/10/2022,4/28/2022,SB,354,10:30AM,10:30:00,12:20PM,12:20:00,,T,,,,Intro to Data Structures Lab,Joel Adams,Active,LAB
+Computer Science,21/FA,8/30/2021,2021,CS-112L-A,CS,112L,A,100,0.00,1.00,4,,30,33,34,SB 354,T,10:30AM - 12:20PM,8/30/2021,12/15/2021,SB,354,10:30AM,10:30:00,12:20PM,12:20:00,,T,,,,Intro to Data Structures Lab,Joel Adams,Active,LAB
+Computer Science,22/SP,1/10/2022,2021,CS-112L-B,CS,112L,B,100,0.00,1.00,0,,30,33,34,SB 354,T,12:30PM - 2:20PM,1/10/2022,4/28/2022,SB,354,12:30PM,12:30:00,2:20PM,14:20:00,,T,,,,Intro to Data Structures Lab,Joel Adams,Active,LAB
+Computer Science,21/FA,8/30/2021,2021,CS-112L-B,CS,112L,B,100,0.00,1.00,3,,30,33,34,SB 354,T,12:30PM - 2:20PM,8/30/2021,12/15/2021,SB,354,12:30PM,12:30:00,2:20PM,14:20:00,,T,,,,Intro to Data Structures Lab,Joel Adams,Active,LAB
+Computer Science,22/SP,1/10/2022,2021,CS-195-A,CS,195,A,100,0.00,0.25,0,,60,,182,SB 010,T,3:30PM - 4:20PM,1/10/2022,4/28/2022,SB,010,3:30PM,15:30:00,4:20PM,16:20:00,,T,,,,Intro Computing Seminar,Joel Adams,Active,SEM
+Computer Science,21/FA,8/30/2021,2021,CS-195-A,CS,195,A,100,0.00,0.25,3,,60,,182,SB 010,T,3:30PM - 4:20PM,8/30/2021,12/15/2021,SB,010,3:30PM,15:30:00,4:20PM,16:20:00,,T,,,,Intro Computing Seminar,Joel Adams,Active,SEM
+Computer Science,21/FA,8/30/2021,2021,CS-212-A,CS,212,A,200,3.00,3.00,10,,30,33,30,SB 382,MWF,10:30AM - 11:20AM,8/30/2021,12/15/2021,SB,382,10:30AM,10:30:00,11:20AM,11:20:00,M,,W,,F,Data Structures & Algorithms,Harry Plantinga,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,CS-212-B,CS,212,B,200,3.00,3.00,3,,30,33,30,SB 382,MWF,11:30AM - 12:20PM,8/30/2021,12/15/2021,SB,382,11:30AM,11:30:00,12:20PM,12:20:00,M,,W,,F,Data Structures & Algorithms,Harry Plantinga,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,CS-214-A,CS,214,A,200,3.00,2.00,0,,30,33,30,SB 382,MW,12:30PM - 1:20PM,1/10/2022,4/28/2022,SB,382,12:30PM,12:30:00,1:20PM,13:20:00,M,,W,,,Programming Lang Concepts,Joel Adams,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,CS-214-B,CS,214,B,200,3.00,2.00,0,,30,33,30,SB 382,MW,1:30PM - 2:20PM,1/10/2022,4/28/2022,SB,382,1:30PM,13:30:00,2:20PM,14:20:00,M,,W,,,Programming Lang Concepts,Joel Adams,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,CS-214L-A,CS,214L,A,200,0.00,1.00,0,,30,33,34,SB 354,THF,12:30PM - 1:20PM,1/10/2022,4/28/2022,SB,354,12:30PM,12:30:00,1:20PM,13:20:00,,,,TH,F,Prog Lang Concepts Lab,David Meyer,Active,LAB
+Computer Science,22/SP,1/10/2022,2021,CS-214L-B,CS,214L,B,200,0.00,1.00,0,,30,33,34,SB 354,THF,1:30PM - 2:20PM,1/10/2022,4/28/2022,SB,354,1:30PM,13:30:00,2:20PM,14:20:00,,,,TH,F,Prog Lang Concepts Lab,David Meyer,Active,LAB
+Computer Science,22/SP,1/10/2022,2021,CS-232-A,CS,232,A,200,3.00,3.00,0,,30,,30,SB 382,T,6:30PM - 9:20PM,1/10/2022,4/28/2022,SB,382,6:30PM,18:30:00,9:20PM,21:20:00,,T,,,,Operating Systems and Networki,Victor T. Norman,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,CS-232-B,CS,232,B,200,3.00,3.00,0,,30,,30,SB 382,MWF,9:00AM - 9:50AM,1/10/2022,4/28/2022,SB,382,9:00AM,09:00:00,9:50AM,09:50:00,M,,W,,F,Operating Systems and Networki,Victor T. Norman,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,CS-262-A,CS,262,A,200,3.00,3.00,16,,30,33,30,SB 382,MW,2:30PM - 3:20PM,8/30/2021,12/15/2021,SB,382,2:30PM,14:30:00,3:20PM,15:20:00,M,,W,,,Software Engineering,Keith Vander Linden,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,CS-262-B,CS,262,B,200,3.00,3.00,4,,30,33,30,SB 382,MW,3:30PM - 4:20PM,8/30/2021,12/15/2021,SB,382,3:30PM,15:30:00,4:20PM,16:20:00,M,,W,,,Software Engineering,Keith Vander Linden,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,CS-262L-A,CS,262L,A,200,0.00,0.00,9,,30,33,34,SB 354,F,2:30PM - 4:20PM,8/30/2021,12/15/2021,SB,354,2:30PM,14:30:00,4:20PM,16:20:00,,,,,F,Software Engineering Lab,Keith Vander Linden,Active,LAB
+Computer Science,21/FA,8/30/2021,2021,CS-262L-B,CS,262L,B,200,0.00,0.00,0,,30,33,33,SB 372,F,2:30PM - 4:20PM,8/30/2021,12/15/2021,SB,372,2:30PM,14:30:00,4:20PM,16:20:00,,,,,F,Software Engineering Lab,Keith Vander Linden,Active,LAB
+Computer Science,21/FA,8/30/2021,2021,CS-295-A,CS,295,A,200,0.00,0.25,29,,50,,182,SB 010,T,3:30PM - 4:20PM,8/30/2021,12/15/2021,SB,010,3:30PM,15:30:00,4:20PM,16:20:00,,T,,,,Computing Seminar,Joel Adams,Active,SEM
+Computer Science,22/SP,1/10/2022,2021,CS-295-A,CS,295,A,200,0.00,0.25,0,,40,,182,SB 010,T,3:30PM - 4:20PM,1/10/2022,4/28/2022,SB,010,3:30PM,15:30:00,4:20PM,16:20:00,,T,,,,Computing Seminar,Joel Adams,Active,SEM
+Computer Science,21/FA,8/30/2021,2021,CS-332-A,CS,332,A,300,3.00,3.00,14,,24,30,46,NH 064,MWF,1:30PM - 2:20PM,8/30/2021,12/15/2021,NH,064,1:30PM,13:30:00,2:20PM,14:20:00,M,,W,,F,Adv Computer Networks,Victor T. Norman,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,CS-338-A,CS,338,A,300,4.00,4.00,0,,35,35,24,"NH 253
+SB 337","MWF
+T","9:00AM - 9:50AM
+8:00AM - 9:50AM",1/10/2022,4/28/2022,"NH
+SB","253
+337","9:00AM
+8:00AM","09:00:00
+08:00:00","9:50AM
+9:50AM","09:50:00
+09:50:00","M
+","
+T","W
+","
+","F
+",Computer Systems Admin,Christopher Wieringa,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,CS-342-A,CS,342,A,300,3.00,3.00,28,,28,30,34,"NH 253
+SB 354","MWF
+MWF","9:00AM - 9:50AM
+9:00AM - 9:50AM",8/30/2021,12/15/2021,"NH
+SB","253
+354","9:00AM
+9:00AM","09:00:00
+09:00:00","9:50AM
+9:50AM","09:50:00
+09:50:00","M
+M","
+","W
+W","
+","F
+F",Database Management Systems,Patrick Bailey,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,CS-344-A,CS,344,A,300,3.00,3.00,0,,24,30,34,"SB 382
+SB 354","MWF
+MWF","11:30AM - 12:20PM
+11:30AM - 12:20PM",1/10/2022,4/28/2022,"SB
+SB","382
+354","11:30AM
+11:30AM","11:30:00
+11:30:00","12:20PM
+12:20PM","12:20:00
+12:20:00","M
+M","
+","W
+W","
+","F
+F",Artificial Intelligence,Kenneth C Arnold,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,CS-352-A,CS,352,A,300,3.00,3.00,0,,24,30,30,SB 382,MWF,10:30AM - 11:20AM,1/10/2022,4/28/2022,SB,382,10:30AM,10:30:00,11:20AM,11:20:00,M,,W,,F,Computer Graphics,Harry Plantinga,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,CS-364-A,CS,364,A,300,4.00,4.00,0,,20,,24,"SB 382
+SB 337","MTH
+MTH","3:30PM - 5:20PM
+3:30PM - 5:20PM",1/10/2022,4/28/2022,"SB
+SB","382
+337","3:30PM
+3:30PM","15:30:00
+15:30:00","5:20PM
+5:20PM","17:20:00
+17:20:00","M
+M","
+","
+","TH
+TH","
+",Computer Security,"Brian D Paige
+Adam Vedra",Active,LEC
+Computer Science,21/FA,8/30/2021,2021,CS-374-A,CS,374,A,300,3.00,3.00,20,,20,,46,NH 064,MWF,11:30AM - 12:20PM,8/30/2021,12/15/2021,NH,064,11:30AM,11:30:00,12:20PM,12:20:00,M,,W,,F,High Performance Computing,Joel Adams,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,CS-384-A,CS,384,A,300,3.00,3.00,0,,20,,32,HH 334,TTH,10:30AM - 11:45AM,1/10/2022,4/28/2022,HH,334,10:30AM,10:30:00,11:45AM,11:45:00,,T,,TH,,Perspectives on Computing,Derek C Schuurman,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,CS-384-B,CS,384,B,300,3.00,3.00,0,,20,,32,HH 334,TTH,12:00PM - 1:15PM,1/10/2022,4/28/2022,HH,334,12:00PM,12:00:00,1:15PM,13:15:00,,T,,TH,,Perspectives on Computing,Derek C Schuurman,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,CS-394-A,CS,394,A,300,3.00,1.50,0,,28,,30,SB 382,W,5:30PM - 7:20PM,1/10/2022,4/28/2022,SB,382,5:30PM,17:30:00,7:20PM,19:20:00,,,W,,,Senior Internship in Computing,Patrick Bailey,Active,INT
+Computer Science,21/FA,8/30/2021,2021,CS-394-A,CS,394,A,300,3.00,1.50,8,,28,,30,SB 382,TH,5:30PM - 7:20PM,8/30/2021,12/15/2021,SB,382,5:30PM,17:30:00,7:20PM,19:20:00,,,,TH,,Senior Internship in Computing,Patrick Bailey,Active,INT
+Computer Science,21/FA,8/30/2021,2021,CS-396-A,CS,396,A,300,2.00,0.00,14,,30,30,0,,,,8/30/2021,12/15/2021,,,,,,,,,,,,Senior Project in Computing I,Joel Adams,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,CS-398-A,CS,398,A,300,2.00,0.00,0,,1,,0,,,,1/10/2022,4/28/2022,,,,,,,,,,,,Senior Project in Computing II,Joel Adams,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,DATA-101-A,DATA,101,A,100,3.00,3.00,2,,25,33,34,"NH 253
+SB 354","MWF
+MW","2:30PM - 3:20PM
+2:30PM - 3:20PM",8/30/2021,12/15/2021,"NH
+SB","253
+354","2:30PM
+2:30PM","14:30:00
+14:30:00","3:20PM
+3:20PM","15:20:00
+15:20:00","M
+M","
+","W
+W","
+","F
+",Data Science for Everyone,Monica Groenenboom,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,DATA-101-A,DATA,101,A,100,3.00,3.00,0,,30,33,33,"NH 253
+SB 372","MWF
+MWF","2:30PM - 3:20PM
+2:30PM - 3:20PM",1/10/2022,4/28/2022,"NH
+SB","253
+372","2:30PM
+2:30PM","14:30:00
+14:30:00","3:20PM
+3:20PM","15:20:00
+15:20:00","M
+M","
+","W
+W","
+","F
+F",Data Science for Everyone,Monica Groenenboom,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,DATA-101-B,DATA,101,B,100,3.00,3.00,0,,30,33,33,"NH 253
+SB 372","MWF
+MWF","3:30PM - 4:20PM
+3:30PM - 4:20PM",1/10/2022,4/28/2022,"NH
+SB","253
+372","3:30PM
+3:30PM","15:30:00
+15:30:00","4:20PM
+4:20PM","16:20:00
+16:20:00","M
+M","
+","W
+W","
+","F
+F",Data Science for Everyone,Patrick Bailey,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,DATA-101-B,DATA,101,B,100,3.00,3.00,3,,25,33,34,"NH 253
+SB 354","MWF
+MW","3:30PM - 4:20PM
+3:30PM - 4:20PM",8/30/2021,12/15/2021,"NH
+SB","253
+354","3:30PM
+3:30PM","15:30:00
+15:30:00","4:20PM
+4:20PM","16:20:00
+16:20:00","M
+M","
+","W
+W","
+","F
+",Data Science for Everyone,Patrick Bailey,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,DATA-101-C,DATA,101,C,100,3.00,3.00,3,,25,33,33,"NH 253
+SB 372","W
+W","6:30PM - 9:20PM
+6:30PM - 9:20PM",8/30/2021,12/15/2021,"NH
+SB","253
+372","6:30PM
+6:30PM","18:30:00
+18:30:00","9:20PM
+9:20PM","21:20:00
+21:20:00","
+","
+","W
+W","
+","
+",Data Science for Everyone,Patrick Bailey,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,DATA-175-A,DATA,175,A,100,3.00,3.00,8,,25,33,33,SB 372,TTH,1:30PM - 2:45PM,8/30/2021,12/15/2021,SB,372,1:30PM,13:30:00,2:45PM,14:45:00,,T,,TH,,Productivity Software,Brenda VanderLinden,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,DATA-175-A,DATA,175,A,100,3.00,3.00,0,,30,33,33,SB 372,TTH,1:30PM - 2:45PM,1/10/2022,4/28/2022,SB,372,1:30PM,13:30:00,2:45PM,14:45:00,,T,,TH,,Productivity Software,Brenda VanderLinden,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,DATA-175-B,DATA,175,B,100,3.00,3.00,3,,25,33,33,SB 372,TTH,3:00PM - 4:15PM,8/30/2021,12/15/2021,SB,372,3:00PM,15:00:00,4:15PM,16:15:00,,T,,TH,,Productivity Software,Brenda VanderLinden,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,DATA-175-B,DATA,175,B,100,3.00,3.00,0,,30,33,33,SB 372,TTH,3:00PM - 4:15PM,1/10/2022,4/28/2022,SB,372,3:00PM,15:00:00,4:15PM,16:15:00,,T,,TH,,Productivity Software,Brenda VanderLinden,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,DATA-175-C,DATA,175,C,100,3.00,3.00,0,,25,33,33,SB 372,TTH,4:30PM - 5:45PM,8/30/2021,12/15/2021,SB,372,4:30PM,16:30:00,5:45PM,17:45:00,,T,,TH,,Productivity Software,Jim Momeyer,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,DATA-175-C,DATA,175,C,100,3.00,3.00,0,,30,33,33,SB 372,TTH,4:30PM - 5:45PM,1/10/2022,4/28/2022,SB,372,4:30PM,16:30:00,5:45PM,17:45:00,,T,,TH,,Productivity Software,Jim Momeyer,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,DATA-202-A,DATA,202,A,200,3.00,3.00,7,,30,33,33,"SB 382
+SB 372","MWF
+MWF","12:30PM - 1:20PM
+12:30PM - 1:20PM",8/30/2021,12/15/2021,"SB
+SB","382
+372","12:30PM
+12:30PM","12:30:00
+12:30:00","1:20PM
+1:20PM","13:20:00
+13:20:00","M
+M","
+","W
+W","
+","F
+F",Information Sys & Data Managmt,Kenneth C Arnold,Active,LEC
+Computer Science,21/FA,8/30/2021,2021,DATA-202-B,DATA,202,B,200,3.00,3.00,16,,30,33,33,"SB 382
+SB 372","MWF
+MWF","1:30PM - 2:20PM
+1:30PM - 2:20PM",8/30/2021,12/15/2021,"SB
+SB","382
+372","1:30PM
+1:30PM","13:30:00
+13:30:00","2:20PM
+2:20PM","14:20:00
+14:20:00","M
+M","
+","W
+W","
+","F
+F",Information Sys & Data Managmt,Kenneth C Arnold,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,DATA-303-A,DATA,303,A,300,3.00,3.00,0,,24,30,44,NH 276,MWF,2:30PM - 3:20PM,1/10/2022,4/28/2022,NH,276,2:30PM,14:30:00,3:20PM,15:20:00,M,,W,,F,Modeling & Visualization,Randall Pruim,Active,LEC
+Computer Science,22/SP,1/10/2022,2021,IDIS-110-A,IDIS,110,A,100,1.00,1.00,0,,30,32,0,ON LINE,MWF,10:30AM - 11:20AM,1/10/2022,4/28/2022,ON,LINE,10:30AM,10:30:00,11:20AM,11:20:00,M,,W,,F,Foundations of Info Technology,Robert Bobeldyk,Active,ONLN
+Computer Science,21/FA,8/30/2021,2021,IDIS-110-A,IDIS,110,A,100,1.00,1.00,7,,30,32,0,ON LINE,MWF,10:30AM - 11:20AM,8/30/2021,12/15/2021,ON,LINE,10:30AM,10:30:00,11:20AM,11:20:00,M,,W,,F,Foundations of Info Technology,Robert Bobeldyk,Active,ONLN
+Computer Science,21/FA,8/30/2021,2021,IDIS-110-B,IDIS,110,B,100,1.00,1.00,1,,30,32,0,ON LINE,MWF,10:30AM - 11:20AM,8/30/2021,12/15/2021,ON,LINE,10:30AM,10:30:00,11:20AM,11:20:00,M,,W,,F,Foundations of Info Technology,Robert Bobeldyk,Active,ONLN
+Computer Science,22/SP,1/10/2022,2021,IDIS-110-B,IDIS,110,B,100,1.00,1.00,0,,30,32,0,ON LINE,MWF,10:30AM - 11:20AM,1/10/2022,4/28/2022,ON,LINE,10:30AM,10:30:00,11:20AM,11:20:00,M,,W,,F,Foundations of Info Technology,Robert Bobeldyk,Active,ONLN
+Computer Science,21/FA,8/30/2021,2021,IDIS-110-C,IDIS,110,C,100,1.00,1.00,5,,30,32,0,ON LINE,MWF,11:30AM - 12:20PM,8/30/2021,12/15/2021,ON,LINE,11:30AM,11:30:00,12:20PM,12:20:00,M,,W,,F,Foundations of Info Technology,Robert Bobeldyk,Active,ONLN
+Computer Science,22/SP,1/10/2022,2021,IDIS-110-C,IDIS,110,C,100,1.00,1.00,0,,30,32,0,ON LINE,MWF,11:30AM - 12:20PM,1/10/2022,4/28/2022,ON,LINE,11:30AM,11:30:00,12:20PM,12:20:00,M,,W,,F,Foundations of Info Technology,Robert Bobeldyk,Active,ONLN
+Computer Science,21/FA,8/30/2021,2021,IDIS-110-D,IDIS,110,D,100,1.00,1.00,0,,30,32,0,ON LINE,MWF,11:30AM - 12:20PM,8/30/2021,12/15/2021,ON,LINE,11:30AM,11:30:00,12:20PM,12:20:00,M,,W,,F,Foundations of Info Technology,Robert Bobeldyk,Active,ONLN
+Computer Science,22/SP,1/10/2022,2021,IDIS-110-D,IDIS,110,D,100,1.00,1.00,0,,30,32,0,ON LINE,MWF,11:30AM - 12:20PM,1/10/2022,4/28/2022,ON,LINE,11:30AM,11:30:00,12:20PM,12:20:00,M,,W,,F,Foundations of Info Technology,Robert Bobeldyk,Active,ONLN
+Computer Science,22/SP,1/10/2022,2021,IDIS-110-E,IDIS,110,E,100,1.00,1.00,0,,30,32,0,ON LINE,MWF,12:30PM - 1:20PM,1/10/2022,4/28/2022,ON,LINE,12:30PM,12:30:00,1:20PM,13:20:00,M,,W,,F,Foundations of Info Technology,Robert Bobeldyk,Active,ONLN
+Computer Science,21/FA,8/30/2021,2021,IDIS-110-E,IDIS,110,E,100,1.00,1.00,12,,30,32,0,ON LINE,MWF,12:30PM - 1:20PM,8/30/2021,12/15/2021,ON,LINE,12:30PM,12:30:00,1:20PM,13:20:00,M,,W,,F,Foundations of Info Technology,Robert Bobeldyk,Active,ONLN
+
