@@ -1,0 +1,58 @@
+---
+title: "Untitled"
+self-contained: true
+format: html
+editor: visual
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE
+)
+library(tidyverse)
+library(glue)
+library(readr)
+Sked <- read_csv('full_schedule_2022-10-25T11_38_50-04_00.csv')
+```
+
+```{r results = 'asis'}
+Sked |> glue_data(
+"
+
+## {SubjectCode} {CourseNum} {SectionCode}
+
+**Start:** {SectionStartDate}
+**End:** {SectionEndDate}
+
+**Title:** {ShortTitle}
+
+**Capacity** (Global Max): {GlobalMax}
+
+
+**Notes:** {Comments}
+
+**Faculty Load:**  |  **Semester Hours ** |  **Delivery mode:**     
+-------------------|--------------------|------------------------
+{`FacultyLoad`}    |  {MinimumCredits}  | {InstructionalMethod}
+
+**Instructor(s)**: {Faculty}
+
+**Meeting Pattern**: {MeetingDays} {MeetingTime}
+
+") |>
+  cat()
+```
+
+Section name: MATH 171 A
+Start/end dates
+Title
+Fac Load
+Section Capacity
+Sem Hours
+Notes to be shown to stu/faculty (if there are any)– this requires clicking on the section from Find Course Sections
+Delivery mode: in person, online, hybrid (rare)
+Instructor(s)
+Meeting Pattern – which is days then time
+ 
+Instructional format defaults from the course (lecture, lab, etc) so we don’t need that information – or it could be to the far right.
