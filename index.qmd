@@ -1,0 +1,11 @@
+---
+title: "Course Schedulizer"
+format: html
+self-contained: true
+editor: visual
+---
+
+
+* [Documentation](Using-Schedulizer.html)
+* [Get data from last year](https://reports.calvin.edu/Reports/report/Departmental%20Reports/Course%20Section%20Report)
+* [Course Schedulizer](https://senior-knights.github.io/course-schedulizer/#/)
