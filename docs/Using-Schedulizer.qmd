@@ -2,6 +2,15 @@
 title: "Using Course Schedulizer"
 subtitle: "To Create a Class Schedule for a Department"
 format: 
+  pdf: 
+    # mainfont: Cambria
+    # mainfont: texgyrepagella
+    documentclass: article
+    geometry:
+        - "top=2.3in"
+        - "bottom=1in"
+        - "left=1in"
+        - "right=1in"
   html:
     self-contained: true
 fig-align: center
