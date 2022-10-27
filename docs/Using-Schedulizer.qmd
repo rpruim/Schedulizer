@@ -1,7 +1,9 @@
 ---
 title: "Using Course Schedulizer"
 subtitle: "To Create a Class Schedule for a Department"
-format: html
+format: 
+  html:
+    self-contained: true
 fig-align: center
 editor: visual
 ---
