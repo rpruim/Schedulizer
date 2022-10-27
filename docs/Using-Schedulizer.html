@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.242">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Using Course Schedulizer</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Using-Schedulizer_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Using-Schedulizer_files/libs/quarto-html/quarto.js"></script>
+<script src="Using-Schedulizer_files/libs/quarto-html/popper.min.js"></script>
+<script src="Using-Schedulizer_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Using-Schedulizer_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Using-Schedulizer_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Using-Schedulizer_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Using-Schedulizer_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Using-Schedulizer_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Using-Schedulizer_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Using Course Schedulizer</h1>
+<p class="subtitle lead">To Create a Class Schedule for a Department</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="two-approaches" class="level1">
+<h1>Two Approaches</h1>
+<section id="import-or-start-from-scratch" class="level2">
+<h2 class="anchored" data-anchor-id="import-or-start-from-scratch">Import or Start from Scratch?</h2>
+<p>There are two ways to create a schedule for a new academic year:</p>
+<ol type="1">
+<li>Start from a past schedule and modify it, or</li>
+<li>Build the schedule from scratch in the Course Schedulizer.</li>
+</ol>
+<p>In most years, option 1 saves a lot of time. This year it will save less (because of the 2/4 transition), but for some departments, it may still be easier to start with a past year’s schedule, even though you will need to adjust all the times and perhaps the number of hours for each section.</p>
+</section>
+<section id="getting-a-previous-schedule" class="level2">
+<h2 class="anchored" data-anchor-id="getting-a-previous-schedule">Getting A Previous Schedule</h2>
+<p>You can download a previous schedule from <a href="https://reports.calvin.edu/Reports/report/Departmental%20Reports/Course%20Section%20Report" class="uri">https://reports.calvin.edu/Reports/report/Departmental%20Reports/Course%20Section%20Report</a>. Fill in the desired terms and department, view the report, and then download it <strong>as a CSV</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/data-export.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<p>The file will be called something like <code>Course Section Report.csv</code> and will probably be in the default location where your browser uses for downloads.</p>
+</section>
+</section>
+<section id="getting-started-with-course-schedulizer" class="level1">
+<h1>Getting Started with Course Schedulizer</h1>
+<section id="launching-course-schedulizer" class="level2">
+<h2 class="anchored" data-anchor-id="launching-course-schedulizer">Launching Course Schedulizer</h2>
+<p>Navigate in a browser to <a href="https://senior-knights.github.io/course-schedulizer/#/" class="uri">https://senior-knights.github.io/course-schedulizer/#/</a></p>
+<p>The first time you do this, you will see</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/no-schedule-data.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<p>You can view the demo or explore the help if you like, but eventually you will be ready to press either</p>
+<ol type="1">
+<li>Import Schedule (if you just downloaded a schedule to start from), or</li>
+<li>Add Section (if you are building from scratch).</li>
+</ol>
+</section>
+<section id="importing-a-previous-schedule" class="level2">
+<h2 class="anchored" data-anchor-id="importing-a-previous-schedule">Importing a Previous Schedule</h2>
+<p>If you have a saved schedule (either one you exported from reports.calvin.edu or one that you previously saved in Course Schedulizer), you can import it by clicking the button and navigating to the file on your computer.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/select-file.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</section>
+<section id="inspecting-your-schedule" class="level2">
+<h2 class="anchored" data-anchor-id="inspecting-your-schedule">Inspecting Your Schedule</h2>
+<p>Once a schedule is loaded, you can inspect the schedule in one of several views by selecting the tab you are interested in. Here is the <strong>Room Schedule view</strong>, colored by instructor:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/by-room.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<p>You can may need to zoom in or out or scroll to get a good view.</p>
+<section id="conflicts" class="level3">
+<h3 class="anchored" data-anchor-id="conflicts">Conflicts</h3>
+<p>Notice that a few classes are outlined in red. These are beging flagged as conflicts. You can see all your conflicts in the <strong>Conflicts view</strong>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/conflicts-view.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<p><em>Note: At the time of this writing, first-half, second-half classes register as a conflict. We hope to get this fixed soon.</em></p>
+</section>
+<section id="facutly-load-tallies" class="level3">
+<h3 class="anchored" data-anchor-id="facutly-load-tallies">Facutly Load Tallies</h3>
+<p>The <strong>Teaching Loads view</strong> tallies up teaching loads from the courses. You can also add non-teaching load for things like CRFs, administrative duties, etc.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/teaching-loads.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="exporting-your-schedule" class="level2">
+<h2 class="anchored" data-anchor-id="exporting-your-schedule">Exporting your schedule</h2>
+<p>While your browser will probably cache your work, it is a good idea to save your progress. The menu in the upper left corner gives you this option:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/hamburger-menu.png" class="img-fluid figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+<p>Choose <strong>Export CSV</strong>, and your schedule will be saved to your computer. The file name will include a time stamp so you can tell when it was generated.</p>
+<section id="hand-editing-your-schdedule-use-with-caution" class="level3">
+<h3 class="anchored" data-anchor-id="hand-editing-your-schdedule-use-with-caution">Hand editing your schdedule (Use with caution!)</h3>
+<p>It is possible to edit this file by hand (in Excel, for example). But you need to be careful not to corrupt the format of the file. The file contains some redundant information, some of which is ignored when you import the schedule.</p>
+<p><em><strong>Advice</strong>: Save your schedule with a new name before editing so that if something goes wrong, you can always revert to your previously saved version.</em></p>
+<p>Here are some reasonable things to do by hand that may save you some time. (All of these can also be done inside Course Schedulizer.) The are ordered roughly from most useful/reasonable to least.</p>
+<ol type="1">
+<li><p>Edit the <code>MeetingDurationMinutes</code> column.</p>
+<p>Most of our courses will be changing to a different duration. You could change all of the 50-minute classes to 65 or 100, for example. This may be faster to do in Excel than by clicking on each section in Course Schedulizer.</p></li>
+<li><p>Edit the <code>AcademicYear</code> column.</p>
+<p>Change this to 2024 for the 23-24 academic year.</p></li>
+<li><p>Edit the <code>MinimumCredits</code> (Student load hours) and <code>FacultyLoad</code> (faculty load hours) columns.</p>
+<p>You may be making many systematic changes to these this year.</p></li>
+<li><p>You could edit <code>MeetingStartInternal</code>, but be sure it contains a legal time value.</p>
+<p>Nearly all start times will be changing this year. Course Schedulizer things of course times as a start and a duration. (This makes it easier to move classes to different times, since you usually only have to edit one field rather than two and you don’t have to do the arithmetic to get the end time correct.) If you prefer to move courses to their new start times in Excel, you could do that. Our you could wait and do it in Course Schedulizer, where you can visualize the changes as you make them.</p></li>
+<li><p>Things like <code>ShortTitle</code> and <code>Faculty</code> could be edited here as well, if you like.</p>
+<p>Note: Be sure each faculty person’s name is listed exactly one way for all their courses or they will appear as two different faculty members in the displays.</p></li>
+</ol>
+<p>Once you have made your edits, you can upload the edited file and resume working in Course Schedulizer.</p>
+</section>
+</section>
+</section>
+<section id="adding-and-modifying-sections" class="level1">
+<h1>Adding and Modifying Sections</h1>
+<p>At this point you either have a draft schedule (likely with many edits to make) or an empty schedule waiting for some sections to be added.</p>
+<p>The <strong>Add a Section</strong> button on the initial screen or the <strong>+</strong> off to the right in the gray bar can be used to bring up the menu for adding a section.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/add-a-section.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<p>Just fill in the information and click <strong>Add Section</strong>.</p>
+<blockquote class="blockquote">
+<p>Note: If you choose a half-semester course, you will be prompted to indicate whether it is a first half or second half course. A similar things happens for the intensive classes.</p>
+</blockquote>
+<p>Some information (like Global Max, etc.) can be left blank and filled in later (or not at all). To edit a section, just click on that section in one of the views to bring up the section editor and make your modifications. You can use those modifications to update the existing section or to create a new section.</p>
+<p>In particular, if you have a number of similar sections to add, you can create one and then use it as a template for creating the others. This save a lot of time. Just use <strong>Add New Section</strong> button instead of the <strong>Update Section</strong> button.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/update-a-section.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<p>You can add text notes to sections. While you are developing your schedule, these can be used to remind yourself of why you have done certain things, things that still need attention, etc. These notes will also be communicated to the registrar’s office, so you can use them to communicate important information to that office as well.</p>
+</section>
+</section>
+<section id="future-development" class="level1">
+<h1>Future Development</h1>
+<p>Course Schedulizer is being expanded and improved by some senior computer science students. If notice bugs or have suggestions for improvement, please let us know.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
