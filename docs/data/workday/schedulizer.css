@@ -1,0 +1,21 @@
+div.course-section{
+  border: 1px solid navy;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  color: black
+}
+
+td, th{
+  padding: 5px;
+  border: 1px solid gray;
+}
+
+th {
+  background-color: navy;
+  color: white;
+}
+
+table{
+  border: 1px solid navy;
+}

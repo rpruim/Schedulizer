@@ -1,10 +1,11 @@
 ---
-title: "Untitled"
+title: "Data for Entry into Workday"
 self-contained: true
-format: html
+format: 
+  html:
+    css: schedulizer.css
 editor: visual
 ---
-
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -17,42 +18,51 @@ Sked <- read_csv('full_schedule_2022-10-25T11_38_50-04_00.csv')
 ```
 
 ```{r results = 'asis'}
-Sked |> glue_data(
+Sked |> 
+  mutate(Term = substr(Term, 4, 5)) |>
+  mutate(Faculty = gsub("\n", " | ", Faculty)) |>
+  mutate(MeetingTime = gsub("\n", " | ", MeetingTime)) |>
+  mutate(BuildingAndRoom = gsub("\n", " | ", BuildingAndRoom)) |>
+  mutate(FacultyLoad = gsub("\n", " | ", FacultyLoad)) |>
+  mutate(MinimumCredits = gsub("\n", " | ", MinimumCredits)) |>
+  glue_data(
 "
 
-## {SubjectCode} {CourseNum} {SectionCode}
+<div class = \"course-section\">
 
-**Start:** {SectionStartDate}
-**End:** {SectionEndDate}
+<table>
+<tr>
+<th>Section </th>
+<th>Term </th>
+<th>Time </th>
+<th>Room </th>
+<th>Capacity </th>
+<th>FLH</th>
+<th>SLH</th>
+<th>Mode</th>
+</tr>
+<tr>
+<td>{SubjectCode} {CourseNum} {SectionCode} </td>
+<td>{Term} -- {SemesterLength} </td>
+<td>{MeetingDays} {MeetingTime} </td>
+<td>{BuildingAndRoom} </td>
+<td>{GlobalMax} </td>
+<td> {FacultyLoad} </td>
+<td> {MinimumCredits} </td>
+<td>{InstructionalMethod} </td>
+</tr>
+</table>
 
-**Title:** {ShortTitle}
-
-**Capacity** (Global Max): {GlobalMax}
-
-
+**Short Title:** {ShortTitle}  
+**Instructor(s)**: {Faculty}  
 **Notes:** {Comments}
 
-**Faculty Load:**  |  **Semester Hours ** |  **Delivery mode:**     
--------------------|--------------------|------------------------
-{`FacultyLoad`}    |  {MinimumCredits}  | {InstructionalMethod}
 
-**Instructor(s)**: {Faculty}
-
-**Meeting Pattern**: {MeetingDays} {MeetingTime}
-
+</div>
 ") |>
   cat()
 ```
 
-Section name: MATH 171 A
-Start/end dates
-Title
-Fac Load
-Section Capacity
-Sem Hours
-Notes to be shown to stu/faculty (if there are any)– this requires clicking on the section from Find Course Sections
-Delivery mode: in person, online, hybrid (rare)
-Instructor(s)
-Meeting Pattern – which is days then time
- 
-Instructional format defaults from the course (lecture, lab, etc) so we don’t need that information – or it could be to the far right.
+Section name: MATH 171 A Start/end dates Title Fac Load Section Capacity Sem Hours Notes to be shown to stu/faculty (if there are any)-- this requires clicking on the section from Find Course Sections Delivery mode: in person, online, hybrid (rare) Instructor(s) Meeting Pattern -- which is days then time
+
+Instructional format defaults from the course (lecture, lab, etc) so we don't need that information -- or it could be to the far right.
