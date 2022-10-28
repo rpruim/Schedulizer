@@ -25,6 +25,7 @@ Sked |>
   mutate(BuildingAndRoom = gsub("\n", " | ", BuildingAndRoom)) |>
   mutate(FacultyLoad = gsub("\n", " | ", FacultyLoad)) |>
   mutate(MinimumCredits = gsub("\n", " | ", MinimumCredits)) |>
+  mutate(Comments = ifelse(is.na(Comments), "", Comments)) |>
   glue_data(
 "
 
@@ -53,11 +54,14 @@ Sked |>
 </tr>
 </table>
 
-**Short Title:** {ShortTitle}  
-**Instructor(s)**: {Faculty}  
-**Notes:** {Comments}
+<table>
+<tr>
+<td> **Short Title:** {ShortTitle} </td>
+<td> **Instructor(s)**: {Faculty}</td>
+</tr>
+</table>
 
-
+{Comments}
 </div>
 ") |>
   cat()
