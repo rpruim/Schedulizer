@@ -5,7 +5,7 @@ format:
     css: www/schedulizer.css
     self-contained: true
 server: shiny
-editor: visual
+editor: source
 ---
 
 ```{r, include = FALSE}
@@ -16,7 +16,6 @@ library(tidyverse)
 library(glue)
 library(readr)
 ```
-
 
 ```{r}
 #| context: server
@@ -33,8 +32,6 @@ library(glue)
 
 ```
 
-
-
 ```{r}
 
 # tags$link(rel = "stylesheet", type = "text/css", href = "schedulizer.css")
@@ -49,7 +46,6 @@ htmlOutput('schedule_list')
 
 # dataTableOutput('data')
 ```
-
 
 ```{r}
 #| context: server
@@ -118,4 +114,3 @@ output$schedule_list <-
       HTML()
   })
 ```
-
