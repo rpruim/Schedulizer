@@ -1,0 +1,42 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* Change header text to imported font */
+body, h1, h2 {
+  font-family: 'Yusei Magic', sans-serif;
+}
+
+body, h1, h2 {
+  font-family: 'Arsenal', 'Barlow Condensed', 'Yusei Magic', sans-serif;
+}
+
+div.course-section{
+  border: 1px solid navy;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  color: black
+}
+
+td, th{
+  padding: 5px;
+  border: 1px solid gray;
+}
+
+div.progress-bar {
+  background-color: #8c2131;
+}
+
+th {
+  background-color: #8c2131;
+  color: white;
+}
+
+table{
+  border: 1px solid navy;
+  margin-bottom: 3px;
+}

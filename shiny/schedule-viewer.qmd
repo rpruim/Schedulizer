@@ -1,0 +1,121 @@
+---
+title: "Schedule Viewer"
+format: 
+  html:
+    css: www/schedulizer.css
+    self-contained: true
+server: shiny
+editor: visual
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE
+)
+library(tidyverse)
+library(glue)
+library(readr)
+```
+
+
+```{r}
+#| context: server
+
+suppressPackageStartupMessages({
+library(dplyr)
+library(tidyr)
+library(readr)
+library(lubridate)
+library(readr)
+library(glue)
+})
+
+
+```
+
+
+
+```{r}
+
+# tags$link(rel = "stylesheet", type = "text/css", href = "schedulizer.css")
+
+fileInput(
+  'sched_file', "Select a Course Schedulizer CSV", accept = "*.csv", buttonLabel = "Browse..." 
+)
+
+# htmlOutput('some_text')
+
+htmlOutput('schedule_list')
+
+# dataTableOutput('data')
+```
+
+
+```{r}
+#| context: server
+
+Sked <- reactive({
+    file <- input$sched_file
+    ext <- tools::file_ext(file$datapath)
+    req(file)
+    validate(need(ext == "csv", "Please upload an CSV file."))
+    read.csv(file$datapath) 
+})
+
+output$data <- renderDataTable(Sked())
+
+output$some_text <-
+  renderUI(HTML("<hr><strong>Hello!</strong><hr>"))
+
+output$schedule_list <-
+  renderUI({
+    Sked() |> 
+      mutate(Faculty = gsub("\n", " | ", Faculty)) |>
+      mutate(MeetingTime = gsub("\n", " | ", MeetingTime)) |>
+      mutate(BuildingAndRoom = gsub("\n", " | ", BuildingAndRoom)) |>
+      mutate(FacultyLoad = gsub("\n", " | ", FacultyLoad)) |>
+      mutate(MinimumCredits = gsub("\n", " | ", MinimumCredits)) |>
+      mutate(Comments = ifelse(is.na(Comments), "", Comments)) |>
+      filter(nchar(SubjectCode) > 0) |>
+      filter(! grepl('\\*', SubjectCode)) |>
+      arrange(Term, SubjectCode, CourseNum, SectionCode, BuildingAndRoom, MeetingTime, MeetingDays) |>
+      glue_data(
+        "
+
+<div class = \"course-section\">
+
+<table>
+<tr>
+<th>Section </th>
+<th>Term </th>
+<th>Time </th>
+<th>Room </th>
+<th>FLH</th>
+<th>SLH</th>
+<th>Mode</th>
+</tr>
+<tr>
+<td>{SubjectCode} {CourseNum} {SectionCode}</td>
+<td>{Term} -- {SemesterLength}</td>
+<td>{MeetingDays} {MeetingTime}</td>
+<td>{BuildingAndRoom}</td>
+<td>{FacultyLoad}</td>
+<td>{MinimumCredits}</td>
+<td>{InstructionalMethod}</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td> <strong>Short Title:</strong> {ShortTitle}</td>
+<td> <strong>Instructor(s)</strong>: {Faculty}</td>
+</tr>
+</table>
+
+{Comments}
+</div>
+") |>
+      HTML()
+  })
+```
+
