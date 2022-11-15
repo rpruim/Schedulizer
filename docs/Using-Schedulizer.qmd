@@ -29,7 +29,7 @@ editor: visual
 In most years, option 1 saves a lot of time. This year it will save less
 (because of the 2/4 transition), but for some departments, it may still be
 easier to start with a past year's schedule, even though you will need to adjust
-all the times and perhaps the number of hours for each section.
+the times and perhaps the number of hours for each section.
 
 ## Getting A Previous Schedule
 
@@ -39,6 +39,8 @@ You can download a previous schedule from <https://reports.calvin.edu/Reports/re
 
 The file will be called something like `Course Section Report.csv` and will probably be
 in the default location where your browser uses for downloads.
+
+***Do not export your schedule from Workday.** The Workday report uses a different format that Course Schedulizer does not know how to import.*
 
 
 # Getting Started with Course Schedulizer
@@ -123,17 +125,15 @@ from most useful/reasonable to least.
     of the 50-minute classes to 65 or 100, for example.  This may be faster to do in
     Excel than by clicking on each section in Course Schedulizer.
     
-1. Edit the `AcademicYear` column.
-
-    Change this to 2024 for the 23-24 academic year.
-    
 1. Edit the `MinimumCredits` (Student load hours) and `FacultyLoad` (faculty load hours) columns.
 
     You may be making many systematic changes to these this year.
-    
-1. You could edit `MeetingStartInternal`, but be sure it contains a legal time value.
 
-    Nearly all start times will be changing this year. Course Schedulizer things
+The following could be done but are probably less useful:
+
+3. You could edit `MeetingStart`, but be sure it contains a legal time value.
+
+    Nearly all start times will be changing this year. Course Schedulizer thinks
     of course times as a start and a duration. (This makes it easier to move
     classes to different times, since you usually only have to edit one field
     rather than two and you don't have to do the arithmetic to get the end time
@@ -162,16 +162,15 @@ in the gray bar can be used to bring up the menu for adding a section.
 Just fill in the information and click **Add Section**. 
 
 > Note: If you choose a half-semester course, you will be prompted to indicate
-whether it is a first half or second half course. A similar things happens for
+whether it is a first half or second half course. A similar thing happens for
 the intensive classes.
 
-Some information (like Global Max, etc.) can be left blank and filled in later
+Some information (like Course Title and Notes) can be left blank and filled in later
 (or not at all). To edit a section, just click on that section in one of the
 views to bring up the section editor and make your modifications. You can use
-those modifications to
-update the existing section or to create a new section.
+those modifications to update the existing section or to create a new section. 
 
-In particular, if you have a number of similar sections to add, you can create one and then use it as a template for creating the others. This save a lot of time. Just use **Add New Section** button instead of the **Update Section** button.
+In particular, if you have a number of similar sections to add, you can create one and then use it as a template for creating the others. This saves a lot of time. Just use **Add New Section** button instead of the **Update Section** button.
 
 ![](images/update-a-section.png){width=80% fig-align="center"}
 
@@ -181,7 +180,20 @@ You can add text notes to sections.  While you are developing your schedule, the
 be used to remind yourself of why you have done certain things, things that still need
 attention, etc. These notes will also be communicated to the registrar's office, so you can use them to communicate important information to that office as well.
 
+> In particular, if you discover something you can't get Course Schedulizer to do, do the best you
+can and add a note to let the registrar know what you mean.
+
 
 # Future Development
 
 Course Schedulizer is being expanded and improved by some senior computer science students. If notice bugs or have suggestions for improvement, please let us know.
+
+# Submitting your schedule
+
+The CSV file that you export from Course Schedulizer can be submitted to your
+dean (and eventually to Student Success).  It contains all the information they
+need to approve your schedule and get your schedule into Workday. Entering the
+schedule into Workday is still a manual process, so you will likely need to do a
+schedule review to make sure that the schedule as entered into Workday matches
+what you intended.
+
