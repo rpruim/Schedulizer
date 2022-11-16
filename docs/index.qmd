@@ -1,5 +1,5 @@
 ---
-title: "Course Schedulizer"
+title: "Course Schedulizer Info"
 format: 
   html:
     linkcolor: '#8c2131'
