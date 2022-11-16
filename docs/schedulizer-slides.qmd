@@ -1,0 +1,108 @@
+---
+title: "Course Schedulizer"
+subtitle: <https://cutt.ly/schedulizer>
+date: last-modified
+self-contained: true
+format: 
+  revealjs:
+    incremental: true
+editor: source
+---
+
+```{r}
+#| include: false
+knitr::opts_chunk$set(
+  echo = FALSE
+)
+library(qrcode)
+```
+
+## What is Course Schedlizer?  
+
+<style>
+div.centered {
+  margin: auto;
+  text-align: center;
+}
+</style>
+
+
+-   A webapp for creating, editing, and viewing course schedules
+-   A work in progress -- but useful in its current state
+-   A CS Senior project
+    -   Minimal support is available, and on student/faculty schedules.
+
+## Where is Course Schedulizer?
+
+::: {.centered}
+
+<https://cutt.ly/schedulizer>
+
+```{r}
+url <- "https://cutt.ly/schedulizer"
+qr_code(url) |>
+  generate_svg(size = 300, foreground = "#8c2131", file = "images/schedulizer-qr.svg")
+```
+
+![Access to these slides, a tutorial, the app itself.](images/schedulizer-qr.svg)
+
+:::
+
+## Faculty View
+
+![](images/faculty-view.png)
+
+## Room View
+
+![](images/by-room.png)
+
+## Department View
+
+![](images/department-view.png)
+
+## (Teaching) Loads View
+
+![](images/teaching-loads.png)
+
+## Conflicts View
+
+![](images/conflicts-view.png)
+
+## Creating/Updating Sections
+
+![](images/update-a-section.png)
+
+## Issues
+
+-   Currently **1st-half and 2nd-half courses are flagged as a conflict** if they use the same room/instructor/etc.
+
+-   This has been **tested on a few departments**, but
+
+    -   likely we have not encountered every quirky case that happens somewhere on campus.
+
+-   **Use the Notes field** to communicate to your dean and Student Success if you can't get Course Schedulizer to do exactly what you want.
+
+-   **Bugs?** Email randall.pruim\@calvin.edu and/or keith.vanderlinden\@calvin.edu
+
+## Coming eventually
+
+-   Constraint checking
+
+    -   Don't schedule these courses at the same time!
+
+-   Comparing two schedules
+
+    -   How is this year different from last?
+    -   How is what I submitted different from what was entered into Workday?
+
+-   **Feature requests?** Email randall.pruim\@calvin.edu and/or keith.vanderlinden\@calvin.edu
+
+## Brief Demo
+
+::: {.centered}
+
+<https://cutt.ly/schedulizer>
+
+![Access to these slides, a tutorial, the app itself.](images/schedulizer-qr.svg)
+
+:::

@@ -1,13 +1,33 @@
 ---
 title: "Course Schedulizer"
-format: html
+format: 
+  html:
+    linkcolor: '#8c2131'
 self-contained: true
 editor: visual
 ---
 
 
-* [Documentation](Using-Schedulizer.html)
-* [Get data from last year](https://reports.calvin.edu/Reports/report/Departmental%20Reports/Course%20Section%20Report)
-* [Course Schedulizer](https://senior-knights.github.io/course-schedulizer/#/)
 
-* [Schedule Report (WIP)](data/workday/Schedule-Data-Entry.html)
+## You are here
+
+<style>
+div.centered {
+  text-align: center;
+}
+</style>
+
+::: {.centered}
+
+![<https://cutt.ly/schedulizer>](images/schedulizer-qr.svg)
+
+:::
+
+## Why you are here
+
+* [Documentation](using-schedulizer.html)
+* [Introduction Slides](schedulizer-slides.html)
+* [Get data from last year](https://reports.calvin.edu/Reports/report/Departmental%20Reports/Course%20Section%20Report)
+* [Course Schedulizer App](https://senior-knights.github.io/course-schedulizer/#/)
+
+<!-- * [Schedule Report (WIP)](data/workday/Schedule-Data-Entry.html) -->
