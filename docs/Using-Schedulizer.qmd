@@ -119,6 +119,13 @@ Here are some reasonable things to do by hand that may save you some time. (All
 of these can also be done inside Course Schedulizer.)  The are ordered roughly
 from most useful/reasonable to least.
 
+1. Change LEC to "In-person", etc.
+
+    Where we used to provide "Instructional Method", we now need to give
+    "Delivery Mode".  The options here are In-person, Online, and Hybrid.
+    You may find it handy to edit all these in the CSV -- especially if they
+    are all the same for your department/program.
+
 1. Edit the `MeetingDurationMinutes` column.
 
     Most of our courses will be changing to a different duration. You could change all
