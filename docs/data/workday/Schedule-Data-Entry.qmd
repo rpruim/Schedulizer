@@ -43,20 +43,20 @@ Sked |>
 <th>Mode</th>
 </tr>
 <tr>
-<td>{SubjectCode} {CourseNum} {SectionCode} </td>
-<td>{Term} -- {SemesterLength} </td>
-<td>{MeetingDays} {MeetingTime} </td>
-<td>{BuildingAndRoom} </td>
-<td>{GlobalMax} </td>
-<td> {FacultyLoad} </td>
-<td> {MinimumCredits} </td>
-<td>{InstructionalMethod} </td>
+<td>{SubjectCode} {CourseNum} {SectionCode}</td>
+<td>{Term} -- {SemesterLength}</td>
+<td>{MeetingDays} {MeetingTime}</td>
+<td>{BuildingAndRoom}</td>
+<td>{GlobalMax}</td>
+<td>{FacultyLoad}</td>
+<td>{MinimumCredits}</td>
+<td>{InstructionalMethod}</td>
 </tr>
 </table>
 
 <table>
 <tr>
-<td> **Short Title:** {ShortTitle} </td>
+<td> **Short Title:** {ShortTitle}</td>
 <td> **Instructor(s)**: {Faculty}</td>
 </tr>
 </table>

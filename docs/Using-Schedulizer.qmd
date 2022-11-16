@@ -166,13 +166,22 @@ whether it is a first half or second half course. A similar thing happens for
 the intensive classes.
 
 Some information (like Course Title and Notes) can be left blank and filled in later
-(or not at all). To edit a section, just click on that section in one of the
+(or not at all). 
+
+To edit a section, just click on that section in one of the
 views to bring up the section editor and make your modifications. You can use
 those modifications to update the existing section or to create a new section. 
 
 In particular, if you have a number of similar sections to add, you can create one and then use it as a template for creating the others. This saves a lot of time. Just use **Add New Section** button instead of the **Update Section** button.
 
 ![](images/update-a-section.png){width=80% fig-align="center"}
+
+
+Most of these fields are self-explanatory, but one of these is new in Workday:
+
+* Delivery Method should be one of: **In-person**, **Online**, or **Hybrid**. 
+
+    * If those categories don't fit your course, contact Student Success about what label you should use.
 
 ## Notes
 
@@ -186,7 +195,9 @@ can and add a note to let the registrar know what you mean.
 
 # Future Development
 
-Course Schedulizer is being expanded and improved by some senior computer science students. If notice bugs or have suggestions for improvement, please let us know.
+Course Schedulizer is being expanded and improved by some senior computer
+science students. If notice bugs or have suggestions for improvement, please let
+us know.
 
 # Submitting your schedule
 
@@ -196,4 +207,5 @@ need to approve your schedule and get your schedule into Workday. Entering the
 schedule into Workday is still a manual process, so you will likely need to do a
 schedule review to make sure that the schedule as entered into Workday matches
 what you intended.
+(Eventually, we hope to automate some of this process, but won't likely be ready in 2022.)
 
