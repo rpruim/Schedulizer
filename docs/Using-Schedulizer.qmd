@@ -33,7 +33,8 @@ the times and perhaps the number of hours for each section.
 
 ## Getting A Previous Schedule
 
-You can download a previous schedule from <https://reports.calvin.edu/Reports/report/Departmental%20Reports/Course%20Section%20Report>. Fill in the desired terms and department, view the report, and then download it **as a CSV**.
+You can download a previous schedule from <https://reports.calvin.edu/Reports/report/Departmental%20Reports/Course%20Section%20Report>. Fill in the desi
+red terms and department, view the report, and then download it **as a CSV**.
 
 ![](images/data-export.png){width=80% fig-align="center"}
 
@@ -83,12 +84,15 @@ You can may need to zoom in or out or scroll to get a good view.
 
 ### Conflicts
 
-Notice that a few classes are outlined in red.  These are beging flagged as conflicts.
+Notice that a few classes are outlined in red.  These are being flagged as conflicts.
 You can see all your conflicts in the **Conflicts view**:
 
 ![](images/conflicts-view.png){width=80% fig-align="center"}
 
-*Note: At the time of this writing, first-half, second-half classes register as a conflict. We hope to get this fixed soon.*
+### Non-standard meeting patterns
+
+Sections outlined in orange represent non-standard meeting patterns. 
+**The use of non-standard meeting patterns is highly discouraged, so be sure to include a note explaining why you are not following the standard schedule.**
 
 ### Facutly Load Tallies
 
@@ -118,13 +122,6 @@ redundant information, some of which is ignored when you import the schedule.
 Here are some reasonable things to do by hand that may save you some time. (All
 of these can also be done inside Course Schedulizer.)  The are ordered roughly
 from most useful/reasonable to least.
-
-1. Change LEC to "In-person", etc.
-
-    Where we used to provide "Instructional Method", we now need to give
-    "Delivery Mode".  The options here are In-person, Online, and Hybrid.
-    You may find it handy to edit all these in the CSV -- especially if they
-    are all the same for your department/program.
 
 1. Edit the `MeetingDurationMinutes` column.
 
@@ -156,6 +153,9 @@ The following could be done but are probably less useful:
 Once you have made your edits, you can upload the edited file and resume working
 in Course Schedulizer.
 
+If you find there is something you cannot get Schedulizer to do for you, you also have the option to had edit the CSV later.  Again, use this with caution, since corrupting the data 
+in this CSV can lead to a mess.  (Always save a back-up copy before beginning any hand edits.)
+
 # Adding and Modifying Sections
 
 At this point you either have a draft schedule (likely with many edits to make) or an
@@ -186,7 +186,8 @@ In particular, if you have a number of similar sections to add, you can create o
 
 Most of these fields are self-explanatory, but one of these is new in Workday:
 
-* Delivery Method should be one of: **In-person**, **Online**, or **Hybrid**. 
+* Delivery Method should be one of: **In-person**, **Online synchronous**, 
+**Online asynchronous**, or **Hybrid**. 
 
     * If those categories don't fit your course, contact Student Success about what label you should use.
 
@@ -199,7 +200,63 @@ attention, etc. These notes will also be communicated to the registrar's office,
 > In particular, if you discover something you can't get Course Schedulizer to do, do the best you
 can and add a note to let the registrar know what you mean.
 
+# Tips and Tricks
 
+## Multiple meeting patterns for one course
+
+The app does not currently allow you to edit multiple meeting patterns for one section.
+This is on our wish list and may be appearning soon. In the meantime, here is a work-around:
+
+1. Schedule the section for one meeting pattern.
+2. Edit that section and save as a new section:
+    a. Set the faculty and student hours to 0
+    b. Schedule the other meeting pattern
+    c. Click to **ADD** a new section
+    
+This will result in two rows of data for this course, one for each meeting pattern.
+This isn't ideal, but it will work for the moment.
+
+## Adding another schedule
+
+If you have a schedule from another department or program, you can add it to
+your schedule using "Add Schedule" rather than "Import new schedule".  This will
+allow you to view schedules from multiple departments together.
+
+On our to-do list is a dialog that will allow you export just the part of the
+schedule associated with one department, but for now, once you do the add, the
+two schedules are merged and can't be separated in the app.  But you can go to
+the CSV and remove rows according to the department column. Or revert to a saved 
+version of your schedule that did not include the additional course sections.
+
+## Showing chapel, Department meetings, etc.
+
+Here's a way that you can have chapel break show up on your department schedule view:
+
+1. Add a new section to your schedule
+2. Enter * for Instructor, Prefix, Number, Section, and Location. (For something like a
+department meeting, enter the location if you are using a classroom.)
+3. Enter the days, time, and duration.
+4. Enter Faculty Hours as 0 (so it doesn't contribute to anyone's load).
+5. Save.
+
+![](images/chapel.png){width=80% fig-align="center"}
+
+This shows up nicely in the department view:
+
+
+![](images/dept-view-chapel.png){width=80% fig-align="center"}
+
+In the other views, * will show up as an instructor and as room, which isn't as useful.
+And it will list in the department loads as 0 hours. 
+**We have a feature request to do this in a better way -- stay tuned.**
+
+These "wildcard" items will conflict with any course scheduled at the same time.
+
+## Constraint checking
+
+We have a rudimentary way to check a list of scheduling constraints. If that might be useful to you, contact Randy Pruim or Keith Vander Linden and we'll give you some more information.
+This is a work in progress, but we would love to have a few more people try it out.
+ 
 # Future Development
 
 Course Schedulizer is being expanded and improved by some senior computer
