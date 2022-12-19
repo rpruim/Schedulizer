@@ -202,6 +202,45 @@ can and add a note to let the registrar know what you mean.
 
 # Tips and Tricks
 
+## Sharing your schedule with others
+
+If you want to share your schedule with others, there are two ways to do that:
+
+1. You can email them the CSV that you have exported.
+
+    This works just like sending someone a Word document. 
+    Recipients can open your schedule using the Couse Schedulizer. They can even
+    edit the schedule, but that won't change your copy of the schedule.  Of course,
+    they can email their changed vesion back to you if they want to make suggestions.
+    
+2. If you can post your CSV in a public place, you can give people a link that will
+let people load your scheudle with one click.
+
+    You could use something like dropbox or google drive to share your CSV file.
+    Once you do that, you can use a link like this one to share your schedule with 
+    others:
+    
+    <https://senior-knights.github.io/course-schedulizer/#/?csv=https://rpruim.github.io/Schedulizer/data/MathStat-2022-23-current.csv>
+    
+    Just edit the part after `?csv=` and replace it with your URL.
+    
+    Note: The CSV file must be accessible to the recipients, so make sure you set permissions so that anyone with the link can access the file.
+
+## Using groups
+
+A recent update of Course Schedulizer allows you to enter information into a
+"Group" field when creating or modifying a section.  You can color your schedule
+by these groups. If there are groups of courses that you would like to be able
+to identify in this say, just add the groups data and you should be all set.
+
+## Viewing partial semester courses
+
+A recent update of Course Schedulizer allows you to select which portion of a
+semester to show (Full, First Half, Second Half, A, B, C, or D). If you select,
+for example, B, then you will see only Full, First Half, and Intensive B
+classes, since all of those meet durring the intensive B session.
+
+
 ## Multiple meeting patterns for one course
 
 The app does not currently allow you to edit multiple meeting patterns for one section.
