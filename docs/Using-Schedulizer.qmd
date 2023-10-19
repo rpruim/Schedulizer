@@ -81,7 +81,7 @@ by instructor:
 
 ![](images/by-room.png){width=80% fig-align="center"}
 
-You can may need to zoom in or out or scroll to get a good view.
+You may need to zoom in or out or scroll to get a good view.
 
 ### Conflicts
 
@@ -119,13 +119,20 @@ to be careful not to corrupt the format of the file. The file contains some
 redundant information, some of which is ignored when you import the schedule.
 This is primarily useful in two situations:
 
-* You want to make a systematic change to a number of courses. (Example from last year:
-moving all 50-minute classes to 65 minutes.)
+* You want to make a systematic change to a number of courses. 
+    * Example: Putting all your courses into groups
+    * Example from last year: moving all 50-minute classes to 65 minutes
 
 * You need to do something with your schedule that Schedulizer doesn't handle.  
 (Drop me a note about it as well, so we can consider adding this to our to-do list.)
 
-***Advice**: Save your schedule with a new name before editing so that if something goes wrong, you can always revert to your previously saved version.*
+**Advice**: 
+
+* Save your schedule with a new name before editing so that if something goes wrong, you can always revert to your previously saved version.
+
+* Don't edit the file that you get from `reports.calvin.edu`. Instead,
+import that file into Schedulizer, export to CSV, and edit the exported file. Schedulizer will make some changes to the file, and it is best to
+work from this modified file.
 
 <!-- Here are some reasonable things to do by hand that may save you some time. (All -->
 <!-- of these can also be done inside Course Schedulizer.)  The are ordered roughly -->

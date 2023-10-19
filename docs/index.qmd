@@ -29,5 +29,6 @@ div.centered {
 * [Introduction Slides](schedulizer-slides.html)
 * [Get data from last year](https://reports.calvin.edu/Reports/report/Departmental%20Reports/Course%20Section%20Report)
 * [Course Schedulizer App](https://senior-knights.github.io/course-schedulizer/#/)
+* [Additional scheduling resources (Sharepoint)](https://calvincollege.sharepoint.com/:f:/r/acad-admin/Chairs%20Resources/Class%20Schedule%20Process?csf=1&web=1&e=TyiOMT)
 
 <!-- * [Schedule Report (WIP)](data/workday/Schedule-Data-Entry.html) -->
