@@ -25,10 +25,11 @@ div.centered {
 
 ## Why you are here
 
-* [Documentation](using-schedulizer.html)
-* [Introduction Slides](schedulizer-slides.html)
-* [Get data from last year](https://reports.calvin.edu/Reports/report/Departmental%20Reports/Course%20Section%20Report)
 * [Course Schedulizer App](https://senior-knights.github.io/course-schedulizer/#/)
+    * [Documentation](using-schedulizer.html)
+    * [Introduction Slides](schedulizer-slides.html)
+* [Get data from last year](https://reports.calvin.edu/Reports/report/Departmental%20Reports/Course%20Section%20Report)
+* [Things to Consider...](scheduling-tips.html)
 * [Additional scheduling resources](https://calvincollege.sharepoint.com/sites/academics/SitePages/Chairs-&-Directors.aspx)
     *  Sharepoint > Academic Division Hub > Chairs and Directors
 
