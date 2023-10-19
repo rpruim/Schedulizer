@@ -26,22 +26,23 @@ editor: visual
 1.  Start from a past schedule and modify it, or
 2.  Build the schedule from scratch in the Course Schedulizer.
 
-In most years, option 1 saves a lot of time. This year it will save less
-(because of the 2/4 transition), but for some departments, it may still be
-easier to start with a past year's schedule, even though you will need to adjust
-the times and perhaps the number of hours for each section.
+Typically option 1 saves a lot of time unless your schedule is undergoing
+dramatic changes.
 
 ## Getting A Previous Schedule
 
-You can download a previous schedule from <https://reports.calvin.edu/Reports/report/Departmental%20Reports/Course%20Section%20Report>. Fill in the desi
-red terms and department, view the report, and then download it **as a CSV**.
+You can download a previous schedule from <https://reports.calvin.edu/Reports/report/Departmental%20Reports/Course%20Section%20Report>. 
+Fill in the desired terms and department, view the report, 
+and then download it **as a CSV**.
 
 ![](images/data-export.png){width=80% fig-align="center"}
 
-The file will be called something like `Course Section Report.csv` and will probably be
-in the default location where your browser uses for downloads.
+The file will be called something like `Course Section Report.csv` and will
+probably be in the default location where your browser uses for downloads.
 
 ***Do not export your schedule from Workday.** The Workday report uses a different format that Course Schedulizer does not know how to import.*
+
+* Importing from Workday is on the list of feature requests.
 
 
 # Getting Started with Course Schedulizer
@@ -116,45 +117,52 @@ Choose **Export CSV**, and your schedule will be saved to your computer. The fil
 It is possible to edit this file by hand (in Excel, for example). But you need
 to be careful not to corrupt the format of the file. The file contains some
 redundant information, some of which is ignored when you import the schedule.
+This is primarily useful in two situations:
+
+* You want to make a systematic change to a number of courses. (Example from last year:
+moving all 50-minute classes to 65 minutes.)
+
+* You need to do something with your schedule that Schedulizer doesn't handle.  
+(Drop me a note about it as well, so we can consider adding this to our to-do list.)
 
 ***Advice**: Save your schedule with a new name before editing so that if something goes wrong, you can always revert to your previously saved version.*
 
-Here are some reasonable things to do by hand that may save you some time. (All
-of these can also be done inside Course Schedulizer.)  The are ordered roughly
-from most useful/reasonable to least.
+<!-- Here are some reasonable things to do by hand that may save you some time. (All -->
+<!-- of these can also be done inside Course Schedulizer.)  The are ordered roughly -->
+<!-- from most useful/reasonable to least. -->
 
-1. Edit the `MeetingDurationMinutes` column.
+<!-- 1. Edit the `MeetingDurationMinutes` column. -->
 
-    Most of our courses will be changing to a different duration. You could change all
-    of the 50-minute classes to 65 or 100, for example.  This may be faster to do in
-    Excel than by clicking on each section in Course Schedulizer.
-    
-1. Edit the `MinimumCredits` (Student load hours) and `FacultyLoad` (faculty load hours) columns.
+<!--     Most of our courses will be changing to a different duration. You could change all -->
+<!--     of the 50-minute classes to 65 or 100, for example.  This may be faster to do in -->
+<!--     Excel than by clicking on each section in Course Schedulizer. -->
 
-    You may be making many systematic changes to these this year.
+<!-- 1. Edit the `MinimumCredits` (Student load hours) and `FacultyLoad` (faculty load hours) columns. -->
 
-The following could be done but are probably less useful:
+<!--     You may be making many systematic changes to these this year. -->
 
-3. You could edit `MeetingStart`, but be sure it contains a legal time value.
+<!-- The following could be done but are probably less useful: -->
 
-    Nearly all start times will be changing this year. Course Schedulizer thinks
-    of course times as a start and a duration. (This makes it easier to move
-    classes to different times, since you usually only have to edit one field
-    rather than two and you don't have to do the arithmetic to get the end time
-    correct.)  If you prefer to move courses to their new start times in Excel,
-    you could do that.  Our you could wait and do it in Course Schedulizer, where you
-    can visualize the changes as you make them.
+<!-- 3. You could edit `MeetingStart`, but be sure it contains a legal time value. -->
 
-1. Things like `ShortTitle` and `Faculty` could be edited here as well, if you like.
+<!--     Nearly all start times will be changing this year. Course Schedulizer thinks -->
+<!--     of course times as a start and a duration. (This makes it easier to move -->
+<!--     classes to different times, since you usually only have to edit one field -->
+<!--     rather than two and you don't have to do the arithmetic to get the end time -->
+<!--     correct.)  If you prefer to move courses to their new start times in Excel, -->
+<!--     you could do that.  Our you could wait and do it in Course Schedulizer, where you -->
+<!--     can visualize the changes as you make them. -->
 
-    Note: Be sure each faculty person's name is listed exactly one way for all their 
-    courses or they will appear as two different faculty members in the displays.
-    
+<!-- 1. Things like `ShortTitle` and `Faculty` could be edited here as well, if you like. -->
+
+<!--     Note: Be sure each faculty person's name is listed exactly one way for all their  -->
+<!--     courses or they will appear as two different faculty members in the displays. -->
+
 Once you have made your edits, you can upload the edited file and resume working
 in Course Schedulizer.
 
-If you find there is something you cannot get Schedulizer to do for you, you also have the option to had edit the CSV later.  Again, use this with caution, since corrupting the data 
-in this CSV can lead to a mess.  (Always save a back-up copy before beginning any hand edits.)
+<!-- If you find there is something you cannot get Schedulizer to do for you, you also have the option to had edit the CSV later.  Again, use this with caution, since corrupting the data  -->
+<!-- in this CSV can lead to a mess.  (Always save a back-up copy before beginning any hand edits.) -->
 
 # Adding and Modifying Sections
 
@@ -174,6 +182,8 @@ the intensive classes.
 
 Some information (like Course Title and Notes) can be left blank and filled in later
 (or not at all). 
+
+* Note: The registrar requests that you **assign rooms to each in-person course**. Apparently some chairs did not do this last year. There may be some shifting of room assignments after you submit your schedule, but it is helpful for the registrar's office to begin with draft room assignments, and chairs typically know which rooms work best for which sections.
 
 To edit a section, just click on that section in one of the
 views to bring up the section editor and make your modifications. You can use
@@ -197,8 +207,9 @@ You can add text notes to sections.  While you are developing your schedule, the
 be used to remind yourself of why you have done certain things, things that still need
 attention, etc. These notes will also be communicated to the registrar's office, so you can use them to communicate important information to that office as well.
 
-> In particular, if you discover something you can't get Course Schedulizer to do, do the best you
-can and add a note to let the registrar know what you mean.
+> In particular, if you discover something you can't get 
+Course Schedulizer to do, do the best you can and add a note to let the 
+registrar know what you mean.
 
 # Tips and Tricks
 
@@ -209,18 +220,19 @@ If you want to share your schedule with others, there are two ways to do that:
 1. You can email them the CSV that you have exported.
 
     This works just like sending someone a Word document. 
-    Recipients can open your schedule using the Couse Schedulizer. They can even
-    edit the schedule, but that won't change your copy of the schedule.  Of course,
-    they can email their changed vesion back to you if they want to make suggestions.
+    Recipients can **open the schedule using the Couse Schedulizer** (not Excel). 
+    They can even edit the schedule, but that won't change your copy of the schedule.  
+    Of course, they can email their changed vesion back to you if they want to 
+    make suggestions.
     
 2. If you can post your CSV in a public place, you can give people a link that will
-let people load your scheudle with one click.
+let people load your schedule with one click.
 
     You could use something like dropbox or google drive to share your CSV file.
     Once you do that, you can use a link like this one to share your schedule with 
     others:
     
-    <https://senior-knights.github.io/course-schedulizer/#/?csv=https://rpruim.github.io/Schedulizer/data/MathStat-2022-23-current.csv>
+    <https://senior-knights.github.io/course-schedulizer/#/?csv=https://rpruim.github.io/Schedulizer/data/MathStat-2023-24-current.csv>
     
     Just edit the part after `?csv=` and replace it with your URL.
     
@@ -231,11 +243,11 @@ let people load your scheudle with one click.
 A recent update of Course Schedulizer allows you to enter information into a
 "Group" field when creating or modifying a section.  You can color your schedule
 by these groups. If there are groups of courses that you would like to be able
-to identify in this say, just add the groups data and you should be all set.
+to identify in this way, just add the groups data and you should be all set.
 
 ## Viewing partial semester courses
 
-A recent update of Course Schedulizer allows you to select which portion of a
+Course Schedulizer you to select which portion of a
 semester to show (Full, First Half, Second Half, A, B, C, or D). If you select,
 for example, B, then you will see only Full, First Half, and Intensive B
 classes, since all of those meet durring the intensive B session.
@@ -244,9 +256,12 @@ classes, since all of those meet durring the intensive B session.
 ## Multiple meeting patterns for one course
 
 The app does not currently allow you to edit multiple meeting patterns for one section.
-This is on our wish list and may be appearning soon. In the meantime, here is a work-around:
+This is on our wish list but likely won't be available this year. In the meantime, here is a work-around:
 
 1. Schedule the section for one meeting pattern.
+    a. Use the full number of faculty and student hours for this section.
+    a. Add a note indicating that there are additional meeting patterns.
+    
 2. Edit that section and save as a new section:
     a. Set the faculty and student hours to 0
     b. Schedule the other meeting pattern
@@ -266,6 +281,9 @@ schedule associated with one department, but for now, once you do the add, the
 two schedules are merged and can't be separated in the app.  But you can go to
 the CSV and remove rows according to the department column. Or revert to a saved 
 version of your schedule that did not include the additional course sections.
+
+If you and the other chair coordinate your use of the Group field, you can use 
+that to toggle your view of the schedule.
 
 ## Showing chapel, Department meetings, etc.
 
@@ -291,11 +309,7 @@ And it will list in the department loads as 0 hours.
 
 These "wildcard" items will conflict with any course scheduled at the same time.
 
-## Constraint checking
 
-We have a rudimentary way to check a list of scheduling constraints. If that might be useful to you, contact Randy Pruim or Keith Vander Linden and we'll give you some more information.
-This is a work in progress, but we would love to have a few more people try it out.
- 
 # Future Development
 
 Course Schedulizer is being expanded and improved by some senior computer
@@ -310,5 +324,5 @@ need to approve your schedule and get your schedule into Workday. Entering the
 schedule into Workday is still a manual process, so you will likely need to do a
 schedule review to make sure that the schedule as entered into Workday matches
 what you intended.
-(Eventually, we hope to automate some of this process, but won't likely be ready in 2022.)
+(Eventually, we hope to automate some of this process.)
 
