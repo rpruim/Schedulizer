@@ -1,5 +1,6 @@
 ---
 title: "Things to consider when scheduling"
+embed-resources: true
 format: revealjs
 ---
 
