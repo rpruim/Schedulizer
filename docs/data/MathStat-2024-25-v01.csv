@@ -1,0 +1,125 @@
+Department,Term,SubjectCode,CourseNum,SectionCode,CourseLevelCode,MinimumCredits,FacultyLoad,BuildingAndRoom,MeetingDays,MeetingTime,SectionStartDate,SectionEndDate,SemesterLength,Building,RoomNumber,MeetingStart,MeetingDurationMinutes,MeetingEnd,ShortTitle,Faculty,SectionStatus,InstructionalMethod,DeliveryMode,Group,Comments,LastEditTimestamp
+"",FA,"",,,,0, 1.2,"","","",,,Full,"","","","","","","Dr. David B. Klanderman","","EDUC 346","","","","2022-11-01T15:42:11-04:00"
+"",FA,"",,,,0, 4,"","","",,,Full,"","","","","","","Dr. James Michael Turner","","CRF","","","","2022-11-02T20:37:35-04:00"
+"",FA,"",,,,0, 4,"","","",,,Full,"","","","","","","Dr. Randall J Pruim","","Chair","","","","2022-11-08T12:20:32-05:00"
+"",SP,"",,,,0, 0.6,"","","",,,Full,"","","","","","","Dr. David B. Klanderman","","EDUC 359","","","","2022-11-01T15:42:27-04:00"
+"",SP,"",,,,0, 4,"","","",,,Full,"","","","","","","Dr. Randall J Pruim","","Chair","","","","2022-11-08T12:20:32-05:00"
+"",SP,"",,,,0, 3,"","","",,,Full,"","","","","","","Dr. Randall J Pruim","","MDS Program Director","","","","2022-12-07T19:00:31-05:00"
+"","FA","",,,,, 4,"","","",,,,"","","","","","","Jenny Griffin","","Kuiper Fellowship","","","","2024-02-06T09:59:49-05:00"
+"","SP","",,,,, 4,"","","",,,,"","","","","","","Jenny Griffin","","Kuiper Fellowship","","","","2024-02-06T10:00:24-05:00"
+"","SP","",,,,, 4,"","","",,,,"","","","","","","Dr. Stacy Lynn De Ruiter","","Research","","","","2024-02-06T12:56:46-05:00"
+"","FA","",,,,, 4,"","","",,,,"","","","","","","Dr. Stacy Lynn De Ruiter","","Research","","","","2024-02-06T12:57:01-05:00"
+"","FA","",,,,, 12,"","","",,,,"","","","","","","Dr. Todd M. Kapitula","","Sabbatical","","","","2024-02-06T13:08:17-05:00"
+"","FA","",,,,, 4,"","","",,,,"","","","","","","Nathan S Sunukjian","","CRF","","","","2024-02-06T13:34:28-05:00"
+"","SP","",,,,, 4,"","","",,,,"","","","","","","Nathan S Sunukjian","","CRF","","","","2024-02-06T13:34:41-05:00"
+"Mathematics and Statistics",FA,"*",*,*,,0, 0,"Chapel
+Chapel","MWF
+TTH","10:30AM - 10:50AM
+9:50AM - 10:10AM",,,Full,"Chapel
+Chapel","
+","10:30 AM
+9:50 AM","20
+20","10:50 AM
+10:10 AM","Chapel","*","","","","","","2022-11-01T16:12:51-04:00"
+"Mathematics and Statistics",SP,"*",*,*,,0, 0,"Chapel
+Chapel
+NH 276","MWF
+TTH
+TH","10:30AM - 10:50AM
+9:50AM - 10:10AM
+2:10PM - 3:00PM",,,Full,"Chapel
+Chapel
+NH","
+
+276","10:30 AM
+9:50 AM
+2:10 PM","20
+20
+50","10:50 AM
+10:10 AM
+3:00 PM","Dept Meeting","*","","","","","","2022-11-02T20:47:42-04:00"
+"Mathematics and Statistics",FA,"CORE",100,?,100,2, 2,"NH New Room","MWF","11:00AM - 12:05PM",,,First,"NH New","Room","11:00 AM","65","12:05 PM","","Dr. Stacy Lynn De Ruiter","","","","","Might need to cancel this section.","2024-02-06T12:58:43-05:00"
+"Mathematics and Statistics",SP,"DATA",302,A,300,2, 2,"","","",,,First,"","","","","","Visualizing Data and Models","Dr. Randall J Pruim","","","In-person","","","2023-01-19T12:10:21-05:00"
+"Mathematics and Statistics",SP,"DATA",385,A,300,2, 2,"NH 261","MWF","2:45PM - 3:50PM",,,Second,"NH","261","2:45 PM","65","3:50 PM","Topics in Data Science","DS Staff","","","In-person","","","2023-01-19T11:55:24-05:00"
+"Mathematics and Statistics",SP,"DATA",510,A,500,2, 2,"","","",,,First,"","","","","","Ethics for Data Science","DS Staff","","","Online asynchronous","","","2023-01-19T12:08:57-05:00"
+"Mathematics and Statistics",FA,"DATA",545,A,500,4, 4,"","","",,,Full,"","","","","","Applied Regression","Dr. Stacy Lynn De Ruiter","","","Online asynchronous","","","2022-12-06T14:41:08-05:00"
+"Mathematics and Statistics",FA,"DATA",555,A,500,2, 2,"","","",,,First,"","","","","","Linear Algebra for Data Science","Dr. Randall J Pruim","","","Online asynchronous","","","2022-12-06T14:34:29-05:00"
+"Mathematics and Statistics",FA,"DATA",640,A,600,2, 2,"","","",,,Second,"","","","","","Cause and Design","Dr. Randall J Pruim","","","Online asynchronous","","","2022-12-06T14:31:43-05:00"
+"Mathematics and Statistics",FA,"DATA",642,A,600,2, 2,"","","",,,Second,"","","","","","Optimization","Dr. Christopher G. Moseley","","","Online asynchronous","","","2023-01-19T12:12:47-05:00"
+"Mathematics and Statistics",SP,"DATA",647,A,600,2, 2,"","","",,,First,"","","","","","Simulation Methods","DS Staff","","","Online asynchronous","","We may not need to offer this in 23-24.  But that may depend on how many and what sorts of students enroll in the MDS program and whether they can get enough electives.
+","2022-12-08T11:32:08-05:00"
+"Mathematics and Statistics",FA,"EDUC",346,A,300,12, 3.6,"OFF CAMPUS","MWF","8:00AM - 11:00AM",,,Full,"OFF","CAMPUS","8:00 AM","180","11:00 AM","Internship II: Student Teaching","Dr. David B. Klanderman","","","In-person","","est. 6 interns","2024-02-06T09:54:40-05:00"
+"Mathematics and Statistics",FA,"EDUC",346,A,300,12, 3.6,"OFF CAMPUS","MWF","8:00AM - 11:00AM",,,Full,"OFF","CAMPUS","8:00 AM","180","11:00 AM","Internship II: Student Teaching","Jenny Griffin","","","In-person","","est. 6 interns","2024-02-06T09:58:34-05:00"
+"Mathematics and Statistics",SP,"EDUC",346,A,300,12, 1.8,"OFF CAMPUS","MWF","8:00AM - 11:00AM",,,Full,"OFF","CAMPUS","8:00 AM","180","11:00 AM","Internship II: Student Teaching","Dr. David B. Klanderman","","","In-person","","est. 3 interns","2024-02-06T09:56:29-05:00"
+"Mathematics and Statistics",FA,"EDUC",359,A,300,2, 2,"NH 294","TH","7:00PM - 8:40PM",,,Full,"NH","294","7:00 PM","100","8:40 PM","Seminar in Secondary Teaching of Mathematics","Dr. David B. Klanderman","","","In-person","","","2024-02-06T09:49:02-05:00"
+"Mathematics and Statistics",FA,"MATH",100,A,100,4, 4,"NH 276","TTH","12:15PM - 1:55PM",,,Full,"NH","276","12:15 PM","100","1:55 PM","Math in the Contemporary World","Dr. James Michael Turner","","","","","","2024-02-06T10:12:12-05:00"
+"Mathematics and Statistics",FA,"MATH",110,A,100,2, 2,"NH 251","MWF","12:15PM - 1:20PM",,,Second,"NH","251","12:15 PM","65","1:20 PM","Pre-Calculus","Dr. R John Ferdinands","","","In-person","Calc1","","2024-02-06T23:36:22-05:00"
+"Mathematics and Statistics",SP,"MATH",132,A,100,4, 4,"NH 276","TTH","12:15PM - 1:55PM",,,Full,"NH","276","12:15 PM","100","1:55 PM","Calc for Mgt, Life, & Soc Sci","Staff","","","","","","2024-02-06T13:01:52-05:00"
+"Mathematics and Statistics",FA,"MATH",171,A,100,4, 4,"NH 276","MWF","8:00AM - 9:05AM",,,Full,"NH","276","8:00 AM","65","9:05 AM","Calculus I","Dr. Michael David Bolt","","","In-person","Calc1","","2024-02-06T23:34:56-05:00"
+"Mathematics and Statistics",SP,"MATH",171,A,100,4, 4,"NH 276","MWF","12:15PM - 1:20PM",,,Full,"NH","276","12:15 PM","65","1:20 PM","Calculus I","Dr. Christopher G. Moseley","","","In-person","Calc1","","2024-02-06T23:32:53-05:00"
+"Mathematics and Statistics",FA,"MATH",171,B,100,4, 4,"NH 259","MWF","1:30PM - 2:35PM",,,Full,"NH","259","1:30 PM","65","2:35 PM","Calculus I","Staff","","","In-person","","","2024-02-06T23:37:54-05:00"
+"Mathematics and Statistics",SP,"MATH",171,B,100,4, 4,"NH 295","MWF","2:45PM - 3:50PM",,,Full,"NH","295","2:45 PM","65","3:50 PM","Calculus I","Tim Pennings","","","In-person","Calc1","","2024-02-06T23:34:01-05:00"
+"Mathematics and Statistics",FA,"MATH",171,C,100,4, 4,"NH 276","MWF","9:15AM - 10:20AM",,,Full,"NH","276","9:15 AM","65","10:20 AM","Calculus I","Dr. Michael David Bolt","","","In-person","Calc1","","2024-02-06T23:40:28-05:00"
+"Mathematics and Statistics",FA,"MATH",171,D,100,4, 4,"NH 251","MWF","9:15AM - 10:20AM",,,Full,"NH","251","9:15 AM","65","10:20 AM","Calculus I","Dr. R John Ferdinands","","","In-person","Calc1","","2024-02-06T23:37:11-05:00"
+"Mathematics and Statistics",FA,"MATH",171,E,100,4, 4,"NH 276","MWF","12:15PM - 1:20PM",,,Full,"NH","276","12:15 PM","65","1:20 PM","Calculus I","Staff","","","In-person","Calc1","","2024-02-06T23:37:32-05:00"
+"Mathematics and Statistics",FA,"MATH",172,A,100,4, 4,"NH 251","MWF","8:00AM - 9:05AM",,,Full,"NH","251","8:00 AM","65","9:05 AM","Calculus II","Dr. R John Ferdinands","","","","","","2022-12-07T21:09:06-05:00"
+"Mathematics and Statistics",FA,"MATH",172,B,100,4, 4,"NH 259","MWF","2:45PM - 3:50PM",,,Full,"NH","259","2:45 PM","65","3:50 PM","Calculus II","Tim Pennings","","","","","","2023-01-19T11:57:21-05:00"
+"Mathematics and Statistics",SP,"MATH",172,B,100,4, 4,"NH 295","MWF","1:30PM - 2:35PM",,,Full,"NH","295","1:30 PM","65","2:35 PM","Calculus II","Dr. James Michael Turner","","","","","","2022-12-07T20:43:10-05:00"
+"Mathematics and Statistics",SP,"MATH",172,C,100,4, 4,"NH 259","MWF","2:45PM - 3:50PM",,,Full,"NH","259","2:45 PM","65","3:50 PM","Calculus II","Dr. James Michael Turner","","","","","","2022-12-08T19:25:29-05:00"
+"Mathematics and Statistics",SP,"MATH",172,D,100,4, 4,"NH 276","MWF","9:15AM - 10:20AM",,,Full,"NH","276","9:15 AM","65","10:20 AM","Calculus II","Dr. Christopher G. Moseley","","","","","","2024-02-06T13:26:29-05:00"
+"Mathematics and Statistics",FA,"MATH",190,A,100,0, 0,"NH 261","W","2:45PM - 3:50PM",,,Full,"NH","261","2:45 PM","65","3:50 PM","First-year Seminar in Math","Dr. Thomas L. Scofield
+Dr. R John Ferdinands","","","","","Move to T?","2024-02-06T13:14:23-05:00"
+"Mathematics and Statistics",FA,"MATH",221,A,200,4, 4,"NH 251","MWF","1:30PM - 2:35PM",,,Full,"NH","251","1:30 PM","65","2:35 PM","Real Nbr Sys/Meth for Elem Sch","Dr. David B. Klanderman","","LEC","","","","2022-11-01T15:40:47-04:00"
+"Mathematics and Statistics",SP,"MATH",221,B,200,4, 4,"NH 251","MWF","1:30PM - 2:35PM",,,Full,"NH","251","1:30 PM","65","2:35 PM","Real Nbr Sys/Meth for Elem Sch","Dr. David B. Klanderman","","LEC","","","","2022-11-01T15:38:23-04:00"
+"Mathematics and Statistics",FA,"MATH",222,A,200,4, 4,"NH 251","MWF","2:45PM - 3:50PM",,,Full,"NH","251","2:45 PM","65","3:50 PM","Geometry/Meth for Elem Sch","Jenny Griffin","","","","","","2024-02-06T09:43:19-05:00"
+"Mathematics and Statistics",SP,"MATH",222,A,200,4, 4,"NH 251","MWF","2:45PM - 3:50PM",,,Full,"NH","251","2:45 PM","65","3:50 PM","Geometry/Meth for Elem Sch","Jenny Griffin","","","","","","2024-02-06T09:42:26-05:00"
+"Mathematics and Statistics",FA,"MATH",231,A,200,4, 4,"NH 251","MWF","11:00AM - 12:05PM",,,Full,"NH","251","11:00 AM","65","12:05 PM","Diff Equ With Linear Algebra","Dr. Thomas L. Scofield","","","","","","2024-02-06T12:53:20-05:00"
+"Mathematics and Statistics",SP,"MATH",231,A,200,4, 4,"NH 259","MWF","9:15AM - 10:20AM",,,Full,"NH","259","9:15 AM","65","10:20 AM","Diff Equ With Linear Algebra","Dr. Michael David Bolt","","","","","","2024-02-06T13:03:38-05:00"
+"Mathematics and Statistics",SP,"MATH",231,B,200,4, 4,"NH 276","MWF","11:00AM - 12:05PM",,,Full,"NH","276","11:00 AM","65","12:05 PM","Diff Equ With Linear Algebra","Dr. Michael David Bolt","","","","","","2024-02-06T13:03:20-05:00"
+"Mathematics and Statistics",SP,"MATH",231,C,200,4, 4,"NH 259","MWF","1:30PM - 2:35PM",,,Full,"NH","259","1:30 PM","65","2:35 PM","Diff Equ With Linear Algebra","Dr. Christopher G. Moseley","","","","","","2024-02-06T13:03:56-05:00"
+"Mathematics and Statistics",SP,"MATH",231,D,200,4, 4,"NH New Room","MWF","9:15AM - 10:20AM",,,Full,"NH New","Room","9:15 AM","65","10:20 AM","Diff Equ With Linear Algebra","Dr. Todd M. Kapitula","","","","","","2024-02-06T23:49:50-05:00"
+"Mathematics and Statistics",FA,"MATH",251,A,200,2, 2,"NH 276","MWF","1:30PM - 2:35PM",,,First,"NH","276","1:30 PM","65","2:35 PM","Discrete Mathematics","Dr. Christopher G. Moseley","","","","","","2022-12-07T21:27:17-05:00"
+"Mathematics and Statistics",FA,"MATH",251,B,200,2, 2,"NH 276","MWF","2:45PM - 3:50PM",,,First,"NH","276","2:45 PM","65","3:50 PM","Discrete Mathematics","Dr. Christopher G. Moseley","","","","","","2022-12-07T21:27:39-05:00"
+"Mathematics and Statistics",FA,"MATH",252,A,200,2, 2,"NH 276","MWF","1:30PM - 2:35PM",,,Second,"NH","276","1:30 PM","65","2:35 PM","Discrete Math for Computer Sci","Dr. Randall J Pruim","","","","","","2022-12-07T21:28:05-05:00"
+"Mathematics and Statistics",FA,"MATH",252,B,200,2, 2,"NH 276","MWF","2:45PM - 3:50PM",,,Second,"NH","276","2:45 PM","65","3:50 PM","Discrete Math for Computer Sci","Dr. Randall J Pruim","","","","","","2022-12-07T21:28:22-05:00"
+"Mathematics and Statistics",FA,"MATH",255,A,200,4, 4,"NH 259","MWF","12:15PM - 1:20PM",,,Full,"NH","259","12:15 PM","65","1:20 PM","Introductory Linear Algebra","Dr. Christopher G. Moseley","","","","","","2024-02-06T23:21:05-05:00"
+"Mathematics and Statistics",FA,"MATH",271,A,200,4, 4,"NH New Room","MWF","9:15AM - 10:20AM",,,Full,"NH New","Room","9:15 AM","65","10:20 AM","Multivariable Calculus","Nathan S Sunukjian","","LEC","","","","2022-11-03T16:48:02-04:00"
+"Mathematics and Statistics",SP,"MATH",271,A,200,4, 4,"NH New Room","MWF","1:30PM - 2:35PM",,,Full,"NH New","Room","1:30 PM","65","2:35 PM","Multivariable Calculus","Tim Pennings","","","","","","2024-02-06T23:48:13-05:00"
+"Mathematics and Statistics",FA,"MATH",271,B,200,4, 4,"NH 295","MWF","11:00AM - 12:05PM",,,Full,"NH","295","11:00 AM","65","12:05 PM","Multivariable Calculus","Staff","","","","","","2024-02-06T23:30:04-05:00"
+"Mathematics and Statistics",FA,"MATH",271,C,200,4, 4,"NH 295","MWF","12:15PM - 1:20PM",,,Full,"NH","295","12:15 PM","65","1:20 PM","Multivariable Calculus","Nathan S Sunukjian","","","","","","2024-02-06T23:28:06-05:00"
+"Mathematics and Statistics",SP,"MATH",301,A,300,4, 4,"NH 259","TTH","12:15PM - 1:55PM",,,Full,"NH","259","12:15 PM","100","1:55 PM","Geometry","Dr. James Michael Turner","","LEC","","","","2022-11-02T20:49:23-04:00"
+"Mathematics and Statistics",FA,"MATH",312,A,300,4, 4,"NH 259","TTH","2:10PM - 3:50PM",,,Full,"NH","259","2:10 PM","100","3:50 PM","Logic and Complexity","Dr. James Michael Turner","","","In-person","","","2024-02-06T10:11:37-05:00"
+"Mathematics and Statistics",FA,"MATH",324,A,300,4, 4,"","","",,,Full,"","","","","","Teaching Mathematics in Elementary Grades: Internship I ","Erek Kooyman","","","In-person","","","2024-02-06T14:32:36-05:00"
+"Mathematics and Statistics",SP,"MATH",324,A,300,4, 4,"","","",,,Full,"","","","","","Teaching Mathematics in Elementary Grades: Internship I ","Jenny Griffin","","","In-person","","","2024-02-06T10:06:38-05:00"
+"Mathematics and Statistics",SP,"MATH",327,A,300,2, 2,"NH 259","TH","6:30PM - 8:10PM",,,Full,"NH","259","6:30 PM","100","8:10 PM","","Dr. David B. Klanderman","","","","","","2022-12-08T19:17:33-05:00"
+"Mathematics and Statistics",FA,"MATH",333,A,300,4, 4,"NH 259","MWF","8:00AM - 9:05AM",,,Full,"NH","259","8:00 AM","65","9:05 AM","Partial Differential Equations","Dr. Thomas L. Scofield","","","In-person","","","2024-02-06T12:54:43-05:00"
+"Mathematics and Statistics",SP,"MATH",351,A,300,4, 4,"NH 261","MWF","1:30PM - 2:35PM",,,Full,"NH","261","1:30 PM","65","2:35 PM","Abstract Algebra","Dr. R John Ferdinands","","","","","","2024-02-06T22:23:12-05:00"
+"Mathematics and Statistics",SP,"MATH",355,A,300,4, 4,"NH 261","MWF","11:00AM - 12:05PM",,,Full,"NH","261","11:00 AM","65","12:05 PM","Adv Linear Algebra","Dr. Todd M. Kapitula","","","","","","2024-02-06T13:09:02-05:00"
+"Mathematics and Statistics",FA,"MATH",361,A,300,4, 4,"NH 261","MWF","12:15PM - 1:20PM",,,Full,"NH","261","12:15 PM","65","1:20 PM","Real Analysis I","Dr. Michael David Bolt","","","","","","2022-12-07T21:16:24-05:00"
+"Mathematics and Statistics",SP,"MATH",365,A,300,4, 4,"NH 259","MWF","8:00AM - 9:05AM",,,Full,"NH","259","8:00 AM","65","9:05 AM","Complex Variables","Dr. Michael David Bolt","","LEC","","","","2022-10-25T13:30:32-04:00"
+"Mathematics and Statistics",SP,"MATH",380,A,300,4, 4,"NH 261","MWF","12:15PM - 1:20PM",,,Full,"NH","261","12:15 PM","65","1:20 PM","Perspectives on Modern Mathematics","Nathan S Sunukjian","","","In-person","","","2024-02-06T22:19:42-05:00"
+"Mathematics and Statistics",SP,"MATH",385,A,300,4, 4,"NH 261","MWF","9:15AM - 10:20AM",,,Full,"NH","261","9:15 AM","65","10:20 AM","Topics in Mathematics","Staff","","","","","","2024-02-06T10:25:21-05:00"
+"Mathematics and Statistics",FA,"MATH",391,A,300,0, 1,"NH 276","TH","3:05PM - 3:55PM",,,Full,"NH","276","3:05 PM","50","3:55 PM","Colloquium","Dr. R John Ferdinands
+Dr. Christopher G. Moseley","","","","","Refreshments will begin before 3:00 so talks can begin at 3.","2022-12-08T11:04:40-05:00"
+"Mathematics and Statistics",SP,"MATH",391,A,300,0, 1,"NH 276","TH","3:05PM - 3:55PM",,,Full,"NH","276","3:05 PM","50","3:55 PM","Colloquium","Dr. R John Ferdinands
+Dr. Christopher G. Moseley","","","","","","2022-12-08T11:04:11-05:00"
+"Mathematics and Statistics",SP,"PUBH",504,A,500,3, 3,"","","",,,Second,"","","","","","Biostatistics","Staff","","","Online asynchronous","","","2022-12-06T14:57:31-05:00"
+"Mathematics and Statistics",FA,"STAT",143,A,100,4, 4,"NH 295","MWF","8:00AM - 9:05AM",,,Full,"NH","295","8:00 AM","65","9:05 AM","Probability and Statistics","Staff","","","","","","2024-02-06T10:24:30-05:00"
+"Mathematics and Statistics",SP,"STAT",143,A,100,4, 4,"NH 295","MWF","8:00AM - 9:05AM",,,Full,"NH","295","8:00 AM","65","9:05 AM","Probability and Statistics","Dr. R John Ferdinands","","","","","","2024-02-06T13:27:26-05:00"
+"Mathematics and Statistics",FA,"STAT",143,B,100,4, 4,"NH 295","MWF","9:15AM - 10:20AM",,,Full,"NH","295","9:15 AM","65","10:20 AM","Probability and Statistics","Staff","","","","","","2024-02-06T10:24:39-05:00"
+"Mathematics and Statistics",SP,"STAT",143,B,100,4, 4,"NH 295","MWF","9:15AM - 10:20AM",,,Full,"NH","295","9:15 AM","65","10:20 AM","Probability and Statistics","Dr. R John Ferdinands","","","","","","2024-02-06T13:27:41-05:00"
+"Mathematics and Statistics",SP,"STAT",143,C,100,4, 4,"NH 295","MWF","11:00AM - 12:05PM",,,Full,"NH","295","11:00 AM","65","12:05 PM","Probability and Statistics","Nathan S Sunukjian","","","","","","2024-02-06T13:32:10-05:00"
+"Mathematics and Statistics",FA,"STAT",143,D,100,4, 4,"NH 295","MWF","2:45PM - 3:50PM",,,Full,"NH","295","2:45 PM","65","3:50 PM","Probability and Statistics","Dr. David B. Klanderman","","","","","","2024-02-06T09:43:50-05:00"
+"Mathematics and Statistics",SP,"STAT",143,D,100,4, 4,"NH 295","MWF","12:15PM - 1:20PM",,,Full,"NH","295","12:15 PM","65","1:20 PM","Probability and Statistics","Staff","","","","","","2024-02-06T11:51:38-05:00"
+"Mathematics and Statistics",FA,"STAT",143,E,100,4, 4,"NH 295","MWF","1:30PM - 2:35PM",,,Full,"NH","295","1:30 PM","65","2:35 PM","Probability and Statistics","Tim Pennings","","","","","","2022-12-08T11:14:27-05:00"
+"Mathematics and Statistics",SP,"STAT",143,E,100,4, 4,"NH 295","TTH","10:20AM - 12:00PM",,,Full,"NH","295","10:20 AM","100","12:00 PM","Probability and Statistics","Staff","","","","","","2024-02-06T13:04:24-05:00"
+"Mathematics and Statistics",FA,"STAT",145,A,100,4, 4,"NH 259","MWF","9:15AM - 10:20AM",,,Full,"NH","259","9:15 AM","65","10:20 AM","Biostatistics","Dr. Thomas L. Scofield","","LEC","","","","2022-11-03T14:11:12-04:00"
+"Mathematics and Statistics",SP,"STAT",145,A,100,4, 4,"NH 251","MWF","9:15AM - 10:20AM",,,Full,"NH","251","9:15 AM","65","10:20 AM","Biostatistics","Dr. Thomas L. Scofield","","","","","","2022-12-07T19:35:49-05:00"
+"Mathematics and Statistics",SP,"STAT",241,A,200,2, 2,"NH 259","MWF","12:15PM - 1:20PM",,,First,"NH","259","12:15 PM","65","1:20 PM","Engineering Statistics","Dr. Todd M. Kapitula","","LEC","","","","2022-10-25T13:40:21-04:00"
+"Mathematics and Statistics",SP,"STAT",241,B,200,2, 2,"NH 259","MWF","12:15PM - 1:20PM",,,Second,"NH","259","12:15 PM","65","1:20 PM","Engineering Statistics","Dr. Todd M. Kapitula","","LEC","","","","2022-10-25T13:40:34-04:00"
+"Mathematics and Statistics",SP,"STAT",243,A,200,4, 4,"NH 276","MWF","8:00AM - 9:05AM",,,Full,"NH","276","8:00 AM","65","9:05 AM","Statistics","Dr. Thomas L. Scofield","","","","","","2024-02-06T12:55:52-05:00"
+"Mathematics and Statistics",SP,"STAT",243,B,200,4, 4,"NH 259","MWF","11:00AM - 12:05PM",,,Full,"NH","259","11:00 AM","65","12:05 PM","Statistics","Dr. Thomas L. Scofield","","","","","","2024-02-06T12:55:40-05:00"
+"Mathematics and Statistics",FA,"STAT",245,A,200,4, 4,"NH 276","TTH","10:20AM - 12:00PM",,,Full,"NH","276","10:20 AM","100","12:00 PM","Applied Data Analysis","Dr. Stacy Lynn De Ruiter","","","In-person","","SB 343 preferred for room","2024-02-06T13:16:04-05:00"
+"Mathematics and Statistics",SP,"STAT",245,B,200,4, 4,"NH 276","TTH","10:20AM - 12:00PM",,,Full,"NH","276","10:20 AM","100","12:00 PM","Applied Data Analysis","Dr. Stacy Lynn De Ruiter","","","","","","2022-12-08T09:06:10-05:00"
+"Mathematics and Statistics",SP,"STAT",341,A,300,4, 4,"NH 276","MWF","1:30PM - 2:35PM",,,Full,"NH","276","1:30 PM","65","2:35 PM","Computational Bayesian Statistics","Dr. Stacy Lynn De Ruiter","","","In-person","","","2024-02-06T12:58:08-05:00"
+"Mathematics and Statistics",FA,"STAT",343,A,300,4, 4,"NH 259","MWF","11:00AM - 12:05PM",,,Full,"NH","259","11:00 AM","65","12:05 PM","Probability & Statistics","Dr. Randall J Pruim","","","","","","2024-02-06T12:51:59-05:00"
