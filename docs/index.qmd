@@ -24,7 +24,7 @@ div.centered {
 
 - [Course Schedulizer App](https://schedulizer.pruim.co)
 
-- [Workshop slides](schedulizer2.0-slides.qmd)
+- [Workshop slides](schedulizer2.0-slides.html)
 
 - [Get data from last year](https://reports.calvin.edu/Reports/report/Departmental%20Reports/Course%20Section%20Report)
 
