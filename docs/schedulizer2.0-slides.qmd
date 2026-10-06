@@ -1,6 +1,6 @@
 ---
 title: "Course Schedulizer 2.0"
-subtitle: <https://cutt.ly/schedulizer2>
+subtitle: <https://cutt.ly/schedulizer>
 date: last-modified
 self-contained: true
 format: 
