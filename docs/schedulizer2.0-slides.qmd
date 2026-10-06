@@ -222,7 +222,7 @@ so you can send it.
 
 Choose **Example schedule**
 
-![](images/example-schedules-2.png)
+![](images/import-example-2.png)
 
 ## 2. **Look** over your schedule 
 
@@ -249,11 +249,24 @@ sample to something else.
 
 ## 4. **Check** your schedule.
 
-a. Which instructor has the heaviest/lightest load?
+a. Which instructor has the heaviest/lightest load? (Loads: Teaching Load)
 
-b. How many faculty are on sabbatical?
+b. How many faculty are on sabbatical? (Loads: Non-teaching Load)
 
-c. Does the schedule have any conflicts?
+c. Does the schedule have any conflicts? (Check: Conflicts)
+
+## 4. **Check** your schedule.
+
+a. **Import a new example:** "two drafts, to compare"
+
+    * uncheck any schedules other than these two
+    * re-order them if you like
+
+b. Go to **Check: Compare**
+
+c. Try several of the **built-in comparisons.**
+
+d. For the adventurous: **Create a custom comparison.**
 
 ## 5. **Export** to Excel 
 
@@ -302,9 +315,5 @@ qr_code(url) |>
 
 3. Use **Mass edit** to change the academic year.
 
-4. **Export** to save a copy
+4. **Export** to save a copy (download or Excel)
 
-    * Optionally, go to **File > Meta** and change things
-      like the nickname and filename to use.
-
-    * You can either download the file or save to OneDrive.
