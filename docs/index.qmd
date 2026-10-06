@@ -8,6 +8,8 @@ self-contained: true
 
 ## You are here
 
+
+
 ```{=html}
 <style>
 div.centered {
@@ -17,7 +19,9 @@ div.centered {
 ```
 
 ::: centered
-![<https://cutt.ly/schedulizer>](images/schedulizer-qr.svg)
+
+<https://cutt.ly/schedulizer>{style="font-size: 400%"}
+
 :::
 
 ## Why you are here
